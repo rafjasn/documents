@@ -1,0 +1,17 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+        "composite": true,
+        "types": ["jest", "node", "multer"],
+        "paths": {
+            "@documents/shared": ["../../packages/shared/src"],
+            "@config/*": ["./src/config/*"],
+            "@common/*": ["./src/common/*"],
+            "@modules/*": ["./src/modules/*"]
+        }
+    },
+    "include": ["src/**/*"],
+    "references": [{ "path": "../../packages/shared" }]
+}

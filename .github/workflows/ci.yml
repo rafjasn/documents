@@ -1,0 +1,172 @@
+name: CI
+
+on:
+    push:
+        branches: ['**']
+    pull_request:
+
+concurrency:
+    group: ci-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    build-shared:
+        name: Build shared
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build shared
+              run: npm run build -w @documents/shared
+
+            - name: Upload shared dist
+              uses: actions/upload-artifact@v4
+              with:
+                  name: shared-dist
+                  path: packages/shared/dist
+                  retention-days: 1
+
+    cdk-synth:
+        name: CDK Synth
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: infrastructure/cdk
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+                  cache-dependency-path: infrastructure/cdk/package-lock.json
+
+            - name: Install CDK dependencies
+              run: npm ci
+
+            - name: CDK Synth
+              run: npx cdk synth --quiet
+              env:
+                  CDK_DEFAULT_ACCOUNT: '123456789012'
+                  CDK_DEFAULT_REGION: 'us-east-1'
+                  ALLOWED_ORIGINS: 'http://localhost:3000'
+
+    lint:
+        name: Lint (${{ matrix.service }})
+        needs: build-shared
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                service: [api, worker, frontend]
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Download shared dist
+              uses: actions/download-artifact@v4
+              with:
+                  name: shared-dist
+                  path: packages/shared/dist
+
+            - name: Lint ${{ matrix.service }}
+              run: npm run lint -w @documents/${{ matrix.service }}
+
+    build:
+        name: Build (${{ matrix.service }})
+        needs: build-shared
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                service: [api, worker]
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Download shared dist
+              uses: actions/download-artifact@v4
+              with:
+                  name: shared-dist
+                  path: packages/shared/dist
+
+            - name: Build ${{ matrix.service }}
+              run: npm run build -w @documents/${{ matrix.service }}
+              env:
+                  NODE_ENV: production
+
+    test:
+        name: Tests (${{ matrix.service }})
+        needs: build
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                service: [api, worker]
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Download shared dist
+              uses: actions/download-artifact@v4
+              with:
+                  name: shared-dist
+                  path: packages/shared/dist
+
+            - name: Run tests
+              run: npm test -w @documents/${{ matrix.service }}
+              env:
+                  NODE_ENV: test
+                  CI: 'true'
+
+    docker-build:
+        name: Docker Build (${{ matrix.service }})
+        needs: [test, lint]
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                service: [api, worker, frontend]
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: docker/setup-buildx-action@v3
+
+            - name: Build ${{ matrix.service }} image
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  file: docker/Dockerfile.${{ matrix.service }}
+                  target: production
+                  push: false
+                  cache-from: type=gha,scope=${{ matrix.service }}
+                  cache-to: type=gha,mode=max,scope=${{ matrix.service }}

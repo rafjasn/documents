@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "composite": false,
+        "incremental": false,
+        "paths": {
+            "@documents/shared": ["../../packages/shared/dist"],
+            "@config/*": ["./src/config/*"],
+            "@common/*": ["./src/common/*"],
+            "@modules/*": ["./src/modules/*"]
+        }
+    },
+    "exclude": ["node_modules", "dist", "**/*.spec.ts"]
+}

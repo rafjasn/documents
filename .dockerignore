@@ -1,0 +1,15 @@
+node_modules
+dist
+.next
+.git
+.env
+.env.*
+coverage
+*.log
+.DS_Store
+.vscode
+.idea
+localstack-data
+ollama-data
+pnpm-lock.yaml
+pnpm-workspace.yaml

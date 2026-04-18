@@ -1,0 +1,26 @@
+{
+    "name": "@documents/cdk",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "synth": "cdk synth",
+        "diff": "cdk diff",
+        "deploy:infra": "cdk deploy DocumentsInfraStack",
+        "deploy:services": "cdk deploy DocumentsServicesStack",
+        "deploy:all": "cdk deploy --all",
+        "destroy": "cdk destroy --all"
+    },
+    "dependencies": {
+        "aws-cdk-lib": "^2.250.0",
+        "constructs": "^10.6.0"
+    },
+    "devDependencies": {
+        "@types/node": "^25.6.0",
+        "@types/source-map-support": "^0.5.10",
+        "aws-cdk": "^2.1118.2",
+        "source-map-support": "^0.5.21",
+        "ts-node": "^10.9.2",
+        "typescript": "^6.0.3"
+    }
+}

@@ -1,0 +1,46 @@
+FROM node:24-alpine AS base
+WORKDIR /app
+
+FROM base AS deps
+COPY package.json package-lock.json ./
+COPY packages/shared/package.json packages/shared/package.json
+COPY services/api/package.json services/api/package.json
+COPY services/worker/package.json services/worker/package.json
+COPY frontend/package.json frontend/package.json
+RUN npm ci
+
+FROM deps AS build
+COPY tsconfig.json tsconfig.json
+COPY packages/shared packages/shared
+RUN npm run build -w @documents/shared
+
+COPY services/api services/api
+RUN npm run build -w @documents/api
+
+FROM deps AS development
+COPY tsconfig.json tsconfig.json
+COPY packages/shared packages/shared
+RUN npm run build -w @documents/shared
+COPY services/api/nest-cli.json services/api/nest-cli.json
+COPY services/api/webpack.config.js services/api/webpack.config.js
+COPY services/api/tsconfig.json services/api/tsconfig.json
+COPY services/api/tsconfig.build.json services/api/tsconfig.build.json
+WORKDIR /app
+EXPOSE 3001
+CMD ["npm", "run", "dev", "-w", "@documents/api"]
+
+FROM base AS production
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/packages/shared/dist ./packages/shared/dist
+COPY --from=build /app/packages/shared/package.json ./packages/shared/package.json
+COPY --from=build /app/services/api/dist ./services/api/dist
+COPY --from=build /app/services/api/package.json ./services/api/package.json
+COPY --from=build /app/package.json ./package.json
+
+WORKDIR /app/services/api
+EXPOSE 3001
+
+HEALTHCHECK --interval=15s --timeout=5s --retries=3 \
+  CMD wget -qO- http://localhost:3001/api/health/ready || exit 1
+
+CMD ["node", "dist/main"]

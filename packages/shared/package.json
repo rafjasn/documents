@@ -1,0 +1,29 @@
+{
+    "name": "@documents/shared",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "build:watch": "tsc -p tsconfig.json --watch",
+        "clean": "rm -rf dist"
+    },
+    "dependencies": {
+        "@aws-sdk/client-cloudwatch-logs": "^3.1029.0",
+        "@aws-sdk/client-cognito-identity-provider": "^3.1029.0",
+        "@aws-sdk/client-dynamodb": "^3.1029.0",
+        "@aws-sdk/client-s3": "^3.1029.0",
+        "@aws-sdk/client-sns": "^3.1029.0",
+        "@aws-sdk/client-sqs": "^3.1029.0",
+        "@aws-sdk/lib-dynamodb": "^3.1029.0",
+        "@nestjs/passport": "^11.0.5",
+        "jwks-rsa": "^4.0.1",
+        "passport": "^0.7.0",
+        "passport-jwt": "^4.0.1"
+    },
+    "devDependencies": {
+        "@types/passport-jwt": "^4.0.1",
+        "typescript": "^6.0.3"
+    }
+}

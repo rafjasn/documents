@@ -1,0 +1,33 @@
+FROM node:24-alpine AS base
+WORKDIR /app
+
+FROM base AS deps
+COPY package.json package-lock.json ./
+COPY packages/shared/package.json packages/shared/package.json
+COPY services/api/package.json services/api/package.json
+COPY services/worker/package.json services/worker/package.json
+COPY frontend/package.json frontend/package.json
+RUN npm ci
+
+FROM deps AS build
+COPY frontend frontend
+COPY tsconfig.json tsconfig.json
+RUN npm run build -w @documents/frontend
+
+FROM deps AS development
+COPY frontend/tsconfig.json frontend/tsconfig.json
+COPY frontend/next.config.js frontend/next.config.js
+COPY frontend/postcss.config.js frontend/postcss.config.js
+COPY frontend/tailwind.config.ts frontend/tailwind.config.ts
+WORKDIR /app
+EXPOSE 3000
+CMD ["npm", "run", "dev", "-w", "@documents/frontend"]
+
+FROM base AS production
+COPY --from=build /app/frontend/.next/standalone ./
+COPY --from=build /app/frontend/.next/static ./frontend/.next/static
+
+WORKDIR /app/frontend
+EXPOSE 3000
+
+CMD ["node", "server.js"]

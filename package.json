@@ -1,0 +1,42 @@
+{
+    "name": "documents",
+    "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "services/*",
+        "frontend"
+    ],
+    "scripts": {
+        "dev": "concurrently -n api,worker,fe -c blue,magenta,green \"npm run dev -w @documents/api\" \"npm run dev -w @documents/worker\" \"npm run dev -w @documents/frontend\"",
+        "dev:api": "npm run start:dev -w @documents/api",
+        "dev:worker": "npm run start:dev -w @documents/worker",
+        "dev:frontend": "npm run dev -w @documents/frontend",
+        "build": "npm run build --workspaces --if-present",
+        "build:shared": "npm run build -w @documents/shared",
+        "test": "npm run test --workspaces --if-present",
+        "test:integration": "npm run test:integration -w @documents/api && npm run test:integration -w @documents/worker",
+        "test:e2e": "npm run test:e2e -w @documents/api",
+        "lint": "npm run lint --workspaces --if-present",
+        "format": "prettier --write \"**/*.{ts,tsx,json}\"",
+        "format:check": "prettier --check \"**/*.{ts,tsx,json}\"",
+        "infra:up": "docker compose up localstack -d && sleep 5 && ./infrastructure/scripts/init-aws.sh",
+        "infra:down": "docker compose down localstack",
+        "docker:up": "docker compose up -d",
+        "docker:up:scaled": "docker compose up -d --scale api=3 --scale worker=2",
+        "docker:down": "docker compose down -v",
+        "docker:logs": "docker compose logs -f",
+        "clean": "npm run clean --workspaces --if-present && rm -rf node_modules"
+    },
+    "devDependencies": {
+        "@types/pdf-parse": "^1.1.5",
+        "concurrently": "^9.2.1",
+        "typescript": "^6.0.3"
+    },
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "dependencies": {
+        "eslint": "^9.0.0"
+    }
+}

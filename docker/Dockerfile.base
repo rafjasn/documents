@@ -1,0 +1,16 @@
+FROM node:24-alpine AS base
+WORKDIR /app
+
+FROM base AS deps
+# Copy workspace root files
+COPY package.json package-lock.json ./
+COPY packages/shared/package.json packages/shared/package.json
+COPY services/api/package.json services/api/package.json
+COPY services/worker/package.json services/worker/package.json
+COPY frontend/package.json frontend/package.json
+RUN npm ci
+
+FROM deps AS shared-build
+COPY packages/shared packages/shared
+COPY tsconfig.json tsconfig.json
+RUN npm run build -w @documents/shared

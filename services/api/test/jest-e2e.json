@@ -1,0 +1,27 @@
+{
+    "moduleFileExtensions": ["js", "json", "ts"],
+    "rootDir": "..",
+    "testMatch": ["<rootDir>/test/**/*.e2e-spec.ts"],
+    "testEnvironment": "node",
+    "transform": {
+        "^.+\\.(t|j)s$": ["ts-jest", { "tsconfig": "<rootDir>/tsconfig.e2e.json" }]
+    },
+    "moduleNameMapper": {
+        "^@documents/shared$": "<rootDir>/../../packages/shared/src",
+        "^@config/(.*)$": "<rootDir>/src/config/$1",
+        "^@common/(.*)$": "<rootDir>/src/common/$1",
+        "^@modules/(.*)$": "<rootDir>/src/modules/$1",
+        "^jwks-rsa$": "<rootDir>/test/mocks/jwks-rsa.js",
+        "^uuid$": "<rootDir>/test/mocks/uuid.js"
+    },
+    "testTimeout": 30000,
+    "collectCoverageFrom": [
+        "src/**/*.ts",
+        "!src/main.ts",
+        "!src/**/*.module.ts",
+        "!src/**/*.dto.ts",
+        "!src/**/*.entity.ts"
+    ],
+    "coverageDirectory": "coverage-e2e",
+    "coverageReporters": ["text", "lcov"]
+}
