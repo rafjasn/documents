@@ -1,10 +1,11 @@
 # Documents
+[![CI](https://github.com/rafjasn/documents/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rafjasn/documents/actions/workflows/ci.yml)
 
 A full-stack document management platform built on AWS.
 
 ## Features
 
-- Drag-and-drop file upload (PDF, DOCX, PNG, JPG, WEBP, TXT, CSV, up to 50 MB) via S3 presigned URLs — no file data passes through the API server
+- Drag-and-drop file upload (PDF, DOCX, PNG, JPG, WEBP, TXT, CSV) via S3 presigned URLs — no file data passes through the API server
 - Automatic text extraction using pdf-parse, mammoth, and Tesseract OCR
 - AI classification and summarisation powered by a pluggable LLM backend (Ollama, OpenAI, Anthropic, or AWS Bedrock)
 - Thumbnail generation with sharp, in parallel with AI processing
