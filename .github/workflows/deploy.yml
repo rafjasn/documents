@@ -98,14 +98,22 @@ jobs:
             - name: CDK Synth (pre-deploy validation)
               run: npx cdk synth --quiet
               env:
+                  CDK_REQUIRE_AUTH_ENV: 'true'
                   CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
                   CDK_DEFAULT_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
+                  ALLOWED_ORIGINS: ${{ secrets.ALLOWED_ORIGINS }}
+                  COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
+                  COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
 
             - name: CDK Deploy — Infra stack
               run: npx cdk deploy DocumentsInfraStack --require-approval never
               env:
+                  CDK_REQUIRE_AUTH_ENV: 'true'
                   CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
                   CDK_DEFAULT_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
+                  ALLOWED_ORIGINS: ${{ secrets.ALLOWED_ORIGINS }}
+                  COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
+                  COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
 
             - name: CDK Deploy — Services stack
               run: |
@@ -115,5 +123,9 @@ jobs:
                     --require-approval never \
                     --context imageTag="$TAG"
               env:
+                  CDK_REQUIRE_AUTH_ENV: 'true'
                   CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
                   CDK_DEFAULT_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
+                  ALLOWED_ORIGINS: ${{ secrets.ALLOWED_ORIGINS }}
+                  COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
+                  COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}

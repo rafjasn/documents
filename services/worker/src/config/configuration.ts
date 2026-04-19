@@ -1,15 +1,35 @@
 import { registerAs } from '@nestjs/config';
 
+const awsRegion = process.env.AWS_REGION || 'us-east-1';
+const awsEndpoint =
+    process.env.AWS_ENDPOINT ||
+    (process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:4566');
+
+function resolveAwsCredentials(endpoint?: string) {
+    if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
+        return {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+        };
+    }
+
+    if (endpoint?.includes('localhost') || endpoint?.includes('localstack')) {
+        return {
+            accessKeyId: 'test',
+            secretAccessKey: 'test'
+        };
+    }
+
+    return undefined;
+}
+
 export const awsConfig = registerAs('aws', () => ({
-    region: process.env.AWS_REGION || 'us-east-1',
-    endpoint: process.env.AWS_ENDPOINT || 'http://localhost:4566',
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'test',
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'test'
-    },
+    region: awsRegion,
+    endpoint: awsEndpoint,
+    credentials: resolveAwsCredentials(awsEndpoint),
     s3: {
         bucket: process.env.S3_BUCKET || 'documents-uploads',
-        forcePathStyle: true // required for LocalStack
+        forcePathStyle: Boolean(awsEndpoint) // required for LocalStack
     },
     dynamodb: {
         tableName: process.env.DYNAMODB_TABLE || 'documents-documents'

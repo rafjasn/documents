@@ -32,7 +32,7 @@ import { NotificationsConsumerService } from './modules/gateway/notifications-co
             useFactory: (config: ConfigService) =>
                 createDynamoDBClient({
                     region: config.get<string>('aws.region')!,
-                    endpoint: config.get<string>('aws.endpoint')!,
+                    endpoint: config.get<string>('aws.endpoint'),
                     credentials: config.get('aws.credentials')!
                 })
         },
@@ -42,7 +42,7 @@ import { NotificationsConsumerService } from './modules/gateway/notifications-co
             useFactory: (config: ConfigService) =>
                 createS3Client({
                     region: config.get<string>('aws.region')!,
-                    endpoint: config.get<string>('aws.endpoint')!,
+                    endpoint: config.get<string>('aws.endpoint'),
                     credentials: config.get('aws.credentials')!
                 })
         },
@@ -52,7 +52,7 @@ import { NotificationsConsumerService } from './modules/gateway/notifications-co
             useFactory: (config: ConfigService) =>
                 createSQSClient({
                     region: config.get<string>('aws.region')!,
-                    endpoint: config.get<string>('aws.endpoint')!,
+                    endpoint: config.get<string>('aws.endpoint'),
                     credentials: config.get('aws.credentials')!
                 })
         },
@@ -62,7 +62,7 @@ import { NotificationsConsumerService } from './modules/gateway/notifications-co
             useFactory: (config: ConfigService) =>
                 createSNSClient({
                     region: config.get<string>('aws.region')!,
-                    endpoint: config.get<string>('aws.endpoint')!,
+                    endpoint: config.get<string>('aws.endpoint'),
                     credentials: config.get('aws.credentials')!
                 })
         }

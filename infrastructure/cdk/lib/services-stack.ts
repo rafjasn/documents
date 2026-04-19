@@ -10,13 +10,18 @@ import { DocumentsInfraStack } from './infra-stack';
 export interface DocumentsServicesStackProps extends cdk.StackProps {
     infra: DocumentsInfraStack;
     imageTag: string;
+    auth: {
+        cognitoUserPoolId: string;
+        cognitoClientId: string;
+    };
 }
 
 export class DocumentsServicesStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props: DocumentsServicesStackProps) {
         super(scope, id, props);
 
-        const { infra, imageTag } = props;
+        const { infra, imageTag, auth } = props;
+        const cognitoIssuer = `https://cognito-idp.${this.region}.amazonaws.com/${auth.cognitoUserPoolId}`;
 
         // Secrets
         // aws secretsmanager put-secret-value --secret-id documents/jwt-secret --secret-string "STRING"
@@ -110,6 +115,20 @@ export class DocumentsServicesStack extends cdk.Stack {
         servicesSg.addIngressRule(albSg, ec2.Port.allTcp(), 'From ALB');
         servicesSg.addIngressRule(servicesSg, ec2.Port.allTcp(), 'Intra-cluster');
 
+        const apiEnv: Record<string, string> = {
+            ...awsEnv,
+            PORT: '3001',
+            NODE_ENV: 'production',
+            CORS_ORIGIN: `http://${alb.loadBalancerDnsName}`,
+            SQS_API_NOTIFICATIONS_QUEUE_URL: infra.apiNotificationsQueue.queueUrl,
+            AUTH_PROVIDER: 'cognito',
+            COGNITO_USER_POOL_ID: auth.cognitoUserPoolId,
+            COGNITO_CLIENT_ID: auth.cognitoClientId,
+            AUTH_AUDIENCE: auth.cognitoClientId,
+            AUTH_ISSUER: cognitoIssuer,
+            AUTH_JWKS_URI: `${cognitoIssuer}/.well-known/jwks.json`
+        };
+
         // build fargate task definition
         const makeTaskDef = (name: string, cpu: number, memoryMiB: number) =>
             new ecs.FargateTaskDefinition(this, `${name}Task`, {
@@ -158,12 +177,7 @@ export class DocumentsServicesStack extends cdk.Stack {
         apiTask.addContainer('api', {
             image: ecs.ContainerImage.fromEcrRepository(infra.repositories.api, imageTag),
             portMappings: [{ containerPort: 3001, name: 'api' }],
-            environment: {
-                ...awsEnv,
-                PORT: '3001',
-                NODE_ENV: 'production',
-                CORS_ORIGIN: `http://${alb.loadBalancerDnsName}`
-            },
+            environment: apiEnv,
             secrets: {
                 JWT_SECRET: ecs.Secret.fromSecretsManager(jwtSecret)
             },

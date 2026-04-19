@@ -123,6 +123,9 @@ Infrastructure is managed with AWS CDK v2 from the `infrastructure/cdk` director
 | Variable | Required for | Description |
 |---|---|---|
 | `ALLOWED_ORIGINS` | synth, deploy | Comma-separated list of origins allowed by the S3 bucket CORS policy. Must include the frontend origin (ALB DNS, CloudFront domain, or custom domain). Synth fails loudly if missing so the bucket can't be deployed with `*`. |
+| `COGNITO_USER_POOL_ID` | deploy | Existing Cognito user pool ID used by the API in AWS. For local `cdk synth`, the app loads the repo root `.env` and falls back to a placeholder if unset. |
+| `COGNITO_CLIENT_ID` | deploy | Cognito app client ID used for login and JWT audience validation. For local `cdk synth`, the app loads the repo root `.env` and falls back to a placeholder if unset. |
+| `CDK_REQUIRE_AUTH_ENV` | deploy | Set to `true` for deploy validation so missing Cognito auth env vars fail fast instead of using synth placeholders. |
 | `CDK_DEFAULT_ACCOUNT` | deploy | AWS account ID (auto-populated when using `aws configure`). |
 | `CDK_DEFAULT_REGION` | deploy | AWS region (defaults to `us-east-1`). |
 
@@ -131,11 +134,10 @@ Infrastructure is managed with AWS CDK v2 from the `infrastructure/cdk` director
 ```bash
 cd infrastructure/cdk
 npm install
-ALLOWED_ORIGINS=http://localhost:3000 \
-CDK_DEFAULT_ACCOUNT=123456789012 \
-CDK_DEFAULT_REGION=us-east-1 \
-  npx cdk synth
+npx cdk synth
 ```
+
+`cdk synth` loads the repo root `.env` automatically. If `COGNITO_USER_POOL_ID` or `COGNITO_CLIENT_ID` are blank locally, synth uses placeholder values so you do not need to export them just to validate the templates.
 
 ### Bootstrap (once per account/region)
 
@@ -147,10 +149,17 @@ npx cdk bootstrap aws://<account-id>/<region>
 
 ```bash
 # Stateful resources — VPC, S3, DynamoDB, SQS, SNS, ECR, IAM
-ALLOWED_ORIGINS=https://app.example.com npx cdk deploy DocumentsInfraStack
+CDK_REQUIRE_AUTH_ENV=true \
+ALLOWED_ORIGINS=https://app.example.com \
+COGNITO_USER_POOL_ID=us-east-1_abc123 \
+COGNITO_CLIENT_ID=abc123exampleclient \
+  npx cdk deploy DocumentsInfraStack
 
 # Services — ECS tasks, ALB, CloudWatch (CI/CD normally handles this)
+CDK_REQUIRE_AUTH_ENV=true \
 ALLOWED_ORIGINS=https://app.example.com \
+COGNITO_USER_POOL_ID=us-east-1_abc123 \
+COGNITO_CLIENT_ID=abc123exampleclient \
   npx cdk deploy DocumentsServicesStack --context imageTag=<git-sha>
 ```
 

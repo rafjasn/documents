@@ -58,6 +58,8 @@ jobs:
                   CDK_DEFAULT_ACCOUNT: '123456789012'
                   CDK_DEFAULT_REGION: 'us-east-1'
                   ALLOWED_ORIGINS: 'http://localhost:3000'
+                  COGNITO_USER_POOL_ID: 'us-east-1_example'
+                  COGNITO_CLIENT_ID: 'exampleclientid1234567890'
 
     lint:
         name: Lint (${{ matrix.service }})
