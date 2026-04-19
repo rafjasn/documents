@@ -19,9 +19,8 @@ export class NotificationsConsumerService implements OnModuleInit, OnModuleDestr
     private isShuttingDown = false;
 
     private readonly snsTopicArn: string;
-    private readonly region: string;
-    private readonly endpoint: string;
-    private queueUrl: string;
+    private readonly endpoint?: string;
+    private readonly queueUrl: string;
     private readonly pollingIntervalMs: number;
 
     constructor(
@@ -31,15 +30,17 @@ export class NotificationsConsumerService implements OnModuleInit, OnModuleDestr
         config: ConfigService
     ) {
         this.snsTopicArn = config.get<string>('aws.sns.topicArn')!;
-        this.region = config.get<string>('aws.region')!;
-        this.endpoint = config.get<string>('aws.endpoint')!;
+        this.endpoint = config.get<string>('aws.endpoint');
         this.pollingIntervalMs = 5000;
-        const account = this.snsTopicArn.split(':')[4] || '000000000000';
-        this.queueUrl = `http://sqs.${this.region}.localhost.localstack.cloud:4566/${account}/documents-api-notifications`;
+        this.queueUrl = config.get<string>('aws.sqs.apiNotificationsQueueUrl')!;
     }
 
     async onModuleInit() {
-        await this.ensureQueueAndSubscription();
+        if (this.endpoint) {
+            await this.ensureQueueAndSubscription();
+        } else {
+            this.logger.log('Using pre-provisioned notifications queue');
+        }
         this.isPolling = true;
         this.logger.log('Starting notifications consumer...');
         this.poll();

@@ -205,12 +205,7 @@ export class DocumentsService {
             })
         );
 
-        const signingClient = new S3Client({
-            region: this.aws.region,
-            endpoint: this.aws.s3.publicEndpoint,
-            forcePathStyle: true,
-            credentials: this.aws.credentials
-        });
+        const signingClient = this.createSigningS3Client();
 
         const { url, fields } = await createPresignedPost(signingClient, {
             Bucket: this.aws.s3.bucket,
@@ -244,17 +239,25 @@ export class DocumentsService {
     }
 
     private async signPublicUrl(key: string): Promise<string> {
-        const signingClient = new S3Client({
-            region: this.aws.region,
-            endpoint: this.aws.s3.publicEndpoint,
-            forcePathStyle: true,
-            credentials: this.aws.credentials
-        });
+        const signingClient = this.createSigningS3Client();
         return getSignedUrl(
             signingClient,
             new GetObjectCommand({ Bucket: this.aws.s3.bucket, Key: key }),
             { expiresIn: 3600 }
         );
+    }
+
+    private createSigningS3Client(): S3Client {
+        return new S3Client({
+            region: this.aws.region,
+            ...(this.aws.s3.publicEndpoint
+                ? {
+                      endpoint: this.aws.s3.publicEndpoint,
+                      forcePathStyle: true
+                  }
+                : {}),
+            ...(this.aws.credentials ? { credentials: this.aws.credentials } : {})
+        });
     }
 
     async updateDocumentStatus(

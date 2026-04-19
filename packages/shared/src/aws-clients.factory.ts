@@ -6,15 +6,15 @@ import { SNSClient } from '@aws-sdk/client-sns';
 
 export interface AwsClientsConfig {
     region: string;
-    endpoint: string;
-    credentials: { accessKeyId: string; secretAccessKey: string };
+    endpoint?: string;
+    credentials?: { accessKeyId: string; secretAccessKey: string };
 }
 
 export function createDynamoDBClient(config: AwsClientsConfig) {
     const client = new DynamoDBClient({
         region: config.region,
-        endpoint: config.endpoint,
-        credentials: config.credentials
+        ...(config.endpoint ? { endpoint: config.endpoint } : {}),
+        ...(config.credentials ? { credentials: config.credentials } : {})
     });
     return DynamoDBDocumentClient.from(client, {
         marshallOptions: { removeUndefinedValues: true }
@@ -24,24 +24,23 @@ export function createDynamoDBClient(config: AwsClientsConfig) {
 export function createS3Client(config: AwsClientsConfig) {
     return new S3Client({
         region: config.region,
-        endpoint: config.endpoint,
-        credentials: config.credentials,
-        forcePathStyle: true
+        ...(config.endpoint ? { endpoint: config.endpoint, forcePathStyle: true } : {}),
+        ...(config.credentials ? { credentials: config.credentials } : {})
     });
 }
 
 export function createSQSClient(config: AwsClientsConfig) {
     return new SQSClient({
         region: config.region,
-        endpoint: config.endpoint,
-        credentials: config.credentials
+        ...(config.endpoint ? { endpoint: config.endpoint } : {}),
+        ...(config.credentials ? { credentials: config.credentials } : {})
     });
 }
 
 export function createSNSClient(config: AwsClientsConfig) {
     return new SNSClient({
         region: config.region,
-        endpoint: config.endpoint,
-        credentials: config.credentials
+        ...(config.endpoint ? { endpoint: config.endpoint } : {}),
+        ...(config.credentials ? { credentials: config.credentials } : {})
     });
 }
