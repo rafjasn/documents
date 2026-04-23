@@ -22,6 +22,7 @@
         "format:check": "prettier --check \"**/*.{ts,tsx,json}\"",
         "infra:up": "docker compose up localstack -d && sleep 5 && ./infrastructure/scripts/init-aws.sh",
         "infra:down": "docker compose down localstack",
+        "infra:synth": "npm --prefix infrastructure/cdk run synth",
         "docker:up": "docker compose up -d",
         "docker:up:scaled": "docker compose up -d --scale api=3 --scale worker=2",
         "docker:down": "docker compose down -v",

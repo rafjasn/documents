@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as s3Notifications from 'aws-cdk-lib/aws-s3-notifications';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as sqs from 'aws-cdk-lib/aws-sqs';
 import * as sns from 'aws-cdk-lib/aws-sns';
@@ -121,6 +122,13 @@ export class DocumentsInfraStack extends cdk.Stack {
             retentionPeriod: cdk.Duration.days(4),
             deadLetterQueue: { queue: processingDlq, maxReceiveCount: 3 }
         });
+
+        // S3 notifications
+        this.bucket.addEventNotification(
+            s3.EventType.OBJECT_CREATED,
+            new s3Notifications.SqsDestination(this.processingQueue),
+            { prefix: 'uploads/' }
+        );
 
         // SQS thumbnails
         const thumbnailDlq = new sqs.Queue(this, 'ThumbnailDlq', {
