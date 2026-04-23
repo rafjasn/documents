@@ -132,9 +132,7 @@ Infrastructure is managed with AWS CDK v2 from the `infrastructure/cdk` director
 ### Validate (no AWS credentials required)
 
 ```bash
-cd infrastructure/cdk
-npm install
-npx cdk synth
+npm run infra:synth
 ```
 
 `cdk synth` loads the repo root `.env` automatically. If `COGNITO_USER_POOL_ID` or `COGNITO_CLIENT_ID` are blank locally, synth uses placeholder values so you do not need to export them just to validate the templates.
