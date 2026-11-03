@@ -1,0 +1,118 @@
+[project]
+name = "docai"
+version = "0.1.0"
+description = "Python AI services for Documents: the ingestion worker and the AI service (FastAPI + LangGraph)"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pydantic>=2.14.0",
+    "pydantic-settings>=2.15.0",
+    "langchain>=1.4.4",
+    "langchain-google-genai>=4.4.1",
+    "langfuse>=4.17.0",
+    "google-genai>=2.29.0",
+    "httpx>=0.28.1",
+    "qdrant-client>=1.19.1",
+    "langchain-openai>=1.7.0",
+    "opentelemetry-instrumentation-httpx>=0.66b1",
+    "prometheus-client>=0.26.0",
+]
+
+[project.optional-dependencies]
+serve = [
+    "boto3>=1.43.111",
+    "fastapi>=0.143.0",
+    "opentelemetry-instrumentation-botocore>=0.66b1",
+    "opentelemetry-instrumentation-fastapi>=0.66b1",
+    "pyjwt[crypto]>=2.15.1",
+    "uvicorn>=0.54.0",
+]
+# The ingestion worker: Docling (born-digital PDF, DOCX), Tesseract OCR, AWS clients.
+# torch and torchvision come from Docling's models; they are listed so that Linux
+# resolves them from the CPU-only index (tool.uv.sources) instead of CUDA builds.
+ingest = [
+    "boto3>=1.43.111",
+    "docling-ibm-models[opencv-python-headless]>=4.0.3",
+    "docling-slim[convert-core,format-docx,format-pdf,models-local]>=2.138.0",
+    "lingua-language-detector>=2.2.0",
+    "opentelemetry-instrumentation-botocore>=0.66b1",
+    "pillow>=12.3.0",
+    "pypdfium2>=5.14.0",
+    "tesserocr>=2.11.0",
+    "torch>=2.14.1",
+    "torchvision>=0.29.1",
+]
+corpus = [
+    "faker>=40.43.0",
+    "pillow>=12.3.0",
+    "pypdfium2>=5.14.0",
+    "python-docx>=1.2.0",
+    "reportlab>=5.0.1",
+]
+
+[project.scripts]
+docai = "docai.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+torchvision = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[dependency-groups]
+dev = [
+    "httpx2>=2.13.1",
+    "jsonschema>=4.26.0",
+    "moto[dynamodb,s3,sns,sqs]>=5.2.4",
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.0",
+    "types-boto3[dynamodb,s3,sns,sqs]>=1.43.111",
+    "types-jsonschema>=4.26.0.20261006",
+    "types-pyyaml>=6.0.12.20260906",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    # Raised inside Docling when it serialises its own OCR options.
+    "ignore:`force_full_page_ocr` is deprecated:DeprecationWarning",
+    # Tests use in-memory Qdrant, which ignores payload indexes.
+    "ignore:Payload indexes have no effect in the local Qdrant:UserWarning",
+    # google-genai on Python 3.14; harmless until 3.17.
+    "ignore:'_UnionGenericAlias' is deprecated:DeprecationWarning",
+]
+markers = [
+    "integration: calls Gemini and needs GEMINI_API_KEY, CHAT_MODEL and FAST_MODEL",
+    "docling: converts PDFs with Docling's models (about 370 MB, downloaded on first use)",
+    "qdrant: needs a Qdrant server (QDRANT_TEST_URL, default http://localhost:6333)",
+]
+
+[tool.ruff]
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+files = ["src", "tests"]
+plugins = ["pydantic.mypy"]
+
+# Document libraries without type information.
+[[tool.mypy.overrides]]
+module = ["pypdfium2.*", "reportlab.*", "tesserocr.*"]
+ignore_missing_imports = true
+
+# docling_core.types.doc re-exports its classes without __all__.
+[[tool.mypy.overrides]]
+module = ["docling_core.*"]
+implicit_reexport = true

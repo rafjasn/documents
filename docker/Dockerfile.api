@@ -5,7 +5,6 @@ FROM base AS deps
 COPY package.json package-lock.json ./
 COPY packages/shared/package.json packages/shared/package.json
 COPY services/api/package.json services/api/package.json
-COPY services/worker/package.json services/worker/package.json
 COPY frontend/package.json frontend/package.json
 RUN npm ci
 

@@ -13,17 +13,28 @@ services:
         volumes:
             - localstack-data:/var/lib/localstack
             - ./infrastructure/localstack:/etc/localstack/init/ready.d
+        mem_limit: 1g
+        # Healthy once the init script has created the bucket, queues, topic and table;
+        # /_localstack/health reports ready before that, and the worker's first polls failed.
+        # A first start resolves and loads each service on first use: 2 minutes on the M2
+        # in Stage 11's fresh-clone check, so failures in the first 3 minutes don't count.
         healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:4566/_localstack/health']
+            test:
+                - CMD-SHELL
+                - 'curl -sf http://localhost:4566/_localstack/init/ready | grep -q ''"completed": true'''
             interval: 10s
             timeout: 5s
             retries: 5
+            start_period: 180s
         networks:
             - backend
 
+    # Optional local LLM, unused by the default pipeline: docker compose --profile ollama up
     ollama:
         image: ollama/ollama:latest
         container_name: documents-ollama
+        profiles: [ollama]
+        mem_limit: 4g
         ports:
             - '11434:11434'
         environment:
@@ -43,7 +54,7 @@ services:
             [
                 '/bin/sh',
                 '-c',
-                'ollama serve & until ollama list 2>/dev/null; do sleep 1; done && ollama pull ${AI_MODEL} && wait'
+                'ollama serve & until ollama list 2>/dev/null; do sleep 1; done && ollama pull ${OLLAMA_MODEL:-llama3.2:3b} && wait'
             ]
 
     nginx:
@@ -53,6 +64,7 @@ services:
             - '80:80'
         volumes:
             - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+        mem_limit: 64m
         depends_on:
             api:
                 condition: service_started
@@ -74,6 +86,7 @@ services:
         volumes:
             - ./infrastructure/keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
         command: start-dev --import-realm
+        mem_limit: 1g
         healthcheck:
             test: ['CMD-SHELL', 'wget -q --spider http://localhost:8080/health/ready || exit 1']
             interval: 20s
@@ -89,9 +102,12 @@ services:
             target: development
         environment:
             NODE_ENV: ${NODE_ENV}
+            # The watch-mode rebuild ran out of Node's default heap in Stage 04.
+            NODE_OPTIONS: --max-old-space-size=640
             JWT_SECRET: ${JWT_SECRET}
             PORT: ${API_PORT}
-            AWS_ENDPOINT: ${AWS_ENDPOINT}
+            # Inside the compose network LocalStack is `localstack`; .env's localhost is for host processes.
+            AWS_ENDPOINT: http://localstack:4566
             AWS_REGION: ${AWS_REGION}
             AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
             AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -101,11 +117,15 @@ services:
             SNS_TOPIC_ARN: ${SNS_TOPIC_ARN}
             SQS_QUEUE_URL: ${SQS_QUEUE_URL}
             CORS_ORIGIN: ${CORS_ORIGIN}
-            AI_PROVIDER: ${AI_PROVIDER}
-            AI_MODEL: ${AI_MODEL}
-            OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
-            OPENAI_API_KEY: ${OPENAI_API_KEY}
-            ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+            # Chat answers come from the Python AI service; the API holds no LLM code.
+            AI_SERVICE_URL: http://ai-service:8000
+            # Chat requests are traced to Langfuse when its keys are set (Stage 10c); metrics
+            # are served on METRICS_PORT for Prometheus, which nginx doesn't route to.
+            LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+            LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+            LANGFUSE_BASE_URL: ${LANGFUSE_BASE_URL:-}
+            METRICS_PORT: 9464
+            OTEL_LOG_LEVEL: ${OTEL_LOG_LEVEL:-}
             AUTH_PROVIDER: ${AUTH_PROVIDER:-keycloak}
             AUTH_ISSUER: http://keycloak:8080/realms/${KEYCLOAK_REALM:-documents}
             AUTH_AUDIENCE: ${AUTH_AUDIENCE}
@@ -123,59 +143,84 @@ services:
                 condition: service_healthy
             keycloak:
                 condition: service_started
+            ai-service:
+                condition: service_started
         networks:
             - frontend
             - backend
         restart: unless-stopped
+        mem_limit: 1g
         expose:
             - '${API_PORT}'
         volumes:
             - ./services/api/src:/app/services/api/src
             - ./packages/shared/src:/app/packages/shared/src
             - ./packages/shared/dist:/app/packages/shared/dist
-        command: npm run start:dev -w @documents/api
+        # Builds the shared package into the mounted dist first: on a fresh clone that
+        # folder is empty and hides the copy built into the image. The image's build info
+        # would make tsc skip the emit, so it goes first.
+        command: >-
+            sh -c "rm -f packages/shared/tsconfig.tsbuildinfo
+            && npm run build -w @documents/shared
+            && npm run start:dev -w @documents/api"
 
-    worker:
+    # Python ingestion worker (services/ai), replacing the NestJS worker from Stage 02.
+    # The same code as the `ingest` image, run from the development image with src mounted;
+    # restart it to pick up code changes. Docling peaks at about 1.4 GB on long PDFs.
+    ingestion-worker:
         build:
             context: .
-            dockerfile: docker/Dockerfile.worker
+            dockerfile: docker/Dockerfile.ai
             target: development
+        command: docai ingest worker
         environment:
-            NODE_ENV: ${NODE_ENV}
-            JWT_SECRET: ${JWT_SECRET}
-            PORT: ${WORKER_PORT}
-            AWS_ENDPOINT: ${AWS_ENDPOINT}
+            AWS_ENDPOINT: http://localstack:4566
             AWS_REGION: ${AWS_REGION}
             AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
             AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
             S3_BUCKET: ${S3_BUCKET}
             DYNAMODB_TABLE: ${DYNAMODB_TABLE}
             SNS_TOPIC_ARN: ${SNS_TOPIC_ARN}
-            SQS_QUEUE_URL: ${SQS_QUEUE_URL}
-            SQS_DLQ_URL: ${SQS_DLQ_URL}
-            SQS_THUMBNAIL_QUEUE_URL: ${SQS_THUMBNAIL_QUEUE_URL}
-            SQS_POLLING_INTERVAL: ${SQS_POLLING_INTERVAL}
-            SQS_MAX_MESSAGES: ${SQS_MAX_MESSAGES}
-            AI_PROVIDER: ${AI_PROVIDER}
-            AI_MODEL: ${AI_MODEL}
-            OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
-            OPENAI_API_KEY: ${OPENAI_API_KEY}
-            ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+            # .env's queue URL resolves to 127.0.0.1, which inside a container is the container.
+            SQS_QUEUE_URL: http://localstack:4566/000000000000/documents-processing
+            GEMINI_API_KEY: ${GEMINI_API_KEY}
+            VISION_MODEL: ${VISION_MODEL}
+            EXTRACT_MODEL: ${EXTRACT_MODEL}
+            INGEST_CACHE_DIR: /cache
+            LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+            LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+            LANGFUSE_BASE_URL: ${LANGFUSE_BASE_URL:-}
+            MASKING_KEY: ${MASKING_KEY:-}
+            QDRANT_URL: http://qdrant:6333
+            QDRANT_API_KEY: ${QDRANT_API_KEY:-}
+            QDRANT_ALIAS: ${QDRANT_ALIAS:-chunks}
+            TEI_EMBED_URL: http://tei-embed:80
+            CONTEXT_MODEL: ${CONTEXT_MODEL:-}
+            OTEL_SERVICE_NAME: ingestion-worker
+            # Set LLM_GATEWAY_URL (and start the ops profile) to send model calls through the gateway.
+            LLM_GATEWAY_URL: ${LLM_GATEWAY_URL:+http://llm-gateway:4000}
+            LLM_GATEWAY_KEY: ${LLM_GATEWAY_KEY:-}
         depends_on:
             localstack:
                 condition: service_healthy
-            ollama:
+            qdrant:
+                condition: service_started
+            # The worker waits for TEI's model to load before its first document.
+            tei-embed:
                 condition: service_started
         networks:
             - backend
         restart: unless-stopped
-        expose:
-            - '${WORKER_PORT}'
+        mem_limit: 2g
         volumes:
-            - ./services/worker/src:/app/services/worker/src
-            - ./packages/shared/src:/app/packages/shared/src
-            - ./packages/shared/dist:/app/packages/shared/dist
-        command: npm run start:dev -w @documents/worker
+            - ./services/ai/src:/app/src
+            # Shared with host runs of `docai`, so the seed and evaluations reuse results.
+            - ./services/ai/.cache/ingest:/cache
+        healthcheck:
+            test: ['CMD', 'python', '-m', 'docai.ingest.health']
+            interval: 30s
+            timeout: 5s
+            retries: 3
 
     frontend:
         build:
@@ -190,11 +235,243 @@ services:
         networks:
             - frontend
         restart: unless-stopped
+        mem_limit: 1536m
         expose:
             - '${FRONTEND_PORT}'
         volumes:
             - ./frontend/src:/app/frontend/src
         command: npm run dev -w @documents/frontend
+
+    # Search: Qdrant and the TEI embedder index every upload and serve every chat, so they
+    # run by default. The reranker is in the ai profile (docker compose --profile ai up):
+    # the default pipeline doesn't use it (docs/ARCHITECTURE.md, Key decisions).
+    qdrant:
+        image: qdrant/qdrant:v1.19.2
+        container_name: documents-qdrant
+        ports:
+            - '6333:6333'
+        volumes:
+            - qdrant-data:/qdrant/storage
+        mem_limit: 512m
+        networks:
+            - backend
+        restart: unless-stopped
+
+    # TEI defaults (7 tokenizer workers, 16k warm-up batch) need ~2.3 GB for these small
+    # multilingual models; one worker and 2k batch tokens need ~850 MB. Measured 2026-10-11.
+    tei-embed:
+        image: ghcr.io/huggingface/text-embeddings-inference:${TEI_TAG:-cpu-1.9.4}
+        container_name: documents-tei-embed
+        command: >-
+            --model-id ${TEI_EMBED_MODEL:-intfloat/multilingual-e5-small}
+            --tokenization-workers 1 --max-batch-tokens 2048
+        ports:
+            - '8081:80'
+        volumes:
+            - hf-cache:/data
+        mem_limit: 1280m
+        networks:
+            - backend
+        restart: unless-stopped
+
+    tei-rerank:
+        image: ghcr.io/huggingface/text-embeddings-inference:${TEI_TAG:-cpu-1.9.4}
+        container_name: documents-tei-rerank
+        profiles: [ai]
+        command: >-
+            --model-id ${TEI_RERANK_MODEL:-cross-encoder/mmarco-mMiniLMv2-L12-H384-v1}
+            --tokenization-workers 1 --max-batch-tokens 2048
+        ports:
+            - '8082:80'
+        volumes:
+            - hf-cache:/data
+        mem_limit: 1280m
+        networks:
+            - backend
+        restart: unless-stopped
+
+    # The AI service (FastAPI + LangGraph): chat answers for the API. Internal: nginx
+    # doesn't route to it; port 8000 is published on localhost only, for debugging and
+    # evaluations. It checks the user's JWT itself, against the API's key set.
+    ai-service:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.ai
+            target: development
+        environment:
+            GEMINI_API_KEY: ${GEMINI_API_KEY}
+            CHAT_MODEL: ${CHAT_MODEL}
+            FAST_MODEL: ${FAST_MODEL}
+            LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+            LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+            LANGFUSE_BASE_URL: ${LANGFUSE_BASE_URL:-}
+            LANGFUSE_PROMPT_LABEL: ${LANGFUSE_PROMPT_LABEL:-production}
+            OTEL_SERVICE_NAME: ai-service
+            MASKING_KEY: ${MASKING_KEY:-}
+            # Set LLM_GATEWAY_URL (and start the ops profile) to send model calls through the gateway.
+            LLM_GATEWAY_URL: ${LLM_GATEWAY_URL:+http://llm-gateway:4000}
+            LLM_GATEWAY_KEY: ${LLM_GATEWAY_KEY:-}
+            QDRANT_URL: http://qdrant:6333
+            QDRANT_API_KEY: ${QDRANT_API_KEY:-}
+            QDRANT_ALIAS: ${QDRANT_ALIAS:-chunks}
+            TEI_EMBED_URL: http://tei-embed:80
+            AWS_ENDPOINT: http://localstack:4566
+            AWS_REGION: ${AWS_REGION}
+            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+            DYNAMODB_TABLE: ${DYNAMODB_TABLE}
+            AUTH_ISSUER: http://keycloak:8080/realms/${KEYCLOAK_REALM:-documents}
+            AUTH_AUDIENCE: ${AUTH_AUDIENCE}
+            AUTH_JWKS_URI: http://keycloak:8080/realms/${KEYCLOAK_REALM:-documents}/protocol/openid-connect/certs
+        depends_on:
+            localstack:
+                condition: service_healthy
+            qdrant:
+                condition: service_started
+            tei-embed:
+                condition: service_started
+        volumes:
+            - ./services/ai/src:/app/src
+        ports:
+            - '127.0.0.1:8000:8000'
+        mem_limit: 768m
+        healthcheck:
+            test:
+                [
+                    'CMD',
+                    'python',
+                    '-c',
+                    "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"
+                ]
+            interval: 15s
+            timeout: 5s
+            retries: 3
+        networks:
+            - backend
+        restart: unless-stopped
+
+    # LLM gateway (Stage 10b): LiteLLM's router with the spend limits and the fallback
+    # model, and the Postgres database its budgets need, in the ops profile
+    # (docker compose --profile ops up -d). The services call it when LLM_GATEWAY_URL is
+    # set, and Gemini directly when it isn't. Pinned by digest: LiteLLM's v1.107.0 and its
+    # moving tags (latest, main-stable) were compromised on 2026-10-21; v1.104.2 was built
+    # on 2026-10-08 and its cosign signature checked against LiteLLM's published key.
+    llm-gateway:
+        image: ghcr.io/berriai/litellm-database:v1.104.2@sha256:5a9ff0fd7177372f2ccd8949cb121f67e281f4d13d026af51f9c096c0626f50a
+        container_name: documents-llm-gateway
+        profiles: [ops]
+        entrypoint: ['sh', '/app/telemetry-entrypoint.sh']
+        command: --config /app/config.yaml --port 4000 --num_workers 1
+        environment:
+            GEMINI_API_KEY: ${GEMINI_API_KEY}
+            LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:-}
+            LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+            LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+            LANGFUSE_BASE_URL: ${LANGFUSE_BASE_URL:-}
+            OTEL_SERVICE_NAME: llm-gateway
+            DATABASE_URL: postgresql://litellm:${LLM_GATEWAY_DB_PASSWORD:-}@llm-gateway-db:5432/litellm
+            LLM_GATEWAY_DAILY_BUDGET: ${LLM_GATEWAY_DAILY_BUDGET:-5}
+            # The prices bundled with this version, not a copy fetched at startup.
+            LITELLM_LOCAL_MODEL_COST_MAP: 'True'
+        volumes:
+            # LLM_GATEWAY_CONFIG=drill-primary-down.yaml runs the fallback drill.
+            - ./infrastructure/litellm/${LLM_GATEWAY_CONFIG:-config.yaml}:/app/config.yaml:ro
+            - ./infrastructure/litellm/entrypoint.sh:/app/telemetry-entrypoint.sh:ro
+            - ./infrastructure/litellm/gateway_telemetry.py:/app/gateway_telemetry.py:ro
+        ports:
+            - '127.0.0.1:4000:4000'
+        depends_on:
+            llm-gateway-db:
+                condition: service_healthy
+        mem_limit: 1g
+        healthcheck:
+            test:
+                [
+                    'CMD',
+                    'python',
+                    '-c',
+                    "import urllib.request; urllib.request.urlopen('http://localhost:4000/health/liveliness', timeout=3)"
+                ]
+            interval: 15s
+            timeout: 5s
+            retries: 3
+            start_period: 60s
+        networks:
+            - backend
+        restart: unless-stopped
+
+    llm-gateway-db:
+        image: postgres:18.4-alpine@sha256:9a8afca54e7861fd90fab5fdf4c42477a6b1cb7d293595148e674e0a3181de15
+        container_name: documents-llm-gateway-db
+        profiles: [ops]
+        environment:
+            POSTGRES_USER: litellm
+            POSTGRES_PASSWORD: ${LLM_GATEWAY_DB_PASSWORD:-}
+            POSTGRES_DB: litellm
+        volumes:
+            - llm-gateway-db:/var/lib/postgresql
+        mem_limit: 256m
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -U litellm -d litellm']
+            interval: 5s
+            timeout: 3s
+            retries: 10
+        networks:
+            - backend
+        restart: unless-stopped
+
+    # Metrics, dashboard and alerts (Stage 10c), in the ops profile: Prometheus scrapes the
+    # API, the ai-service and the worker; Grafana's dashboard and alert rules are provisioned
+    # from infrastructure/grafana. Grafana: http://localhost:3030 (admin / GRAFANA_ADMIN_PASSWORD).
+    prometheus:
+        image: prom/prometheus:v3.15.0@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e
+        container_name: documents-prometheus
+        profiles: [ops]
+        command:
+            - --config.file=/etc/prometheus/prometheus.yml
+            - --storage.tsdb.retention.time=7d
+        volumes:
+            - ./infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+            - prometheus-data:/prometheus
+        ports:
+            - '127.0.0.1:9090:9090'
+        # Evaluation runs on the host expose metrics there (job evals).
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        mem_limit: 256m
+        networks:
+            - backend
+        restart: unless-stopped
+
+    grafana:
+        image: grafana/grafana:13.2.3@sha256:b28bae15e219c998fb0e0424ed724930cc61b1f61fb404d47c862f9a23f9e572
+        container_name: documents-grafana
+        profiles: [ops]
+        environment:
+            GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+            GF_AUTH_ANONYMOUS_ENABLED: 'true'
+            GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+            GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/documents.json
+            GF_ANALYTICS_REPORTING_ENABLED: 'false'
+            GF_ANALYTICS_CHECK_FOR_UPDATES: 'false'
+            GF_NEWS_NEWS_FEED_ENABLED: 'false'
+            GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: 'false'
+            # Grafana 13 holds about 210 MiB of live heap idle; Go collects garbage only as
+            # the heap grows unless given a limit, and loading the dashboard ran it into a
+            # 384 MiB limit, where it was killed.
+            GOMEMLIMIT: 320MiB
+        volumes:
+            - ./infrastructure/grafana/provisioning:/etc/grafana/provisioning:ro
+            - ./infrastructure/grafana/dashboards:/var/lib/grafana/dashboards:ro
+            - grafana-data:/var/lib/grafana
+        ports:
+            - '127.0.0.1:3030:3000'
+        depends_on:
+            - prometheus
+        mem_limit: 448m
+        networks:
+            - backend
+        restart: unless-stopped
 
 networks:
     frontend:
@@ -205,3 +482,8 @@ networks:
 volumes:
     localstack-data:
     ollama-data:
+    qdrant-data:
+    hf-cache:
+    llm-gateway-db:
+    prometheus-data:
+    grafana-data:

@@ -1,0 +1,21 @@
+# Prometheus (Stage 10c, ops profile): scrapes the API, the ai-service and the worker.
+# Grafana reads it for the dashboard and the alerts (infrastructure/grafana).
+global:
+    scrape_interval: 15s
+    evaluation_interval: 15s
+
+scrape_configs:
+    - job_name: api
+      static_configs:
+          - targets: ['api:9464']
+    - job_name: ai-service
+      static_configs:
+          - targets: ['ai-service:8000']
+    - job_name: ingestion-worker
+      static_configs:
+          - targets: ['ingestion-worker:9101']
+    # An evaluation run on the host, while it runs with METRICS_PORT=9102: the same graph
+    # code, so a golden-set run shows on the dashboard. Down otherwise.
+    - job_name: evals
+      static_configs:
+          - targets: ['host.docker.internal:9102']

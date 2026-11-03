@@ -10,7 +10,7 @@ import {
 import { DocumentsModule } from './modules/documents/documents.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { HealthModule } from './modules/health/health.module';
-import { ChatModule } from './modules/chat/chat.module';
+import { ConversationsModule } from './modules/conversations/conversations.module';
 import { DocumentGateway } from './modules/gateway/document.gateway';
 import { NotificationsConsumerService } from './modules/gateway/notifications-consumer.service';
 
@@ -21,7 +21,7 @@ import { NotificationsConsumerService } from './modules/gateway/notifications-co
         AuthModule,
         DocumentsModule,
         HealthModule,
-        ChatModule
+        ConversationsModule
     ],
     providers: [
         DocumentGateway,

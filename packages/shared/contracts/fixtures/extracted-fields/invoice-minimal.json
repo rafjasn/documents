@@ -1,0 +1,6 @@
+{
+    "kind": "invoice",
+    "vendor": { "name": "Unknown vendor" },
+    "reverseCharge": false,
+    "lineItems": []
+}

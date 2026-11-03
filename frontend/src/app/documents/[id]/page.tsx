@@ -20,7 +20,8 @@ export default function DocumentDetailPage() {
         (event: any) => {
             if (event.documentId !== id) return;
 
-            if (event.document?.thumbnailKey) {
+            // A new thumbnail, or the finished document's fields, language and index.
+            if (event.document?.thumbnailKey || event.status === 'COMPLETED') {
                 api.getDocument(id)
                     .then(setDoc)
                     .catch(() => {});

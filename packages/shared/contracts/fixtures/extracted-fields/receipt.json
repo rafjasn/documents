@@ -1,0 +1,13 @@
+{
+    "kind": "receipt",
+    "merchant": { "name": "Corner Office Supplies" },
+    "date": "2026-05-04",
+    "currency": "GBP",
+    "total": 23.7,
+    "taxTotal": 3.95,
+    "paymentMethod": "card",
+    "items": [
+        { "description": "A4 copier paper, 5 reams", "quantity": 1, "amount": 18.5 },
+        { "description": "Gel pens, pack of 10", "quantity": 1, "unitPrice": 5.2, "amount": 5.2 }
+    ]
+}

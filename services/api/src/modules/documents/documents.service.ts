@@ -205,7 +205,7 @@ export class DocumentsService {
             })
         );
 
-        const signingClient = this.createSigningS3Client();
+        const signingClient = this.signingS3Client();
 
         const { url, fields } = await createPresignedPost(signingClient, {
             Bucket: this.aws.s3.bucket,
@@ -227,10 +227,10 @@ export class DocumentsService {
         return { documentId, uploadUrl: url, fields };
     }
 
-    async getThumbnailUrl(userId: string, documentId: string): Promise<string | undefined> {
-        const doc = await this.getDocument(userId, documentId);
-        if (!doc.thumbnailKey) return undefined;
-        return this.signPublicUrl(doc.thumbnailKey);
+    /** The thumbnail's URL for a document the caller has loaded. Signing makes no request,
+     * so a page of 100 documents doesn't fetch each one again. */
+    async thumbnailUrlOf(doc: DocumentRecord): Promise<string | undefined> {
+        return doc.thumbnailKey ? this.signPublicUrl(doc.thumbnailKey) : undefined;
     }
 
     async getDownloadUrl(userId: string, documentId: string): Promise<string> {
@@ -239,16 +239,17 @@ export class DocumentsService {
     }
 
     private async signPublicUrl(key: string): Promise<string> {
-        const signingClient = this.createSigningS3Client();
         return getSignedUrl(
-            signingClient,
+            this.signingS3Client(),
             new GetObjectCommand({ Bucket: this.aws.s3.bucket, Key: key }),
             { expiresIn: 3600 }
         );
     }
 
-    private createSigningS3Client(): S3Client {
-        return new S3Client({
+    private signingClient?: S3Client;
+
+    private signingS3Client(): S3Client {
+        this.signingClient ??= new S3Client({
             region: this.aws.region,
             ...(this.aws.s3.publicEndpoint
                 ? {
@@ -258,6 +259,7 @@ export class DocumentsService {
                 : {}),
             ...(this.aws.credentials ? { credentials: this.aws.credentials } : {})
         });
+        return this.signingClient;
     }
 
     async updateDocumentStatus(
@@ -284,11 +286,6 @@ export class DocumentsService {
         if (extra.category) {
             updateExpressions.push('category = :category');
             expressionValues[':category'] = extra.category;
-        }
-
-        if (extra.extractedText !== undefined) {
-            updateExpressions.push('extractedText = :extractedText');
-            expressionValues[':extractedText'] = extra.extractedText;
         }
 
         if (extra.metadata) {

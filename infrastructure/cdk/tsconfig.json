@@ -13,8 +13,8 @@
         "rootDir": ".",
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "types": ["node"]
+        "types": ["node", "jest"]
     },
-    "include": ["bin/**/*.ts", "lib/**/*.ts"],
+    "include": ["bin/**/*.ts", "lib/**/*.ts", "test/**/*.ts", "scripts/**/*.ts"],
     "exclude": ["node_modules", "dist"]
 }

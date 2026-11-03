@@ -1,0 +1,70 @@
+# Fallback drill (Stage 10b gate): config.yaml with the primary model always answering
+# as if rate-limited, so every call is retried and then answered by the fallback.
+# Start the gateway on it with
+#     LLM_GATEWAY_CONFIG=drill-primary-down.yaml docker compose --profile ops up -d llm-gateway
+# and back on config.yaml without the variable. A test keeps the two files in step.
+
+# LLM gateway (Stage 10b): LiteLLM's OpenAI-compatible router between the Python
+# services and Gemini. It holds the spend limits and the fallback model; the services
+# send the configured model name (CHAT_MODEL and the others, without the provider) and
+# the end user in the request's `user` field.
+#
+# Budgets live in the gateway's Postgres database: without it, keys can't be checked and
+# every call is refused. `docai gateway setup` creates the services' key and the per-user
+# budget named below.
+
+model_list:
+    - model_name: gemini-3.1-flash-lite
+      litellm_params:
+          model: gemini/gemini-3.1-flash-lite
+          api_key: os.environ/GEMINI_API_KEY
+          mock_response: litellm.RateLimitError # the drill: Gemini isn't called
+          timeout: 30 # seconds per attempt; the slowest cached ingestion call took 8
+    # The fallback: a stronger model, used only when the primary fails. Gemma's free
+    # tier stays out of the request path, since its terms allow only public data.
+    - model_name: gemini-3.5-flash-lite
+      litellm_params:
+          model: gemini/gemini-3.5-flash-lite
+          api_key: os.environ/GEMINI_API_KEY
+          timeout: 30
+
+router_settings:
+    fallbacks:
+        - gemini-3.1-flash-lite: [gemini-3.5-flash-lite]
+    # Retries happen here only; the services' clients don't retry. A timeout goes
+    # straight to the fallback rather than waiting again. A model with one deployment
+    # isn't cooled down, so every call pays its retries before the fallback: with one
+    # retry of a rate limit, the drill's calls were answered in 3-4 s (5-6 s with two).
+    retry_policy:
+        RateLimitErrorRetries: 1
+        InternalServerErrorRetries: 1
+        ServiceUnavailableErrorRetries: 1
+        TimeoutErrorRetries: 0
+        BadRequestErrorRetries: 0
+        AuthenticationErrorRetries: 0
+        ContentPolicyViolationErrorRetries: 0
+    allowed_fails: 3 # failures in a minute before the primary cools down
+    cooldown_time: 30
+
+litellm_settings:
+    # The kill switch: USD across every call in a day (resets at midnight UTC).
+    max_budget: os.environ/LLM_GATEWAY_DAILY_BUDGET
+    budget_duration: 1d
+    # Every end user (the `user` field) without a budget of their own gets this one.
+    max_end_user_budget_id: daily-user
+    drop_params: false # an option Gemini can't take is an error, not silently dropped
+    # Its part of each request's trace (Stage 10c): LiteLLM's OpenTelemetry callback,
+    # exporting two spans a call (gateway_telemetry.py); message text never goes in.
+    callbacks: ['gateway_telemetry.proxy_handler_instance']
+    turn_off_message_logging: true
+
+general_settings:
+    master_key: os.environ/LITELLM_MASTER_KEY
+    # The database comes from the environment: DATABASE_URL in compose; in AWS (Stage 09)
+    # DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD and DATABASE_NAME, which LiteLLM
+    # joins into a URL only when this file doesn't name one.
+    store_prompts_in_spend_logs: false # document text stays out of the gateway's database
+    # Keys, budgets and end users are cached in memory this long (LiteLLM's default is
+    # 60 s): when the database goes down, calls stay served on the cached key until it
+    # expires, so the window without a budget check is this long at most.
+    user_api_key_cache_ttl: 5

@@ -51,7 +51,8 @@ export function statusLabel(status: DocumentStatusExpanded): string {
         FAILED: 'Failed',
         EXTRACTING: 'Extracting',
         CLASSIFYING: 'Classifying',
-        SUMMARIZING: 'Summarizing'
+        SUMMARIZING: 'Summarizing',
+        INDEXING: 'Indexing'
     };
 
     return labels[status] || status;
@@ -70,3 +71,53 @@ export function confidenceColor(confidence: number): string {
     if (confidence >= 0.4) return 'text-amber-600';
     return 'text-red-500';
 }
+
+const LANGUAGES: Record<string, string> = { en: 'English', pl: 'Polish' };
+
+export function languageName(code?: string): string {
+    if (!code) return 'Unknown';
+    return LANGUAGES[code] ?? code.toUpperCase();
+}
+
+/** An amount with its ISO currency code, e.g. "PLN 5,166.00" or "£1,665.40". */
+export function formatMoney(amount?: number, currency?: string): string {
+    if (amount === undefined || amount === null) return '–';
+    if (!currency) {
+        return amount.toLocaleString('en-GB', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+    try {
+        return new Intl.NumberFormat('en-GB', { style: 'currency', currency }).format(amount);
+    } catch {
+        return `${amount.toFixed(2)} ${currency}`;
+    }
+}
+
+/** An ISO date (YYYY-MM-DD) as "12 Mar 2026". */
+export function formatDay(iso?: string): string {
+    if (!iso) return '–';
+    const day = new Date(`${iso.slice(0, 10)}T00:00:00`);
+    if (Number.isNaN(day.getTime())) return iso;
+    return day.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+export function formatCost(usd?: number | null): string {
+    if (usd === undefined || usd === null) return '';
+    return usd < 0.01 ? `$${usd.toFixed(4)}` : `$${usd.toFixed(2)}`;
+}
+
+export const CATEGORY_LABELS: Record<string, string> = {
+    INVOICE: 'Invoices',
+    RECEIPT: 'Receipts',
+    CONTRACT: 'Contracts',
+    OTHER: 'Other'
+};
+
+export const CATEGORY_NAMES: Record<string, string> = {
+    INVOICE: 'Invoice',
+    RECEIPT: 'Receipt',
+    CONTRACT: 'Contract',
+    OTHER: 'Other'
+};

@@ -1,0 +1,223 @@
+{
+  "kind": "telemetry-traces",
+  "created": "20261023143957",
+  "since": "2026-10-23T14:37:25+00:00",
+  "spans_per_question": 42.3,
+  "traces": [
+    {
+      "trace_id": "f543469895c92bd8dd7d097ba9d391c2",
+      "spans": 42,
+      "by_service": {
+        "ai-service": 32,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 13,
+        "qdrant": 3,
+        "tei": 1
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "bac43fe7844e00ca3088221c20fff528",
+      "spans": 42,
+      "by_service": {
+        "ai-service": 32,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 13,
+        "qdrant": 3,
+        "tei": 1
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "fae3023c1d01049d85153ac5c0a9a8b1",
+      "spans": 51,
+      "by_service": {
+        "ai-service": 39,
+        "llm-gateway": 10,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 5,
+        "gateway: request": 5,
+        "gemini: generation": 5,
+        "graph: node": 12,
+        "graph: other": 16,
+        "qdrant": 3,
+        "tei": 1
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "ac3f65db998f4fbf54b606c257a43b35",
+      "spans": 42,
+      "by_service": {
+        "ai-service": 32,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 13,
+        "qdrant": 3,
+        "tei": 1
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "077fc8fc334aed8c88b20979dd7454cd",
+      "spans": 39,
+      "by_service": {
+        "ai-service": 29,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 12,
+        "qdrant": 2
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "1263c08e5ab7fdd32ecea6cc3cba8891",
+      "spans": 42,
+      "by_service": {
+        "ai-service": 32,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 13,
+        "qdrant": 3,
+        "tei": 1
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "8349edc42e6ec2bd44f057d364b8901c",
+      "spans": 39,
+      "by_service": {
+        "ai-service": 29,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 12,
+        "qdrant": 2
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "cee4cbce37b3bf01bc30568a31f74374",
+      "spans": 42,
+      "by_service": {
+        "ai-service": 32,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 13,
+        "qdrant": 3,
+        "tei": 1
+      },
+      "missing": [],
+      "passed": true
+    },
+    {
+      "trace_id": "90913ed211fdb5f1f4f4b0eb545d0362",
+      "spans": 42,
+      "by_service": {
+        "ai-service": 32,
+        "llm-gateway": 8,
+        "documents-api": 2
+      },
+      "by_part": {
+        "ai-service: request": 1,
+        "api: ai-service call": 1,
+        "api: chat request": 1,
+        "dynamodb": 1,
+        "gateway: model call": 4,
+        "gateway: request": 4,
+        "gemini: generation": 4,
+        "graph: node": 9,
+        "graph: other": 13,
+        "qdrant": 3,
+        "tei": 1
+      },
+      "missing": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

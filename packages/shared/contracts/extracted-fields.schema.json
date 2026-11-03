@@ -1,0 +1,109 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/rafjasn/documents/packages/shared/contracts/extracted-fields.schema.json",
+    "title": "ExtractedFields",
+    "description": "A document's `extracted` attribute: the typed fields the ingestion worker read from an invoice, receipt or contract. The worker stores them in DynamoDB without empty values, so optional fields are absent rather than null, and amounts are DynamoDB numbers, which the API returns as JSON numbers. Dates are ISO (YYYY-MM-DD), currencies ISO 4217 codes. Mirrors ExtractedFields in packages/shared/src/index.ts and the Stored models in services/ai/src/docai/ingest/extract.py.",
+    "oneOf": [
+        { "$ref": "#/$defs/invoice" },
+        { "$ref": "#/$defs/receipt" },
+        { "$ref": "#/$defs/contract" }
+    ],
+    "$defs": {
+        "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "party": {
+            "type": "object",
+            "required": ["name"],
+            "additionalProperties": false,
+            "properties": {
+                "name": { "type": "string" },
+                "taxId": { "type": "string" }
+            }
+        },
+        "money": {
+            "type": "object",
+            "required": ["amount"],
+            "additionalProperties": false,
+            "properties": {
+                "amount": { "type": "number" },
+                "currency": { "$ref": "#/$defs/currency" }
+            }
+        },
+        "invoiceLine": {
+            "type": "object",
+            "required": ["description"],
+            "additionalProperties": false,
+            "properties": {
+                "description": { "type": "string" },
+                "quantity": { "type": "number" },
+                "unitPrice": { "type": "number" },
+                "netAmount": { "type": "number" },
+                "taxRate": { "type": "number" }
+            }
+        },
+        "receiptItem": {
+            "type": "object",
+            "required": ["description"],
+            "additionalProperties": false,
+            "properties": {
+                "description": { "type": "string" },
+                "quantity": { "type": "number" },
+                "unitPrice": { "type": "number" },
+                "amount": { "type": "number" }
+            }
+        },
+        "invoice": {
+            "type": "object",
+            "required": ["kind", "vendor", "reverseCharge", "lineItems"],
+            "additionalProperties": false,
+            "properties": {
+                "kind": { "const": "invoice" },
+                "vendor": { "$ref": "#/$defs/party" },
+                "buyer": { "$ref": "#/$defs/party" },
+                "invoiceNumber": { "type": "string" },
+                "issueDate": { "$ref": "#/$defs/date" },
+                "dueDate": { "$ref": "#/$defs/date" },
+                "currency": { "$ref": "#/$defs/currency" },
+                "netTotal": { "type": "number" },
+                "taxTotal": { "type": "number" },
+                "grossTotal": { "type": "number" },
+                "paidDate": { "$ref": "#/$defs/date" },
+                "reverseCharge": { "type": "boolean" },
+                "lineItems": { "type": "array", "items": { "$ref": "#/$defs/invoiceLine" } }
+            }
+        },
+        "receipt": {
+            "type": "object",
+            "required": ["kind", "merchant", "items"],
+            "additionalProperties": false,
+            "properties": {
+                "kind": { "const": "receipt" },
+                "merchant": { "$ref": "#/$defs/party" },
+                "receiptNumber": { "type": "string" },
+                "date": { "$ref": "#/$defs/date" },
+                "currency": { "$ref": "#/$defs/currency" },
+                "total": { "type": "number" },
+                "taxTotal": { "type": "number" },
+                "paymentMethod": { "enum": ["cash", "card", "transfer", "other"] },
+                "items": { "type": "array", "items": { "$ref": "#/$defs/receiptItem" } }
+            }
+        },
+        "contract": {
+            "type": "object",
+            "required": ["kind", "parties"],
+            "additionalProperties": false,
+            "properties": {
+                "kind": { "const": "contract" },
+                "parties": { "type": "array", "items": { "$ref": "#/$defs/party" } },
+                "contractNumber": { "type": "string" },
+                "effectiveDate": { "$ref": "#/$defs/date" },
+                "endDate": { "$ref": "#/$defs/date" },
+                "autoRenewal": { "type": "boolean" },
+                "noticePeriodDays": { "type": "integer" },
+                "paymentTermsDays": { "type": "integer" },
+                "valueCap": { "$ref": "#/$defs/money" },
+                "governingLaw": { "type": "string" }
+            }
+        }
+    }
+}

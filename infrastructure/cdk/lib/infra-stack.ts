@@ -1,97 +1,245 @@
 import * as cdk from 'aws-cdk-lib';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
+import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as ecr from 'aws-cdk-lib/aws-ecr';
+import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import * as logs from 'aws-cdk-lib/aws-logs';
+import * as rds from 'aws-cdk-lib/aws-rds';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3Notifications from 'aws-cdk-lib/aws-s3-notifications';
-import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
-import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import * as sns from 'aws-cdk-lib/aws-sns';
 import * as snsSubscriptions from 'aws-cdk-lib/aws-sns-subscriptions';
-import * as ecr from 'aws-cdk-lib/aws-ecr';
-import * as iam from 'aws-cdk-lib/aws-iam';
-import * as logs from 'aws-cdk-lib/aws-logs';
-import * as cloudwatch from 'aws-cdk-lib/aws-cloudwatch';
-import * as cloudwatchActions from 'aws-cdk-lib/aws-cloudwatch-actions';
+import * as sqs from 'aws-cdk-lib/aws-sqs';
 import { Construct } from 'constructs';
 
+const VPC_CIDR = '10.0.0.0/16';
+
+/** The ECS services, each with its log group. */
+export const SERVICES = [
+    'api',
+    'frontend',
+    'ai-service',
+    'ingestion-worker',
+    'tei-embed',
+    'llm-gateway'
+] as const;
+export type ServiceName = (typeof SERVICES)[number];
+
+/** The images this repository builds and deploy.yml pushes; TEI's is Hugging Face's. */
+export const BUILT_IMAGES = [
+    'api',
+    'frontend',
+    'ai-service',
+    'ingestion-worker',
+    'llm-gateway'
+] as const;
+export type BuiltImage = (typeof BUILT_IMAGES)[number];
+
+/**
+ * The keys the services read from Secrets Manager. CloudFormation creates each with a
+ * generated placeholder, so no value is ever in a template; the real values are put
+ * after the first deploy of this stack (README.md, Deploying). The masking key's generated value
+ * is used as it is.
+ */
+export type SecretName =
+    | 'gemini'
+    | 'qdrant'
+    | 'langfuse'
+    | 'masking'
+    | 'gatewayMaster'
+    | 'gatewayKey';
+
 export interface DocumentsInfraStackProps extends cdk.StackProps {
-    removalPolicy?: cdk.RemovalPolicy;
-    /**
-     * Origins allowed to issue CORS requests against the documents bucket
-     * (presigned PUT/GET from the browser). Must include the frontend origin —
-     * e.g. the ALB DNS, the CloudFront domain, or a custom domain.
-     */
-    allowedOrigins: string[];
+    removalPolicy: cdk.RemovalPolicy;
+    /** Browser origins besides the CloudFront domain, e.g. a custom domain. */
+    extraOrigins: string[];
 }
 
+/**
+ * Everything the services stand on: the network, storage, queues, the edge (CloudFront in
+ * front of an internal load balancer), image repositories, log groups, secrets and the
+ * gateway's database. Deployed first: deploy.yml reads its outputs to build the frontend.
+ */
 export class DocumentsInfraStack extends cdk.Stack {
     readonly vpc: ec2.Vpc;
     readonly bucket: s3.Bucket;
     readonly table: dynamodb.Table;
     readonly processingQueue: sqs.Queue;
-    readonly thumbnailQueue: sqs.Queue;
-    readonly apiNotificationsQueue: sqs.Queue;
+    readonly processingDlq: sqs.Queue;
+    readonly notificationsQueue: sqs.Queue;
     readonly notificationsTopic: sns.Topic;
-    readonly repositories: Record<'api' | 'worker' | 'frontend', ecr.Repository>;
-    readonly taskRole: iam.Role;
-    readonly logGroups: Record<'api' | 'worker' | 'ai', logs.LogGroup>;
+    readonly alertsTopic: sns.Topic;
+    readonly repositories: Record<BuiltImage, ecr.Repository>;
+    readonly logGroups: Record<ServiceName, logs.LogGroup>;
+    readonly secrets: Record<SecretName, secretsmanager.Secret>;
+    readonly gatewayDb: rds.DatabaseInstance;
+    readonly albSecurityGroup: ec2.SecurityGroup;
+    readonly listener: elbv2.ApplicationListener;
+    readonly distribution: cloudfront.Distribution;
+    /** The public origin: https:// and the CloudFront domain. */
+    readonly publicOrigin: string;
 
     constructor(scope: Construct, id: string, props: DocumentsInfraStackProps) {
         super(scope, id, props);
+        const removal = props.removalPolicy;
+        const destroy = removal === cdk.RemovalPolicy.DESTROY;
 
-        const removal = props.removalPolicy ?? cdk.RemovalPolicy.RETAIN;
-
-        // VPC
+        // Network. Tasks run in private subnets behind one NAT gateway (Gemini, Langfuse,
+        // Qdrant Cloud and Hugging Face are outside AWS); S3 and DynamoDB traffic, image
+        // layers included, takes the free gateway endpoints instead.
+        const flowLogs = new logs.LogGroup(this, 'FlowLogs', {
+            logGroupName: '/documents/vpc-flow-logs',
+            retention: logs.RetentionDays.ONE_MONTH,
+            removalPolicy: cdk.RemovalPolicy.DESTROY
+        });
         this.vpc = new ec2.Vpc(this, 'Vpc', {
+            ipAddresses: ec2.IpAddresses.cidr(VPC_CIDR),
             maxAzs: 2,
             natGateways: 1,
             subnetConfiguration: [
-                {
-                    name: 'Public',
-                    subnetType: ec2.SubnetType.PUBLIC,
-                    cidrMask: 24
-                },
-                {
-                    name: 'Private',
-                    subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
-                    cidrMask: 24
+                { name: 'Public', subnetType: ec2.SubnetType.PUBLIC, cidrMask: 24 },
+                { name: 'Private', subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS, cidrMask: 24 },
+                { name: 'Database', subnetType: ec2.SubnetType.PRIVATE_ISOLATED, cidrMask: 28 }
+            ],
+            gatewayEndpoints: {
+                S3: { service: ec2.GatewayVpcEndpointAwsService.S3 },
+                DynamoDB: { service: ec2.GatewayVpcEndpointAwsService.DYNAMODB }
+            },
+            // Rejected traffic only: what a security review reads, at a fraction of the volume.
+            flowLogs: {
+                Rejected: {
+                    destination: ec2.FlowLogDestination.toCloudWatchLogs(flowLogs),
+                    trafficType: ec2.FlowLogTrafficType.REJECT
                 }
-            ]
+            }
         });
 
-        // S3
+        // Access logs of the bucket and of CloudFront, which every request passes through;
+        // its standard logs are delivered with ACLs, hence the object ownership.
+        const accessLogs = new s3.Bucket(this, 'AccessLogs', {
+            encryption: s3.BucketEncryption.S3_MANAGED,
+            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+            objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_PREFERRED,
+            enforceSSL: true,
+            lifecycleRules: [{ id: 'expire', expiration: cdk.Duration.days(90) }],
+            removalPolicy: removal,
+            autoDeleteObjects: destroy
+        });
+
+        // Edge: CloudFront serves HTTPS on its own domain and reaches the load balancer
+        // through a VPC origin, so the load balancer is internal and has no public
+        // address. The listener's routes are added by the services stack.
+        this.albSecurityGroup = new ec2.SecurityGroup(this, 'AlbSg', {
+            vpc: this.vpc,
+            description: 'Internal ALB: HTTP from CloudFront VPC origin ENIs inside the VPC',
+            allowAllOutbound: true
+        });
+        this.albSecurityGroup.addIngressRule(
+            ec2.Peer.ipv4(VPC_CIDR),
+            ec2.Port.tcp(80),
+            'CloudFront VPC origin'
+        );
+        const alb = new elbv2.ApplicationLoadBalancer(this, 'Alb', {
+            vpc: this.vpc,
+            internetFacing: false,
+            vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS },
+            securityGroup: this.albSecurityGroup,
+            dropInvalidHeaderFields: true
+        });
+        this.listener = alb.addListener('Http', {
+            port: 80,
+            open: false,
+            defaultAction: elbv2.ListenerAction.fixedResponse(404, {
+                contentType: 'text/plain',
+                messageBody: 'Not found'
+            })
+        });
+
+        const albOrigin = origins.VpcOrigin.withApplicationLoadBalancer(alb, {
+            httpPort: 80,
+            protocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY,
+            // A chat stream's first event comes after the question is routed; 60 s is
+            // CloudFront's largest timeout without a quota increase.
+            readTimeout: cdk.Duration.seconds(60),
+            keepaliveTimeout: cdk.Duration.seconds(60)
+        });
+        // The API authenticates with a bearer token on GET requests too, and CloudFront
+        // forwards the Authorization header only when it is part of the cache key; with a
+        // default TTL of 0 nothing is cached unless the API says so.
+        const apiCachePolicy = new cloudfront.CachePolicy(this, 'ApiCachePolicy', {
+            comment: 'API: Authorization in the key, nothing cached by default',
+            minTtl: cdk.Duration.seconds(0),
+            defaultTtl: cdk.Duration.seconds(0),
+            maxTtl: cdk.Duration.seconds(1),
+            headerBehavior: cloudfront.CacheHeaderBehavior.allowList('Authorization'),
+            queryStringBehavior: cloudfront.CacheQueryStringBehavior.all(),
+            cookieBehavior: cloudfront.CacheCookieBehavior.none()
+        });
+        const dynamic: Omit<cloudfront.BehaviorOptions, 'origin'> = {
+            viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+            cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
+            originRequestPolicy: cloudfront.OriginRequestPolicy.ALL_VIEWER
+        };
+        this.distribution = new cloudfront.Distribution(this, 'Distribution', {
+            comment: 'Documents: the frontend, the API and its WebSocket',
+            defaultBehavior: { origin: albOrigin, ...dynamic },
+            additionalBehaviors: {
+                '/api/*': {
+                    origin: albOrigin,
+                    ...dynamic,
+                    cachePolicy: apiCachePolicy,
+                    originRequestPolicy:
+                        cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER
+                },
+                '/socket.io/*': { origin: albOrigin, ...dynamic },
+                '/_next/static/*': {
+                    origin: albOrigin,
+                    viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                    cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED
+                }
+            },
+            priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
+            httpVersion: cloudfront.HttpVersion.HTTP2_AND_3,
+            enableLogging: true,
+            logBucket: accessLogs,
+            logFilePrefix: 'cloudfront/'
+        });
+        this.publicOrigin = `https://${this.distribution.distributionDomainName}`;
+
+        // Uploads, parsed documents and thumbnails. The browser puts and gets objects with
+        // presigned URLs, so the bucket allows the public origin. Old versions of
+        // overwritten or deleted objects expire after 30 days.
         this.bucket = new s3.Bucket(this, 'DocumentsBucket', {
             bucketName: `documents-uploads-${this.account}-${this.region}`,
             versioned: true,
             encryption: s3.BucketEncryption.S3_MANAGED,
             blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+            enforceSSL: true,
+            serverAccessLogsBucket: accessLogs,
+            serverAccessLogsPrefix: 's3/',
             removalPolicy: removal,
-            autoDeleteObjects: removal === cdk.RemovalPolicy.DESTROY,
+            autoDeleteObjects: destroy,
             lifecycleRules: [
                 {
-                    id: 'transition-to-ia',
-                    transitions: [
-                        {
-                            storageClass: s3.StorageClass.INFREQUENT_ACCESS,
-                            transitionAfter: cdk.Duration.days(30)
-                        },
-                        {
-                            storageClass: s3.StorageClass.GLACIER,
-                            transitionAfter: cdk.Duration.days(90)
-                        }
-                    ]
+                    id: 'expire-old-versions',
+                    noncurrentVersionExpiration: cdk.Duration.days(30)
                 }
             ],
             cors: [
                 {
-                    allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.PUT, s3.HttpMethods.POST],
-                    allowedOrigins: props.allowedOrigins,
+                    allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.PUT],
+                    allowedOrigins: [this.publicOrigin, ...props.extraOrigins],
                     allowedHeaders: ['*'],
                     maxAge: 3000
                 }
             ]
         });
 
-        // DynamoDB
+        // Documents, conversations and messages (docs/ARCHITECTURE.md, Storage).
         this.table = new dynamodb.Table(this, 'DocumentsTable', {
             tableName: 'documents-documents',
             partitionKey: { name: 'PK', type: dynamodb.AttributeType.STRING },
@@ -101,8 +249,6 @@ export class DocumentsInfraStack extends cdk.Stack {
             encryption: dynamodb.TableEncryption.AWS_MANAGED,
             removalPolicy: removal
         });
-
-        // GSI1
         this.table.addGlobalSecondaryIndex({
             indexName: 'GSI1',
             partitionKey: { name: 'GSI1PK', type: dynamodb.AttributeType.STRING },
@@ -110,240 +256,147 @@ export class DocumentsInfraStack extends cdk.Stack {
             projectionType: dynamodb.ProjectionType.ALL
         });
 
-        // SQS processing
-        const processingDlq = new sqs.Queue(this, 'ProcessingDlq', {
+        // The processing queue: S3 events for uploads and deletions under uploads/. The
+        // worker extends a message's visibility while a long document is processed.
+        this.processingDlq = new sqs.Queue(this, 'ProcessingDlq', {
             queueName: 'documents-dlq',
-            retentionPeriod: cdk.Duration.days(14)
+            retentionPeriod: cdk.Duration.days(14),
+            enforceSSL: true
         });
-
         this.processingQueue = new sqs.Queue(this, 'ProcessingQueue', {
             queueName: 'documents-processing',
             visibilityTimeout: cdk.Duration.seconds(120),
             retentionPeriod: cdk.Duration.days(4),
-            deadLetterQueue: { queue: processingDlq, maxReceiveCount: 3 }
+            deadLetterQueue: { queue: this.processingDlq, maxReceiveCount: 3 },
+            enforceSSL: true
         });
+        for (const event of [s3.EventType.OBJECT_CREATED, s3.EventType.OBJECT_REMOVED]) {
+            this.bucket.addEventNotification(
+                event,
+                new s3Notifications.SqsDestination(this.processingQueue),
+                { prefix: 'uploads/' }
+            );
+        }
 
-        // S3 notifications
-        this.bucket.addEventNotification(
-            s3.EventType.OBJECT_CREATED,
-            new s3Notifications.SqsDestination(this.processingQueue),
-            { prefix: 'uploads/' }
-        );
-
-        // SQS thumbnails
-        const thumbnailDlq = new sqs.Queue(this, 'ThumbnailDlq', {
-            queueName: 'documents-thumbnail-dlq',
-            retentionPeriod: cdk.Duration.days(14)
-        });
-
-        this.thumbnailQueue = new sqs.Queue(this, 'ThumbnailQueue', {
-            queueName: 'documents-thumbnail-jobs',
-            visibilityTimeout: cdk.Duration.seconds(120),
-            retentionPeriod: cdk.Duration.days(4),
-            deadLetterQueue: { queue: thumbnailDlq, maxReceiveCount: 3 }
-        });
-
-        // SQS notifications
-        this.apiNotificationsQueue = new sqs.Queue(this, 'ApiNotificationsQueue', {
-            queueName: 'documents-api-notifications',
-            retentionPeriod: cdk.Duration.minutes(5)
-        });
-
-        // SNS
+        // Status events: the worker publishes, the API forwards them over its WebSocket.
         this.notificationsTopic = new sns.Topic(this, 'NotificationsTopic', {
-            topicName: 'documents-notifications'
+            topicName: 'documents-notifications',
+            enforceSSL: true
         });
-
+        this.notificationsQueue = new sqs.Queue(this, 'ApiNotificationsQueue', {
+            queueName: 'documents-api-notifications',
+            retentionPeriod: cdk.Duration.minutes(5),
+            enforceSSL: true
+        });
         this.notificationsTopic.addSubscription(
-            new snsSubscriptions.SqsSubscription(this.apiNotificationsQueue, {
+            new snsSubscriptions.SqsSubscription(this.notificationsQueue, {
                 rawMessageDelivery: false
             })
         );
+        this.alertsTopic = new sns.Topic(this, 'AlertsTopic', {
+            topicName: 'documents-alerts',
+            enforceSSL: true
+        });
 
-        // ECR
-        const serviceNames = ['api', 'worker', 'frontend'] as const;
-        this.repositories = {} as typeof this.repositories;
-
-        for (const service of serviceNames) {
-            const repo = new ecr.Repository(this, `${service}Repo`, {
-                repositoryName: `documents/${service}`,
+        // Images: tagged by commit and never overwritten.
+        this.repositories = {} as Record<BuiltImage, ecr.Repository>;
+        for (const image of BUILT_IMAGES) {
+            this.repositories[image] = new ecr.Repository(this, `${image}Repo`, {
+                repositoryName: `documents/${image}`,
+                imageTagMutability: ecr.TagMutability.IMMUTABLE,
+                imageScanOnPush: true,
                 removalPolicy: removal,
-                emptyOnDelete: removal === cdk.RemovalPolicy.DESTROY,
-                lifecycleRules: [
-                    {
-                        description: 'Keep last 10 images',
-                        maxImageCount: 10
-                    }
-                ]
+                emptyOnDelete: destroy,
+                lifecycleRules: [{ description: 'Keep the last 10 images', maxImageCount: 10 }]
             });
-
-            this.repositories[service] = repo;
         }
 
-        // CloudWatch
-        this.logGroups = {
-            api: new logs.LogGroup(this, 'ApiLogGroup', {
-                logGroupName: '/documents/api',
+        this.logGroups = {} as Record<ServiceName, logs.LogGroup>;
+        for (const service of SERVICES) {
+            this.logGroups[service] = new logs.LogGroup(this, `${service}Logs`, {
+                logGroupName: `/documents/${service}`,
                 retention: logs.RetentionDays.ONE_MONTH,
                 removalPolicy: cdk.RemovalPolicy.DESTROY
-            }),
-            worker: new logs.LogGroup(this, 'WorkerLogGroup', {
-                logGroupName: '/documents/worker',
-                retention: logs.RetentionDays.ONE_MONTH,
-                removalPolicy: cdk.RemovalPolicy.DESTROY
-            }),
-            ai: new logs.LogGroup(this, 'AiLogGroup', {
-                logGroupName: '/documents/ai',
-                retention: logs.RetentionDays.ONE_MONTH,
-                removalPolicy: cdk.RemovalPolicy.DESTROY
-            })
+            });
+        }
+
+        const secret = (
+            id: string,
+            name: string,
+            description: string,
+            generate?: secretsmanager.SecretStringGenerator
+        ) =>
+            new secretsmanager.Secret(this, id, {
+                secretName: name,
+                description,
+                generateSecretString: generate,
+                removalPolicy: removal
+            });
+        this.secrets = {
+            gemini: secret(
+                'GeminiApiKey',
+                'documents/gemini-api-key',
+                'Gemini API key (the gateway only)'
+            ),
+            qdrant: secret('QdrantApiKey', 'documents/qdrant-api-key', 'Qdrant Cloud API key'),
+            langfuse: secret(
+                'Langfuse',
+                'documents/langfuse',
+                'Langfuse project keys, as JSON with publicKey and secretKey',
+                {
+                    secretStringTemplate: JSON.stringify({ publicKey: 'set-after-deploy' }),
+                    generateStringKey: 'secretKey'
+                }
+            ),
+            masking: secret(
+                'MaskingKey',
+                'documents/masking-key',
+                'Keys the hashes that replace identifiers in traces',
+                { passwordLength: 64, excludePunctuation: true }
+            ),
+            gatewayMaster: secret(
+                'LitellmMasterKey',
+                'documents/litellm-master-key',
+                "The gateway's admin key (sk-...)"
+            ),
+            gatewayKey: secret(
+                'LlmGatewayKey',
+                'documents/llm-gateway-key',
+                "The services' virtual key in the gateway (sk-...)"
+            )
         };
 
-        // Alarms
-        const alertsTopic = new sns.Topic(this, 'AlertsTopic', {
-            topicName: 'documents-alerts'
+        // The gateway's budgets and keys (Stage 10b). One small instance in the isolated
+        // subnets; LiteLLM joins its host, user, password and name into a URL.
+        this.gatewayDb = new rds.DatabaseInstance(this, 'GatewayDb', {
+            engine: rds.DatabaseInstanceEngine.postgres({
+                version: rds.PostgresEngineVersion.VER_18
+            }),
+            instanceType: ec2.InstanceType.of(ec2.InstanceClass.T4G, ec2.InstanceSize.MICRO),
+            vpc: this.vpc,
+            vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
+            databaseName: 'litellm',
+            credentials: rds.Credentials.fromGeneratedSecret('litellm', {
+                secretName: 'documents/llm-gateway-db'
+            }),
+            allocatedStorage: 20,
+            storageType: rds.StorageType.GP3,
+            storageEncrypted: true,
+            multiAz: false,
+            publiclyAccessible: false,
+            backupRetention: cdk.Duration.days(7),
+            deletionProtection: !destroy,
+            removalPolicy: destroy ? cdk.RemovalPolicy.DESTROY : cdk.RemovalPolicy.SNAPSHOT
         });
 
-        const appServices = ['api', 'worker', 'ai'] as const;
-
-        for (const svc of appServices) {
-            const lg = this.logGroups[svc];
-            const svcTitle = svc.charAt(0).toUpperCase() + svc.slice(1);
-
-            // ERROR log count
-            const errorFilter = new logs.MetricFilter(this, `${svcTitle}ErrorFilter`, {
-                logGroup: lg,
-                filterName: `${svc}-errors`,
-                filterPattern: logs.FilterPattern.literal('{ $.level = "ERROR" }'),
-                metricNamespace: 'Documents',
-                metricName: `${svcTitle}ErrorCount`,
-                metricValue: '1',
-                defaultValue: 0
-            });
-
-            new cloudwatch.Alarm(this, `${svcTitle}ErrorAlarm`, {
-                alarmName: `documents-${svc}-errors`,
-                alarmDescription: `More than 10 ERROR logs in 5 minutes from the ${svc} service`,
-                metric: errorFilter.metric({
-                    period: cdk.Duration.minutes(5),
-                    statistic: 'Sum'
-                }),
-                threshold: 10,
-                evaluationPeriods: 1,
-                comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
-                treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING
-            }).addAlarmAction(new cloudwatchActions.SnsAction(alertsTopic));
-
-            // FATAL log count
-            const fatalFilter = new logs.MetricFilter(this, `${svcTitle}FatalFilter`, {
-                logGroup: lg,
-                filterName: `${svc}-fatals`,
-                filterPattern: logs.FilterPattern.literal('{ $.level = "FATAL" }'),
-                metricNamespace: 'Documents',
-                metricName: `${svcTitle}FatalCount`,
-                metricValue: '1',
-                defaultValue: 0
-            });
-
-            new cloudwatch.Alarm(this, `${svcTitle}FatalAlarm`, {
-                alarmName: `documents-${svc}-fatal`,
-                alarmDescription: `Any FATAL log from the ${svc} service`,
-                metric: fatalFilter.metric({
-                    period: cdk.Duration.minutes(1),
-                    statistic: 'Sum'
-                }),
-                threshold: 0,
-                evaluationPeriods: 1,
-                comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
-                treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING
-            }).addAlarmAction(new cloudwatchActions.SnsAction(alertsTopic));
-        }
-
-        // DLQ depth alarms
-        const dlqs: [string, sqs.Queue][] = [
-            ['processing', processingDlq],
-            ['thumbnail', thumbnailDlq]
-        ];
-
-        for (const [name, dlq] of dlqs) {
-            new cloudwatch.Alarm(this, `${name}DlqAlarm`, {
-                alarmName: `documents-${name}-dlq-depth`,
-                alarmDescription: `Messages visible in the ${name} DLQ — jobs are failing repeatedly`,
-                metric: dlq.metricApproximateNumberOfMessagesVisible({
-                    period: cdk.Duration.minutes(5),
-                    statistic: 'Maximum'
-                }),
-                threshold: 0,
-                evaluationPeriods: 1,
-                comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
-                treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING
-            }).addAlarmAction(new cloudwatchActions.SnsAction(alertsTopic));
-        }
-
-        // IAM ECS task role
-        this.taskRole = new iam.Role(this, 'TaskRole', {
-            roleName: 'documents-ecs-task-role',
-            assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com')
+        new cdk.CfnOutput(this, 'PublicUrl', {
+            value: this.publicOrigin,
+            description: 'The frontend; deploy.yml builds it with this address'
         });
-
-        this.bucket.grantReadWrite(this.taskRole);
-        this.table.grantReadWriteData(this.taskRole);
-
-        for (const queue of [
-            this.processingQueue,
-            this.thumbnailQueue,
-            this.apiNotificationsQueue
-        ]) {
-            queue.grantSendMessages(this.taskRole);
-            queue.grantConsumeMessages(this.taskRole);
-        }
-
-        this.notificationsTopic.grantPublish(this.taskRole);
-
-        // CloudWatch Logs — needed by the ECS execution role (awslogs driver)
-        this.taskRole.addToPolicy(
-            new iam.PolicyStatement({
-                actions: [
-                    'logs:CreateLogGroup',
-                    'logs:CreateLogStream',
-                    'logs:PutLogEvents',
-                    'logs:DescribeLogStreams'
-                ],
-                resources: Object.values(this.logGroups).map((lg) => `${lg.logGroupArn}:*`)
-            })
-        );
-
-        this.taskRole.addToPolicy(
-            new iam.PolicyStatement({
-                actions: ['bedrock:InvokeModel', 'bedrock:InvokeModelWithResponseStream'],
-                resources: [
-                    `arn:aws:bedrock:${this.region}::foundation-model/anthropic.claude-3-haiku-20240307-v1:0`
-                ]
-            })
-        );
-
-        this.taskRole.addToPolicy(
-            new iam.PolicyStatement({
-                actions: ['secretsmanager:GetSecretValue'],
-                resources: [
-                    `arn:aws:secretsmanager:${this.region}:${this.account}:secret:documents/*`
-                ]
-            })
-        );
-
         new cdk.CfnOutput(this, 'BucketName', { value: this.bucket.bucketName });
-        new cdk.CfnOutput(this, 'TableName', { value: this.table.tableName });
-        new cdk.CfnOutput(this, 'ProcessingQueueUrl', { value: this.processingQueue.queueUrl });
-        new cdk.CfnOutput(this, 'ThumbnailQueueUrl', { value: this.thumbnailQueue.queueUrl });
-        new cdk.CfnOutput(this, 'SnsTopicArn', { value: this.notificationsTopic.topicArn });
-        new cdk.CfnOutput(this, 'AlertsTopicArn', { value: alertsTopic.topicArn });
-
-        for (const [svc, repo] of Object.entries(this.repositories)) {
-            new cdk.CfnOutput(this, `${svc}RepoUri`, { value: repo.repositoryUri });
-        }
-
-        for (const [svc, lg] of Object.entries(this.logGroups)) {
-            new cdk.CfnOutput(this, `${svc}LogGroup`, { value: lg.logGroupName });
+        new cdk.CfnOutput(this, 'AlertsTopicArn', { value: this.alertsTopic.topicArn });
+        for (const [image, repo] of Object.entries(this.repositories)) {
+            new cdk.CfnOutput(this, `${image}RepoUri`, { value: repo.repositoryUri });
         }
     }
 }

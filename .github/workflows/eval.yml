@@ -1,0 +1,105 @@
+name: Evaluation
+
+# The CI evaluation subset (Stage 06): 30 dev questions asked live through the chat graph
+# against a bundle of the evaluation index (services/ai/evals/ci). It makes about 130
+# Gemini calls (about $0.09), so it runs on demand and on pull requests labelled `eval`,
+# not on every push. Needs the GEMINI_API_KEY repository secret. Answers the scoring
+# rules can't decide go to the Gemma judge (free tier, a few calls).
+#
+# Prompt promotion (Stage 10a): a manual run with prompts `candidate` and `promote` set
+# pins the Langfuse candidates' versions, evaluates them and, only if they pass, moves
+# `production` to those versions, named with their text hashes in the evaluation's
+# record; a candidate label moved meanwhile is not promoted. That needs the
+# LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY secrets and the LANGFUSE_BASE_URL
+# variable; without them, or with a prompt lacking a candidate, the evaluation fails.
+
+on:
+    workflow_dispatch:
+        inputs:
+            prompts:
+                description: "Prompts to evaluate: the repository's (code), or a Langfuse label"
+                type: choice
+                options: [code, candidate, production]
+                default: code
+            promote:
+                description: 'Move production to the candidates if the evaluation passes (prompts: candidate)'
+                type: boolean
+                default: false
+    pull_request:
+        types: [opened, synchronize, reopened, labeled]
+
+concurrency:
+    group: eval-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    evaluate:
+        name: Evaluation subset
+        if: github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'eval')
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        defaults:
+            run:
+                working-directory: services/ai
+        services:
+            qdrant:
+                image: qdrant/qdrant:v1.19.2
+                ports:
+                    - 6333:6333
+            tei:
+                image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9.4
+                env:
+                    MODEL_ID: intfloat/multilingual-e5-small
+                ports:
+                    - 8081:80
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: astral-sh/setup-uv@v10.3.0
+              with:
+                  version: '0.12.17'
+                  enable-cache: true
+                  cache-dependency-glob: services/ai/uv.lock
+
+            - name: Install dependencies
+              run: uv sync --locked --extra serve
+
+            - name: Check the promotion request
+              if: inputs.promote && inputs.prompts != 'candidate'
+              run: |
+                  echo "promote needs prompts: candidate" >&2
+                  exit 1
+
+            - name: Evaluate
+              id: evaluate
+              run: uv run docai evals ci --prompts "${{ inputs.prompts || 'code' }}"
+              env:
+                  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+                  CHAT_MODEL: google_genai:gemini-3.1-flash-lite
+                  FAST_MODEL: google_genai:gemini-3.1-flash-lite
+                  JUDGE_MODEL: google_genai:gemma-4-31b-it
+                  QDRANT_URL: http://localhost:6333
+                  TEI_EMBED_URL: http://localhost:8081
+                  LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+                  LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+                  LANGFUSE_BASE_URL: ${{ vars.LANGFUSE_BASE_URL }}
+                  MASKING_KEY: ${{ secrets.MASKING_KEY }}
+
+            # Runs only when the evaluation above passed, and promotes the versions it
+            # evaluated (its record), not whatever `candidate` points at by now.
+            - name: Promote the evaluated versions
+              if: success() && inputs.promote && inputs.prompts == 'candidate'
+              run: uv run docai prompts promote --evaluation "${{ steps.evaluate.outputs.record }}"
+              env:
+                  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+                  LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+                  LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+                  LANGFUSE_BASE_URL: ${{ vars.LANGFUSE_BASE_URL }}
+
+            - name: Keep the answers
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: evaluation-subset
+                  path: services/ai/evals/scratch/*-ci.json
+                  if-no-files-found: ignore

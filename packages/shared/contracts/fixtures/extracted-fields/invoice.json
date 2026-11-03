@@ -1,0 +1,29 @@
+{
+    "kind": "invoice",
+    "vendor": { "name": "Nowak Systemy Sp. z o.o.", "taxId": "5213456789" },
+    "buyer": { "name": "Zielińska Logistyka S.A.", "taxId": "7781234560" },
+    "invoiceNumber": "FV/2026/03/014",
+    "issueDate": "2026-03-12",
+    "dueDate": "2026-03-26",
+    "currency": "PLN",
+    "netTotal": 4200,
+    "taxTotal": 966,
+    "grossTotal": 5166,
+    "reverseCharge": false,
+    "lineItems": [
+        {
+            "description": "Wdrożenie modułu raportowego",
+            "quantity": 1,
+            "unitPrice": 3000,
+            "netAmount": 3000,
+            "taxRate": 23
+        },
+        {
+            "description": "Szkolenie użytkowników (godz.)",
+            "quantity": 8,
+            "unitPrice": 150,
+            "netAmount": 1200,
+            "taxRate": 23
+        }
+    ]
+}

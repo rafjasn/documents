@@ -1,4 +1,10 @@
-import { DocumentMetadata, DocumentRecord, DocumentStatus } from '@documents/shared';
+import {
+    DocumentIndex,
+    DocumentMetadata,
+    DocumentRecord,
+    DocumentStatus,
+    ExtractedFields
+} from '@documents/shared';
 
 export class DocumentEntity implements DocumentRecord {
     id!: string;
@@ -10,10 +16,13 @@ export class DocumentEntity implements DocumentRecord {
     s3Key!: string;
     status!: DocumentStatus;
     category?: string;
-    extractedText?: string;
     summary?: string;
     thumbnailKey?: string;
     metadata?: DocumentMetadata;
+    language?: string;
+    extracted?: ExtractedFields;
+    index?: DocumentIndex;
+    quarantined?: string[];
     errorMessage?: string;
     retryCount!: number;
     createdAt!: string;
@@ -48,10 +57,13 @@ export class DocumentEntity implements DocumentRecord {
             s3Key: item.s3Key,
             status: item.status,
             category: item.category,
-            extractedText: item.extractedText,
             summary: item.summary,
             thumbnailKey: item.thumbnailKey,
             metadata: item.metadata ? item.metadata : undefined,
+            language: item.language,
+            extracted: item.extracted,
+            index: item.index,
+            quarantined: item.quarantined,
             errorMessage: item.errorMessage,
             retryCount: item.retryCount ?? 0,
             createdAt: item.createdAt,

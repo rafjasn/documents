@@ -1,0 +1,8 @@
+{
+ "chunker": "structure",
+ "chunk_tokens": 400,
+ "context": "llm",
+ "embedder": "e5-small",
+ "stem": null,
+ "parent_tokens": 1200
+}

@@ -13,3 +13,14 @@ localstack-data
 ollama-data
 pnpm-lock.yaml
 pnpm-workspace.yaml
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+services/ai/corpus/raw
+services/ai/corpus/data
+services/ai/corpus/extracted
+services/ai/evals/cache
+services/ai/evals/scratch
+services/ai/.cache

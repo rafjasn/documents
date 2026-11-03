@@ -1,0 +1,34 @@
+{
+  "kind": "collector-check",
+  "collector": "public.ecr.aws/aws-observability/aws-otel-collector:v0.50.0@sha256:7968fb60db6a2390a47ba6a2df029745638486e285c9b2487da1b722d0855a3e",
+  "services": {
+    "api": {
+      "requests": 2,
+      "bytes_per_scrape": 12299,
+      "datapoints_per_scrape": 103,
+      "histograms": 2,
+      "memory": "29.45MiB / 128MiB"
+    },
+    "ai-service": {
+      "requests": 2,
+      "bytes_per_scrape": 4808,
+      "datapoints_per_scrape": 31,
+      "histograms": 4,
+      "memory": "27.59MiB / 128MiB"
+    },
+    "ingestion-worker": {
+      "requests": 2,
+      "bytes_per_scrape": 3772,
+      "datapoints_per_scrape": 26,
+      "histograms": 3,
+      "memory": "25.51MiB / 128MiB"
+    }
+  },
+  "checks": {
+    "every service sent at least two scrapes": true,
+    "every request is SigV4-signed for monitoring": true,
+    "every request is gzipped OTLP to /v1/metrics": true,
+    "histograms arrive cumulative, with their buckets": true
+  },
+  "passed": true
+}

@@ -1,0 +1,25 @@
+{
+    "type": "citations",
+    "citations": [
+        {
+            "citationId": 1,
+            "docId": "4f1c2a9e-5b7d-4c3e-9a1f-2d6e8b0c7a51",
+            "title": "faktura FV-2026-01-319.pdf",
+            "page": 1,
+            "pages": [1],
+            "bbox": [0.08, 0.52, 0.93, 0.71],
+            "chunkId": 3,
+            "snippet": "| Razem | 2 897,60 | 666,45 | 3 564,05 |"
+        },
+        {
+            "citationId": 2,
+            "docId": "9b2e7c41-0d3a-4f5e-8c6b-1a7d9e2f4b30",
+            "title": "INV-260306.pdf",
+            "page": null,
+            "pages": [],
+            "bbox": null,
+            "chunkId": null,
+            "snippet": "Invoice INV-260306, Clark Services Ltd, 2026-07-14, net 1,099.00 GBP"
+        }
+    ]
+}

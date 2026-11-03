@@ -1,0 +1,84 @@
+{
+  "kind": "alert-drill",
+  "rule": "error-rate",
+  "fired_after_seconds": 104,
+  "cleared_after_seconds": 255,
+  "log": [
+    {
+      "at": "2026-10-23T15:05:14.819126+00:00",
+      "asked": "error: The answer could not be generated. Please try again.",
+      "rule": "inactive"
+    },
+    {
+      "at": "2026-10-23T15:05:45.643709+00:00",
+      "asked": "error: The answer could not be generated. Please try again.",
+      "rule": "pending"
+    },
+    {
+      "at": "2026-10-23T15:06:16.225180+00:00",
+      "asked": "error: The answer could not be generated. Please try again.",
+      "rule": "pending"
+    },
+    {
+      "at": "2026-10-23T15:06:47.010288+00:00",
+      "asked": "error: The answer could not be generated. Please try again.",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:07:22.916283+00:00",
+      "asked": "answered: The total gross amount is 1,230.00 PLN and it was ",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:07:47.750746+00:00",
+      "asked": "answered: 1230.00 PLN and Budnet Test Sp. z o.o. [1][2]. The",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:08:12.561107+00:00",
+      "asked": "answered: The total gross amount is 1230.00 PLN and it was i",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:08:38.027721+00:00",
+      "asked": "answered: The gross total is 1230.00 PLN and it was issued b",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:09:02.981148+00:00",
+      "asked": "answered: The total gross amount is 1230.00 PLN and it was i",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:09:27.502403+00:00",
+      "asked": "answered: The total gross amount is 1230.00 PLN and it was i",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:09:52.394254+00:00",
+      "asked": "answered: The total is 1230.00 PLN and it was issued by Budn",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:10:17.544755+00:00",
+      "asked": "answered: 1230.00 PLN and Budnet Test Sp. z o.o. [1][2]. The",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:10:42.503078+00:00",
+      "asked": "answered: The total gross amount is 1230.00 PLN and it was i",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:11:07.594084+00:00",
+      "asked": "answered: The total is 1230.00 PLN and it was issued by Budn",
+      "rule": "firing"
+    },
+    {
+      "at": "2026-10-23T15:11:32.455338+00:00",
+      "asked": "answered: The total is 1230.00 PLN and it was issued by Budn",
+      "rule": "inactive"
+    }
+  ],
+  "passed": true
+}

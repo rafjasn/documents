@@ -1,0 +1,15 @@
+{
+    "kind": "contract",
+    "parties": [
+        { "name": "Clark Services Ltd" },
+        { "name": "Harbour Analytics Ltd", "taxId": "GB123456789" }
+    ],
+    "contractNumber": "MSA-2026-007",
+    "effectiveDate": "2026-01-01",
+    "endDate": "2026-12-31",
+    "autoRenewal": true,
+    "noticePeriodDays": 60,
+    "paymentTermsDays": 30,
+    "valueCap": { "amount": 25000, "currency": "GBP" },
+    "governingLaw": "England and Wales"
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "fallback-drill",
+  "created": "20261022172128",
+  "trace_id": "5edf819f5edac074c55b00d6b6559a50",
+  "usage": {
+    "inputTokens": 1626,
+    "outputTokens": 98,
+    "costUsd": 0.000733,
+    "llmCalls": 4
+  },
+  "generations": [
+    {
+      "name": "GatewayChat",
+      "model": "gemini-3.5-flash-lite"
+    },
+    {
+      "name": "GatewayChat",
+      "model": "gemini-3.5-flash-lite"
+    },
+    {
+      "name": "GatewayChat",
+      "model": "gemini-3.5-flash-lite"
+    },
+    {
+      "name": "GatewayChat",
+      "model": "gemini-3.5-flash-lite"
+    }
+  ],
+  "priced": {
+    "gemini-3.1-flash-lite": 0.0005535,
+    "gemini-3.5-flash-lite": 0.0007328
+  },
+  "passed": true
+}

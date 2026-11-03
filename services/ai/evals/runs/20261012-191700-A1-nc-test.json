@@ -1,0 +1,8473 @@
+{
+ "run_id": "20261012-191700-A1-nc-test",
+ "variant": "A1-nc",
+ "description": "A1 without the grounding check",
+ "split": "test",
+ "answer_model": "google_genai:gemini-3.1-flash-lite",
+ "judge_model": "google_genai:gemma-4-31b-it",
+ "created": "2026-10-12T19:17:00+00:00",
+ "options": {
+  "grade": true,
+  "grounding": false,
+  "max_searches": 2,
+  "k": 10,
+  "fields": 5
+ },
+ "kind": "answers",
+ "paid_calls": 0,
+ "summary": {
+  "correct": 69,
+  "n": 72,
+  "accuracy": 0.958,
+  "by_type": {
+   "aggregate": {
+    "correct": 11,
+    "n": 12,
+    "accuracy": 0.917
+   },
+   "cross_doc": {
+    "correct": 9,
+    "n": 10,
+    "accuracy": 0.9
+   },
+   "cross_lingual": {
+    "correct": 10,
+    "n": 10,
+    "accuracy": 1.0
+   },
+   "image": {
+    "correct": 10,
+    "n": 10,
+    "accuracy": 1.0
+   },
+   "single_fact": {
+    "correct": 15,
+    "n": 16,
+    "accuracy": 0.938
+   },
+   "table": {
+    "correct": 7,
+    "n": 7,
+    "accuracy": 1.0
+   },
+   "unanswerable": {
+    "correct": 7,
+    "n": 7,
+    "accuracy": 1.0
+   }
+  },
+  "by_language": {
+   "en": {
+    "correct": 43,
+    "n": 44,
+    "accuracy": 0.977
+   },
+   "pl": {
+    "correct": 26,
+    "n": 28,
+    "accuracy": 0.929
+   }
+  },
+  "judged": 4,
+  "citation_precision": 0.971,
+  "cited_answers": 0.969,
+  "intents": {
+   "aggregate": 12,
+   "mixed": 12,
+   "retrieve": 48
+  },
+  "failures": {
+   "answer step (the computed value was right)": 1,
+   "filters missed documents": 1
+  },
+  "llm_calls_per_query": 3.42,
+  "cost_per_query_usd": 0.001996,
+  "latency_seconds": {
+   "p50": null,
+   "p95": null,
+   "measured_on": 0
+  },
+  "paid_calls": 0
+ },
+ "items": [
+  {
+   "id": "cuad-64404996-law",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "text",
+   "question": "Which jurisdiction's law governs the Amended And Restated Unconditional Capital Maintenance Agreement between American International Group, Inc. and American General Life Insurance Company?",
+   "reference": "New York",
+   "answer": "New York [1][9]. The agreement explicitly states it shall be governed by and construed in accordance with the laws of New York [9].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-64404996",
+     null
+    ],
+    [
+     "cuad-64404996",
+     5
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-64404996",
+     5
+    ]
+   ],
+   "input_tokens": 6173,
+   "output_tokens": 86,
+   "cost_usd": 0.001672,
+   "llm_calls": 3,
+   "seconds": 0.337,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Which jurisdiction's law governs the Amended And Restated Unconditional Capital Maintenance Agreement between American International Group, Inc. and American General Life Insurance Company?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-64404996",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-64404996",
+      12,
+      [
+       7
+      ]
+     ],
+     [
+      "cuad-64404996",
+      13,
+      [
+       7,
+       8
+      ]
+     ],
+     [
+      "cuad-64404996",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-64404996",
+      10,
+      [
+       5
+      ]
+     ],
+     [
+      "cuad-45040dcf",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-45040dcf",
+      18,
+      [
+       8
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-1671407c",
+      45,
+      [
+       12
+      ]
+     ],
+     [
+      "cuad-1671407c",
+      47,
+      [
+       12,
+       13
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-64404996-pl-agreement-date",
+   "type": "cross_lingual",
+   "language": "pl",
+   "kind": "date",
+   "question": "Kiedy zawarto umowę „Amended And Restated Unconditional Capital Maintenance Agreement” pomiędzy American International Group, Inc. a American General Life Insurance Company?",
+   "reference": "18 lutego 2014 r.",
+   "answer": "18 lutego 2014 r. [1][5] Umowa ta została zawarta oraz weszła w życie w tym dniu [5].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-64404996",
+     null
+    ],
+    [
+     "cuad-64404996",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-64404996",
+     1
+    ]
+   ],
+   "input_tokens": 5967,
+   "output_tokens": 92,
+   "cost_usd": 0.00163,
+   "llm_calls": 3,
+   "seconds": 0.093,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Kiedy została zawarta umowa „Amended And Restated Unconditional Capital Maintenance Agreement” pomiędzy American International Group, Inc. a American General Life Insurance Company?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-64404996",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-64404996",
+      12,
+      [
+       7
+      ]
+     ],
+     [
+      "cuad-64404996",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-64404996",
+      13,
+      [
+       7,
+       8
+      ]
+     ],
+     [
+      "cuad-64404996",
+      10,
+      [
+       5
+      ]
+     ],
+     [
+      "cuad-45040dcf",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-0",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-45040dcf",
+      18,
+      [
+       8
+      ]
+     ],
+     [
+      "syn-w4-ctr-0",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-45040dcf",
+      20,
+      [
+       9
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-6703dfa5-law",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "text",
+   "question": "Which jurisdiction's law governs the Reseller Agreement between Touchstar Software Corporation and Worldwide Strategies?",
+   "reference": "Colorado",
+   "answer": "The laws of the State of Colorado, United States [1]. This is specified under the governing law and arbitration provisions of the Reseller Agreement [1][3].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-6703dfa5",
+     null
+    ],
+    [
+     "cuad-6703dfa5",
+     16
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-6703dfa5",
+     15
+    ]
+   ],
+   "input_tokens": 5734,
+   "output_tokens": 74,
+   "cost_usd": 0.001544,
+   "llm_calls": 3,
+   "seconds": 0.091,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Which jurisdiction's law governs the Reseller Agreement between Touchstar Software Corporation and Worldwide Strategies?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-6703dfa5",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      53,
+      [
+       16,
+       17
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      1,
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      31,
+      [
+       10
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      27,
+      [
+       9
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      48,
+      [
+       14,
+       15
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      9,
+      [
+       4
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      29,
+      [
+       9
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      32,
+      [
+       10
+      ]
+     ],
+     [
+      "cuad-6703dfa5",
+      33,
+      [
+       10
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-6ade5c02-expiry",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "date",
+   "question": "When does the Consulting Agreement between Aduro Biotech, Inc and IREYA B.V expire?",
+   "reference": "31 December 2020",
+   "answer": "2020-12-31 [1][2]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-40301079",
+     null
+    ],
+    [
+     "cuad-6ade5c02",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-6ade5c02",
+     1
+    ]
+   ],
+   "input_tokens": 7146,
+   "output_tokens": 68,
+   "cost_usd": 0.001888,
+   "llm_calls": 3,
+   "seconds": 0.102,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "When does the Consulting Agreement between Aduro Biotech, Inc and IREYA B.V expire?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-40301079",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-6ade5c02",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-6ade5c02",
+      9,
+      [
+       4
+      ]
+     ],
+     [
+      "cuad-40301079",
+      9,
+      [
+       4
+      ]
+     ],
+     [
+      "cuad-40301079",
+      2,
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      "cuad-40301079",
+      5,
+      [
+       2
+      ]
+     ],
+     [
+      "cuad-6ade5c02",
+      2,
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      "cuad-6ade5c02",
+      5,
+      [
+       2
+      ]
+     ],
+     [
+      "cuad-40301079",
+      3,
+      [
+       2
+      ]
+     ],
+     [
+      "cuad-5300bf86",
+      34,
+      [
+       10
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-6bf2b778-party",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "text",
+   "question": "Who is the other party to the Manufacturing And Supply Agreement with Apollo Endosurgery?",
+   "reference": "Establishment Labs, S.A",
+   "answer": "Establishment Labs, S.A. is the other party to the Manufacturing and Supply Agreement [1][2]. It is a corporation organized under the laws of Costa Rica [2].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-6bf2b778",
+     null
+    ],
+    [
+     "cuad-6bf2b778",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-6bf2b778",
+     1
+    ]
+   ],
+   "input_tokens": 4718,
+   "output_tokens": 88,
+   "cost_usd": 0.001311,
+   "llm_calls": 3,
+   "seconds": 0.105,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Who is the other party to the Manufacturing And Supply Agreement with Apollo Endosurgery?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-6bf2b778",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      33,
+      [
+       13,
+       14,
+       15
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      8,
+      [
+       3
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      24,
+      [
+       9,
+       10
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      6,
+      [
+       2,
+       3
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      9,
+      [
+       3,
+       4
+      ]
+     ],
+     [
+      "cuad-6bf2b778",
+      36,
+      [
+       16
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-738adc51-law",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "text",
+   "question": "Which jurisdiction's law governs the Reseller Agreement between MediaNet Group Technologies, Inc. and International Direct Response, Inc.?",
+   "reference": "Florida",
+   "answer": "Florida [1][6]. The agreement states that the laws of the State of Florida shall govern the agreement without reference to conflicts of law provisions [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-738adc51",
+     null
+    ],
+    [
+     "cuad-738adc51",
+     3
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-738adc51",
+     3
+    ]
+   ],
+   "input_tokens": 6676,
+   "output_tokens": 79,
+   "cost_usd": 0.001788,
+   "llm_calls": 3,
+   "seconds": 0.201,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Which jurisdiction's law governs the Reseller Agreement between MediaNet Group Technologies, Inc. and International Direct Response, Inc.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-738adc51",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      12,
+      [
+       3
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      17,
+      [
+       3,
+       4
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      14,
+      [
+       3
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      5,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      19,
+      [
+       4,
+       5
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      10,
+      [
+       2,
+       3
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      16,
+      [
+       3,
+       4
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-774bb0ed-agreement-date",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "date",
+   "question": "On what date was the Outsourcing Agreement between Virtual Item Processing Systems, Inc. and Brokers National Life Assurance Company entered into?",
+   "reference": "1 May 2006",
+   "answer": "May 1, 2006 [1][6]. The agreement was executed as of this date by Virtual Item Processing Systems, Inc. and Brokers National Life Assurance Company [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-774bb0ed",
+     null
+    ],
+    [
+     "cuad-774bb0ed",
+     2
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-774bb0ed",
+     2
+    ]
+   ],
+   "input_tokens": 6616,
+   "output_tokens": 98,
+   "cost_usd": 0.001801,
+   "llm_calls": 3,
+   "seconds": 0.112,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "On what date was the Outsourcing Agreement between Virtual Item Processing Systems, Inc. and Brokers National Life Assurance Company entered into?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-774bb0ed",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-774bb0ed",
+      2,
+      [
+       2
+      ]
+     ],
+     [
+      "cuad-774bb0ed",
+      24,
+      [
+       11
+      ]
+     ],
+     [
+      "cuad-774bb0ed",
+      34,
+      [
+       15,
+       16,
+       17
+      ]
+     ],
+     [
+      "cuad-774bb0ed",
+      12,
+      [
+       6
+      ]
+     ],
+     [
+      "cuad-774bb0ed",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-64404996",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-45040dcf",
+      17,
+      [
+       7,
+       8
+      ]
+     ],
+     [
+      "cuad-0eb4f837",
+      3,
+      [
+       2
+      ]
+     ],
+     [
+      "cuad-774bb0ed",
+      30,
+      [
+       13,
+       14
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-78702e07-expiry",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "date",
+   "question": "When does the Supply Agreement between Cremer Oleo GmbH & Co KG and Ultragenyx Pharmaceutical Inc. expire?",
+   "reference": "19 November 2015",
+   "answer": "The documents do not state the expiration date of the supply agreement.",
+   "correct": false,
+   "method": "judge",
+   "intent": "retrieve",
+   "citations": [],
+   "relevant": [
+    [
+     "cuad-78702e07",
+     4
+    ]
+   ],
+   "input_tokens": 8575,
+   "output_tokens": 131,
+   "cost_usd": 0.00234,
+   "llm_calls": 5,
+   "seconds": 0.12,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "When does the Supply Agreement between Cremer Oleo GmbH & Co KG and Ultragenyx Pharmaceutical Inc. expire?",
+     "term duration termination provisions Cremer Oleo GmbH & Co KG Ultragenyx Pharmaceutical Inc. Supply Agreement"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-78702e07",
+      15,
+      [
+       6
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      4,
+      [
+       2
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      12,
+      [
+       4
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      8,
+      [
+       3,
+       4
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      7,
+      [
+       3
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      17,
+      [
+       7
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      14,
+      [
+       5
+      ]
+     ],
+     [
+      "cuad-78702e07",
+      6,
+      [
+       2,
+       3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cuad-79a220ee-party",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "text",
+   "question": "Who is the other party to the Services Agreement with PFS Funds?",
+   "reference": "Potomac Fund Management, Inc.",
+   "answer": "Potomac Fund Management, Inc. is the other party to the Services Agreement with PFS Funds [1][8].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "cuad-79a220ee",
+     null
+    ],
+    [
+     "cuad-79a220ee",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "cuad-79a220ee",
+     1
+    ]
+   ],
+   "input_tokens": 6058,
+   "output_tokens": 66,
+   "cost_usd": 0.001613,
+   "llm_calls": 3,
+   "seconds": 0.085,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Who is the other party to the Services Agreement with PFS Funds?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "cuad-79a220ee",
+      11,
+      [
+       3
+      ]
+     ],
+     [
+      "cuad-79a220ee",
+      12,
+      [
+       3
+      ]
+     ],
+     [
+      "cuad-79a220ee",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-79a220ee",
+      10,
+      [
+       2,
+       3
+      ]
+     ],
+     [
+      "cuad-45040dcf",
+      1,
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      "cuad-4de0a000",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-4984502f",
+      36,
+      [
+       8
+      ]
+     ],
+     [
+      "cuad-738adc51",
+      20,
+      [
+       4,
+       5
+      ]
+     ],
+     [
+      "syn-w2-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-60a1637f",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sroie-014-date",
+   "type": "image",
+   "language": "en",
+   "kind": "date",
+   "question": "On what date was the receipt from ASIA MART with a total of RM 32.70 issued?",
+   "reference": "22 December 2017",
+   "answer": "2017-12-22 [2][10]. The receipt was issued on this date for a total of 32.70 MYR [2][10].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "sroie-014",
+     null
+    ],
+    [
+     "sroie-014",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "sroie-014",
+     1
+    ]
+   ],
+   "input_tokens": 9216,
+   "output_tokens": 95,
+   "cost_usd": 0.002446,
+   "llm_calls": 3,
+   "seconds": 0.098,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the issue date of the receipt from ASIA MART with a total of RM 32.70?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "sroie-275",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-014",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-014",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-014",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-014",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-153",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-014",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-472",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-204",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-153",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sroie-233-date",
+   "type": "image",
+   "language": "en",
+   "kind": "date",
+   "question": "On what date was the receipt from Y SOON FATT S/B with a total of RM 362.50 issued?",
+   "reference": "9 February 2017",
+   "answer": "09/02/2017 [1][6][7]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "sroie-233",
+     null
+    ],
+    [
+     "sroie-233",
+     1
+    ],
+    [
+     "sroie-233",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "sroie-233",
+     1
+    ]
+   ],
+   "input_tokens": 11162,
+   "output_tokens": 80,
+   "cost_usd": 0.00291,
+   "llm_calls": 3,
+   "seconds": 0.086,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the date of the receipt from Y SOON FATT S/B with a total of RM 362.50?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "sroie-233",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-233",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-224",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-004",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-468",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-204",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-204",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-426",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-004",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-426",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sroie-302-total",
+   "type": "image",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the total amount on the receipt from AEON CO. (M) BHD dated 22/04/2018?",
+   "reference": "RM 98.35",
+   "answer": "98.35 MYR [1][13]. This total is also reflected in the receipt after the rounding adjustment [6][13].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "sroie-302",
+     null
+    ],
+    [
+     "sroie-302",
+     1
+    ],
+    [
+     "sroie-302",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "sroie-302",
+     1
+    ]
+   ],
+   "input_tokens": 10400,
+   "output_tokens": 96,
+   "cost_usd": 0.002744,
+   "llm_calls": 3,
+   "seconds": 0.086,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the total amount on the receipt from AEON CO. (M) BHD dated 22/04/2018?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "sroie-302",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-094",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-094",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-426",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-426",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-031",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-302",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-302",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-197",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-197",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sroie-371-total",
+   "type": "image",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the total amount on the receipt from GARDENIA BAKERIES (KL) SDN BHD dated 10/10/2017?",
+   "reference": "RM 27.20",
+   "answer": "27.20 MYR [5][11]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "sroie-371",
+     null
+    ],
+    [
+     "sroie-371",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "sroie-371",
+     1
+    ]
+   ],
+   "input_tokens": 10249,
+   "output_tokens": 73,
+   "cost_usd": 0.002672,
+   "llm_calls": 3,
+   "seconds": 0.118,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the total amount on the receipt from GARDENIA BAKERIES (KL) SDN BHD dated 10/10/2017?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "sroie-328",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-372",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-372",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-363",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-352",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-371",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-371",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-363",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-328",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-368",
+      2,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sroie-426-date",
+   "type": "image",
+   "language": "en",
+   "kind": "date",
+   "question": "On what date was the receipt from AEON CO. (M) BHD with a total of RM 99.90 issued?",
+   "reference": "27 May 2018",
+   "answer": "27/05/2018 [1][6]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "sroie-426",
+     null
+    ],
+    [
+     "sroie-426",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "sroie-426",
+     1
+    ]
+   ],
+   "input_tokens": 10242,
+   "output_tokens": 70,
+   "cost_usd": 0.002666,
+   "llm_calls": 3,
+   "seconds": 0.088,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "On what date was the receipt from AEON CO. (M) BHD with a total of RM 99.90 issued?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "sroie-426",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-094",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-094",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-426",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-031",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-302",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-426",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-222",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-302",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-222",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sroie-539-total",
+   "type": "image",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the total amount on the receipt from GERBANG ALAF RESTAURANTS SDN BHD dated 24/06/2018?",
+   "reference": "RM 12.80",
+   "answer": "12.80 MYR [1][6][7]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "sroie-539",
+     null
+    ],
+    [
+     "sroie-539",
+     1
+    ],
+    [
+     "sroie-539",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "sroie-539",
+     1
+    ]
+   ],
+   "input_tokens": 9815,
+   "output_tokens": 72,
+   "cost_usd": 0.002562,
+   "llm_calls": 3,
+   "seconds": 0.093,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the total amount on the receipt from GERBANG ALAF RESTAURANTS SDN BHD dated 24/06/2018?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "sroie-539",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-539",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-622",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-067",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-534",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-153",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-622",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-067",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-612",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "sroie-224",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-after-term",
+   "type": "cross_doc",
+   "language": "en",
+   "kind": "boolean",
+   "question": "Was invoice INV-260349 from Joyce Consulting Limited issued within the term of their contract?",
+   "reference": "No",
+   "answer": "No. The invoice was issued on 24 July 2026, which is after the contract's term ended on 30 June 2026 [1][2][6][13].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-inv-3-q3",
+     null
+    ],
+    [
+     "syn-w4-ctr-3",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     1
+    ],
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     1
+    ]
+   ],
+   "input_tokens": 7156,
+   "output_tokens": 206,
+   "cost_usd": 0.002098,
+   "llm_calls": 4,
+   "seconds": 0.127,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoice_date",
+      "category": "invoice",
+      "operation": "list",
+      "numbers": [
+       "INV-260349"
+      ],
+      "date_field": "issue_date"
+     },
+     {
+      "name": "contract_terms",
+      "category": "contract",
+      "operation": "list",
+      "party": "Joyce Consulting Limited",
+      "numbers": []
+     }
+    ],
+    "values": [
+     null,
+     null
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-3",
+     "syn-w4-inv-3-q3"
+    ],
+    "labelled": [
+     "syn-w4-ctr-3",
+     "syn-w4-inv-3-q3"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Was invoice INV-260349 from Joyce Consulting Limited issued within the duration term of their contract with us?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w1-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-amount-due",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the total amount due on invoice INV-260180 from Joyce Consulting Limited?",
+   "reference": "€841.00",
+   "answer": "€841.00 [5][12]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "input_tokens": 5500,
+   "output_tokens": 60,
+   "cost_usd": 0.001465,
+   "llm_calls": 3,
+   "seconds": 0.284,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the total amount due on invoice INV-260180 from Joyce Consulting Limited?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      3,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-auto-renewal",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "boolean",
+   "question": "Does the service agreement SA-2025-77 with Joyce Consulting Limited renew automatically?",
+   "reference": "No",
+   "answer": "No [1][6]. The agreement specifically states that it will not renew automatically [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ],
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "input_tokens": 7365,
+   "output_tokens": 76,
+   "cost_usd": 0.001955,
+   "llm_calls": 3,
+   "seconds": 0.09,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Does the service agreement SA-2025-77 with Joyce Consulting Limited contain an automatic renewal clause?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w0-ctr-2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-ctr-3",
+      3,
+      []
+     ],
+     [
+      "syn-w2-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      2,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-cap-exceeded",
+   "type": "cross_doc",
+   "language": "pl",
+   "kind": "boolean",
+   "question": "Czy łączna wartość netto faktur wystawionych przez Świerkosz Serwis Sp. z o.o. w 2026 r. przekroczyła limit wartości umowy?",
+   "reference": "Tak",
+   "answer": "Tak [4][7]. Łączna wartość netto faktur wystawionych przez Świerkosz Serwis Sp. z o.o. wynosi 8751,00 PLN, co przekracza określony w umowie nr 60/2025 limit 8000,00 PLN [4][7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     1
+    ]
+   ],
+   "input_tokens": 10980,
+   "output_tokens": 328,
+   "cost_usd": 0.003237,
+   "llm_calls": 4,
+   "seconds": 0.123,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoices_total",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "net_total",
+      "issuer": "Świerkosz Serwis Sp. z o.o.",
+      "numbers": [],
+      "date_from": "2026-01-01",
+      "date_to": "2026-12-31"
+     },
+     {
+      "name": "contract_limit",
+      "category": "contract",
+      "operation": "max",
+      "field": "value_cap",
+      "party": "Świerkosz Serwis Sp. z o.o.",
+      "numbers": []
+     }
+    ],
+    "values": [
+     "8751.00",
+     "8000.00"
+    ],
+    "expression": "invoices_total > contract_limit",
+    "expression_value": null,
+    "error": "invoices_total > contract_limit: unsupported expression: Compare(left=Name(id='invoices_total', ctx=Load()), ops=[Gt()], comparators=[Nam",
+    "matched": [
+     "syn-w4-ctr-1",
+     "syn-w4-inv-1-q1",
+     "syn-w4-inv-1-q2",
+     "syn-w4-inv-1-q3"
+    ],
+    "labelled": [
+     "syn-w4-ctr-1",
+     "syn-w4-inv-1-q1",
+     "syn-w4-inv-1-q2",
+     "syn-w4-inv-1-q3"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Czy łączna wartość netto faktur wystawionych przez Świerkosz Serwis Sp. z o.o. w 2026 r. przekroczyła limit wartości umowy z tym podmiotem?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-0",
+      5,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-cap-of-contract",
+   "type": "cross_doc",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the value cap of the contract under which invoice INV-260261 from Whittaker Services Ltd was issued?",
+   "reference": "£9,100.00",
+   "answer": "The value cap is 9,100.00 GBP [2]. Invoice INV-260261 was issued under Service Agreement SA-2025-26, which specifies this limit [2][12].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-ctr-2",
+     null
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-2-q3",
+     1
+    ],
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "input_tokens": 7286,
+   "output_tokens": 246,
+   "cost_usd": 0.00219,
+   "llm_calls": 4,
+   "seconds": 0.109,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoice_info",
+      "category": "invoice",
+      "operation": "list",
+      "numbers": [
+       "INV-260261"
+      ]
+     },
+     {
+      "name": "contract_cap",
+      "category": "contract",
+      "operation": "sum",
+      "field": "value_cap",
+      "party": "Whittaker Services Ltd",
+      "numbers": []
+     }
+    ],
+    "values": [
+     null,
+     "9100.00"
+    ],
+    "expression": "contract_cap",
+    "expression_value": "9100.00",
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-2",
+     "syn-w4-inv-2-q3"
+    ],
+    "labelled": [
+     "syn-w4-ctr-2",
+     "syn-w4-inv-2-q3"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "What is the value cap of the contract associated with invoice INV-260261 from Whittaker Services Ltd?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-2-q3",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-cap-remaining",
+   "type": "cross_doc",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka kwota limitu wartości umowy z Pastucha Usługi Sp. z o.o. pozostała do wykorzystania po fakturze FV/2026/04/267?",
+   "reference": "19 798,00 PLN",
+   "answer": "20198,00 PLN. Kwota ta wynika z odjęcia wartości netto faktury FV/2026/01/136 (10428,00 PLN) oraz faktury FV/2026/04/267 (3774,00 PLN) od limitu umowy wynoszącego 34000,00 PLN [1][3][9].",
+   "correct": false,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-ctr-0",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     1
+    ]
+   ],
+   "input_tokens": 10452,
+   "output_tokens": 333,
+   "cost_usd": 0.003112,
+   "llm_calls": 4,
+   "seconds": 0.109,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "cap",
+      "category": "contract",
+      "operation": "sum",
+      "field": "value_cap",
+      "party": "Pastucha Usługi Sp. z o.o.",
+      "numbers": []
+     },
+     {
+      "name": "used",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "net_total",
+      "issuer": "Pastucha Usługi Sp. z o.o.",
+      "numbers": [],
+      "up_to_number": "FV/2026/04/267"
+     }
+    ],
+    "values": [
+     "34000.00",
+     "14202.00"
+    ],
+    "expression": "cap - used",
+    "expression_value": "19798.00",
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q1",
+     "syn-w4-inv-0-q2"
+    ],
+    "labelled": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q1",
+     "syn-w4-inv-0-q2"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Jaka jest kwota limitu wartości umowy z Pastucha Usługi Sp. z o.o. i jaka jest pozostała kwota do wykorzystania po uwzględnieniu faktury FV/2026/04/267?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      2,
+      [
+       1
+      ]
+     ]
+    ],
+    "failure": "answer step (the computed value was right)"
+   }
+  },
+  {
+   "id": "syn-w4-cap-within",
+   "type": "cross_doc",
+   "language": "pl",
+   "kind": "boolean",
+   "question": "Czy łączna wartość netto faktur wystawionych przez Pastucha Usługi Sp. z o.o. w 2026 r. przekroczyła limit wartości umowy?",
+   "reference": "Nie",
+   "answer": "Nie. Łączna wartość netto faktur wystawionych przez Pastucha Usługi Sp. z o.o. wynosi 22 083,00 PLN, co nie przekracza limitu wartości umowy nr 75/2025 wynoszącego 34 000,00 PLN [4][computed].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-ctr-0",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "input_tokens": 10138,
+   "output_tokens": 338,
+   "cost_usd": 0.003041,
+   "llm_calls": 4,
+   "seconds": 0.119,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "total_net_invoiced",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "net_total",
+      "issuer": "Pastucha Usługi Sp. z o.o.",
+      "numbers": [],
+      "date_from": "2026-01-01",
+      "date_to": "2026-12-31"
+     },
+     {
+      "name": "contract_limit",
+      "category": "contract",
+      "operation": "max",
+      "field": "value_cap",
+      "party": "Pastucha Usługi Sp. z o.o.",
+      "numbers": []
+     }
+    ],
+    "values": [
+     "22083.00",
+     "34000.00"
+    ],
+    "expression": "total_net_invoiced > contract_limit",
+    "expression_value": null,
+    "error": "total_net_invoiced > contract_limit: unsupported expression: Compare(left=Name(id='total_net_invoiced', ctx=Load()), ops=[Gt()], comparators=",
+    "matched": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q1",
+     "syn-w4-inv-0-q2",
+     "syn-w4-inv-0-q3"
+    ],
+    "labelled": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q1",
+     "syn-w4-inv-0-q2",
+     "syn-w4-inv-0-q3"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Czy łączna wartość netto faktur wystawionych przez Pastucha Usługi Sp. z o.o. w 2026 r. przekroczyła limit wartości umowy?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-0",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w0-ctr-0",
+      5,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      2,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-contract-rate",
+   "type": "table",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka jest stawka netto za usługę „Usługi tłumaczeniowe” w umowie nr 75/2025 z Pastucha Usługi Sp. z o.o.?",
+   "reference": "75,00 PLN",
+   "answer": "75,00 PLN [6]. Stawka ta została określona w § 3 umowy nr 75/2025 dotyczącej świadczenia usług przez Pastucha Usługi Sp. z o.o [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ]
+   ],
+   "input_tokens": 7451,
+   "output_tokens": 123,
+   "cost_usd": 0.002047,
+   "llm_calls": 3,
+   "seconds": 0.089,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaka jest stawka netto za usługę „Usługi tłumaczeniowe” w umowie nr 75/2025 z Pastucha Usługi Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-0",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-0",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      1,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-1",
+      1,
+      []
+     ],
+     [
+      "syn-w4-ctr-0",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w1-ctr-0",
+      3,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-contract-rate-docx",
+   "type": "table",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka stawka netto obowiązuje za usługę „Monitoring ochrony” zgodnie z umową nr 60/2025 z Świerkosz Serwis Sp. z o.o.?",
+   "reference": "1 335,00 PLN",
+   "answer": "1 335,00 PLN [7][8]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "input_tokens": 9494,
+   "output_tokens": 91,
+   "cost_usd": 0.00251,
+   "llm_calls": 3,
+   "seconds": 0.092,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaka stawka netto obowiązuje za usługę Monitoring ochrony zgodnie z umową nr 60/2025 zawartą z Świerkosz Serwis Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      1,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      1,
+      []
+     ],
+     [
+      "syn-w2-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w3-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-1",
+      1,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-contract-rate-en",
+   "type": "table",
+   "language": "en",
+   "kind": "number",
+   "question": "What rate does the service agreement SA-2025-26 with Whittaker Services Ltd set for road transport Warsaw-Berlin?",
+   "reference": "£637.00",
+   "answer": "£637.00 [6]. This is the rate per trip specified in the fees table of the agreement [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "input_tokens": 5320,
+   "output_tokens": 84,
+   "cost_usd": 0.001456,
+   "llm_calls": 3,
+   "seconds": 0.105,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What rate does the service agreement SA-2025-26 with Whittaker Services Ltd set for road transport Warsaw-Berlin?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-2",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-3",
+      1,
+      []
+     ],
+     [
+      "syn-w3-ctr-2",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      1,
+      []
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w3-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-3",
+      0,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-contracts-to-year-end",
+   "type": "aggregate",
+   "language": "pl",
+   "kind": "number",
+   "question": "Ile umów zawartych przez Sąsiadek Dystrybucja Sp. z o.o. obowiązuje do 31 grudnia 2026 r.?",
+   "reference": "3",
+   "answer": "3. Wszystkie trzy wymienione umowy (SA-2025-26, 60/2025 oraz 75/2025) mają datę końcową ustaloną na 31 grudnia 2026 r. [1][2][3].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-ctr-2",
+     null
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-ctr-0",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-ctr-2",
+     1
+    ],
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "input_tokens": 1389,
+   "output_tokens": 216,
+   "cost_usd": 0.000671,
+   "llm_calls": 3,
+   "seconds": 0.069,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "active_contracts",
+      "category": "contract",
+      "operation": "count",
+      "party": "Sąsiadek Dystrybucja Sp. z o.o.",
+      "numbers": [],
+      "date_field": "end_date",
+      "date_from": "2026-12-31"
+     }
+    ],
+    "values": [
+     "3"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-0",
+     "syn-w4-ctr-1",
+     "syn-w4-ctr-2"
+    ],
+    "labelled": [
+     "syn-w4-ctr-0",
+     "syn-w4-ctr-1",
+     "syn-w4-ctr-2",
+     "syn-w4-ctr-3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "Ile umów zawartych przez Sąsiadek Dystrybucja Sp. z o.o. obowiązuje do 31 grudnia 2026 r.?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-delivery-address",
+   "type": "unanswerable",
+   "language": "en",
+   "kind": "refusal",
+   "question": "What is the delivery address on invoice INV-260180 from Joyce Consulting Limited?",
+   "reference": "Not stated in the documents.",
+   "answer": "The documents do not state a delivery address for invoice INV-260180. The invoices provided only specify a billing address for the recipient, Sąsiadek Dystrybucja Sp. z o.o., located at ulica Leszczynowa 029, 48-071 Cieszyn, Polska [5].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "input_tokens": 8802,
+   "output_tokens": 224,
+   "cost_usd": 0.002536,
+   "llm_calls": 5,
+   "seconds": 0.122,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "What is the delivery address on invoice INV-260180 from Joyce Consulting Limited?",
+     "ship-to location or delivery details for invoice INV-260180 issued by Joyce Consulting Limited"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      3,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-due-date",
+   "type": "single_fact",
+   "language": "pl",
+   "kind": "date",
+   "question": "Jaki jest termin płatności faktury FV/2026/07/074 wystawionej przez Pastucha Usługi Sp. z o.o.?",
+   "reference": "22.09.2026",
+   "answer": "22.09.2026 [1][6]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-0-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "input_tokens": 7208,
+   "output_tokens": 89,
+   "cost_usd": 0.001935,
+   "llm_calls": 3,
+   "seconds": 0.105,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaki jest termin płatności faktury FV/2026/07/074 wystawionej przez Pastucha Usługi Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-early-payment-discount",
+   "type": "unanswerable",
+   "language": "pl",
+   "kind": "refusal",
+   "question": "Jaki rabat za wcześniejszą płatność przewiduje umowa nr 60/2025 z Świerkosz Serwis Sp. z o.o.?",
+   "reference": "Dokumenty tego nie podają.",
+   "answer": "Dokumenty nie zawierają informacji o rabacie za wcześniejszą płatność w umowie nr 60/2025 [1][6]. Umowa określa jedynie termin płatności wynoszący 14 dni [1].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "input_tokens": 14648,
+   "output_tokens": 250,
+   "cost_usd": 0.004037,
+   "llm_calls": 5,
+   "seconds": 0.216,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "Jaki rabat za wcześniejszą płatność przewiduje umowa nr 60/2025 zawarta ze Świerkosz Serwis Sp. z o.o.?",
+     "postanowienia dotyczące skonta lub rabatu za wcześniejszą spłatę w umowie numer 60/2025 ze Świerkosz Serwis Sp. z o.o."
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w0-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      3,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      3,
+      []
+     ],
+     [
+      "syn-w1-ctr-0",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-1",
+      3,
+      []
+     ],
+     [
+      "syn-w0-ctr-0",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w2-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w0-ctr-0",
+      6,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-en-on-pl-cap",
+   "type": "cross_lingual",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the value cap in agreement no. 60/2025 with Świerkosz Serwis Sp. z o.o.?",
+   "reference": "8,000.00 PLN",
+   "answer": "8000.00 PLN [1]. This value is defined in the service agreement concluded with Świerkosz Serwis Sp. z o.o. [1][6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "input_tokens": 8146,
+   "output_tokens": 101,
+   "cost_usd": 0.002188,
+   "llm_calls": 3,
+   "seconds": 0.091,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the value cap in agreement no. 60/2025 with Świerkosz Serwis Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      3,
+      []
+     ],
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-en-on-pl-due",
+   "type": "cross_lingual",
+   "language": "en",
+   "kind": "date",
+   "question": "What is the due date of invoice FV/2026/07/074 from Pastucha Usługi Sp. z o.o.?",
+   "reference": "22 September 2026",
+   "answer": "2026-09-22 [1][6]. This date is 60 days after the issue date of the invoice [1].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-0-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "input_tokens": 7656,
+   "output_tokens": 100,
+   "cost_usd": 0.002064,
+   "llm_calls": 3,
+   "seconds": 0.192,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the due date of invoice FV/2026/07/074 from Pastucha Usługi Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q2",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-en-on-pl-notice",
+   "type": "cross_lingual",
+   "language": "en",
+   "kind": "number",
+   "question": "What notice period applies to agreement no. 60/2025 with Świerkosz Serwis Sp. z o.o.?",
+   "reference": "90 days",
+   "answer": "90 days. This notice period is specified in the contract for termination of the agreement [1][6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "input_tokens": 7851,
+   "output_tokens": 87,
+   "cost_usd": 0.002093,
+   "llm_calls": 3,
+   "seconds": 0.101,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What notice period applies to agreement no. 60/2025 with Świerkosz Serwis Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      0,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-en-on-pl-receipt",
+   "type": "cross_lingual",
+   "language": "en",
+   "kind": "number",
+   "question": "What was the total on the receipt from Papiernik Wylegała dated 23 September 2026?",
+   "reference": "360.25 PLN",
+   "answer": "360.25 PLN [1][6][9]. This was the total amount recorded on the fiscal receipt from Papiernik Wylegała [6][9].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-rec-0",
+     null
+    ],
+    [
+     "syn-w4-rec-0",
+     1
+    ],
+    [
+     "syn-w4-rec-0",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-rec-0",
+     1
+    ]
+   ],
+   "input_tokens": 6100,
+   "output_tokens": 95,
+   "cost_usd": 0.001668,
+   "llm_calls": 3,
+   "seconds": 0.093,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What was the total on the receipt from Papiernik Wylegała dated 23 September 2026?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-rec-0",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-rec-0",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-rec-0",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-rec-0",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-rec-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-rec-1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q1",
+      3,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-en-on-pl-vat",
+   "type": "cross_lingual",
+   "language": "en",
+   "kind": "number",
+   "question": "How much VAT is charged on invoice FV/2026/04/400 from Świerkosz Serwis Sp. z o.o.?",
+   "reference": "307.05 PLN",
+   "answer": "307.05 PLN [1][14]. This amount is specified as the total VAT for the invoice [10].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-1-q2",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ]
+   ],
+   "input_tokens": 8319,
+   "output_tokens": 93,
+   "cost_usd": 0.002219,
+   "llm_calls": 3,
+   "seconds": 0.105,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "How much VAT is charged on invoice FV/2026/04/400 from Świerkosz Serwis Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q2",
+      2,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-end-date",
+   "type": "single_fact",
+   "language": "pl",
+   "kind": "date",
+   "question": "Do kiedy obowiązuje umowa nr 60/2025 zawarta z Świerkosz Serwis Sp. z o.o.?",
+   "reference": "31 grudnia 2026 r.",
+   "answer": "Umowa nr 60/2025 obowiązuje do 31 grudnia 2026 r. [1][6] Po upływie tego okresu ulega ona automatycznemu przedłużeniu na kolejne 12 miesięcy, chyba że zostanie złożone oświadczenie o jej nieprzedłużeniu [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ]
+   ],
+   "input_tokens": 9352,
+   "output_tokens": 138,
+   "cost_usd": 0.002545,
+   "llm_calls": 3,
+   "seconds": 0.135,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Do kiedy obowiązuje umowa nr 60/2025 zawarta z Świerkosz Serwis Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w3-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w0-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      3,
+      []
+     ],
+     [
+      "syn-w2-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-0",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      3,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-eur-total",
+   "type": "aggregate",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the total amount invoiced to Sąsiadek Dystrybucja Sp. z o.o. in EUR in 2026?",
+   "reference": "€2,852.00",
+   "answer": "2852.00 EUR. This total represents the sum of the gross amounts from the three invoices issued to the recipient in 2026 [1][2][3][computed].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-3-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1472,
+   "output_tokens": 207,
+   "cost_usd": 0.000679,
+   "llm_calls": 3,
+   "seconds": 0.104,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "total_invoiced",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "gross_total",
+      "recipient": "Sąsiadek Dystrybucja Sp. z o.o.",
+      "numbers": [],
+      "currency": "EUR"
+     }
+    ],
+    "values": [
+     "2852.00"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-3-q1",
+     "syn-w4-inv-3-q2",
+     "syn-w4-inv-3-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-3-q1",
+     "syn-w4-inv-3-q2",
+     "syn-w4-inv-3-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "What is the total amount invoiced to Sąsiadek Dystrybucja Sp. z o.o. in EUR in 2026?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-governing-law",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "text",
+   "question": "Which law governs the service agreement SA-2025-26 with Whittaker Services Ltd?",
+   "reference": "England and Wales",
+   "answer": "The laws of England and Wales [1][7]. This is explicitly stated in the governing law clause of the agreement [7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-2",
+     null
+    ],
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "input_tokens": 4569,
+   "output_tokens": 76,
+   "cost_usd": 0.001256,
+   "llm_calls": 3,
+   "seconds": 0.127,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Which law governs the service agreement SA-2025-26 with Whittaker Services Ltd?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      9,
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      9,
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      "syn-w0-ctr-2",
+      9,
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-image-fee-table",
+   "type": "image",
+   "language": "en",
+   "kind": "number",
+   "question": "What rate does the service agreement SA-2025-77 with Joyce Consulting Limited set for pallet storage?",
+   "reference": "€7.00",
+   "answer": "€7.00 [11]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "input_tokens": 6249,
+   "output_tokens": 62,
+   "cost_usd": 0.001655,
+   "llm_calls": 3,
+   "seconds": 0.095,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the pallet storage rate in service agreement SA-2025-77 with Joyce Consulting Limited?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-3",
+      1,
+      []
+     ],
+     [
+      "syn-w4-ctr-3",
+      3,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-invoice-signatory",
+   "type": "unanswerable",
+   "language": "pl",
+   "kind": "refusal",
+   "question": "Kto podpisał fakturę FV/2026/01/136 wystawioną przez Pastucha Usługi Sp. z o.o. w imieniu sprzedawcy?",
+   "reference": "Dokumenty tego nie podają.",
+   "answer": "Dokumenty nie zawierają informacji o tym, kto podpisał fakturę FV/2026/01/136 w imieniu sprzedawcy [6][11].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ]
+   ],
+   "input_tokens": 13251,
+   "output_tokens": 212,
+   "cost_usd": 0.003631,
+   "llm_calls": 5,
+   "seconds": 0.145,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "Kto podpisał fakturę FV/2026/01/136 wystawioną przez Pastucha Usługi Sp. z o.o. w imieniu sprzedawcy?",
+     "faktura FV/2026/01/136 Pastucha Usługi Sp. z o.o. wystawca podpis osoba upoważniona"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q1",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-largest-invoice",
+   "type": "aggregate",
+   "language": "en",
+   "kind": "text",
+   "question": "Which invoice from Whittaker Services Ltd had the highest total amount?",
+   "reference": "INV-260238",
+   "answer": "INV-260238. This invoice has a gross total of 3569.00 GBP [1][computed].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-2-q1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-2-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1389,
+   "output_tokens": 124,
+   "cost_usd": 0.000533,
+   "llm_calls": 3,
+   "seconds": 0.085,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "invoices",
+      "category": "invoice",
+      "operation": "max",
+      "field": "gross_total",
+      "issuer": "Whittaker Services Ltd",
+      "numbers": []
+     }
+    ],
+    "values": [
+     "3569.00"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-2-q1",
+     "syn-w4-inv-2-q2",
+     "syn-w4-inv-2-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-2-q1",
+     "syn-w4-inv-2-q2",
+     "syn-w4-inv-2-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "Which invoice from Whittaker Services Ltd had the highest total amount?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-late-interest",
+   "type": "unanswerable",
+   "language": "en",
+   "kind": "refusal",
+   "question": "What late-payment interest rate does the service agreement SA-2025-26 with Whittaker Services Ltd specify?",
+   "reference": "Not stated in the documents.",
+   "answer": "The documents do not state a late-payment interest rate for the service agreement SA-2025-26 with Whittaker Services Ltd. The agreement specifies that invoices are payable within 14 days of the invoice date [16].",
+   "correct": true,
+   "method": "judge",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-2",
+     null
+    ]
+   ],
+   "input_tokens": 8508,
+   "output_tokens": 175,
+   "cost_usd": 0.00239,
+   "llm_calls": 5,
+   "seconds": 0.121,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "What is the late-payment interest rate specified in service agreement SA-2025-26 with Whittaker Services Ltd?",
+     "service agreement SA-2025-26 Whittaker Services Ltd interest on overdue payments penalty fee rate"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-52ecfab2",
+      79,
+      [
+       23
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      5,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-2",
+      5,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      2,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-line-net",
+   "type": "table",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the net amount for road transport Warsaw-Berlin on invoice INV-260238 from Whittaker Services Ltd?",
+   "reference": "£3,185.00",
+   "answer": "3,185.00 [6]\n\nThis amount represents 5 trips at a unit price of 637.00 each [6].",
+   "correct": true,
+   "method": "judge",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-2-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-2-q1",
+     1
+    ]
+   ],
+   "input_tokens": 5841,
+   "output_tokens": 94,
+   "cost_usd": 0.001601,
+   "llm_calls": 3,
+   "seconds": 0.089,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the net amount for road transport Warsaw-Berlin on invoice INV-260238 from Whittaker Services Ltd?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-2-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-2-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-2-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q1",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-line-quantity",
+   "type": "table",
+   "language": "en",
+   "kind": "number",
+   "question": "How many months of office cleaning were billed on invoice INV-260180 from Joyce Consulting Limited?",
+   "reference": "1",
+   "answer": "1 month [1][9]. Invoice INV-260180 lists one unit of \"Office cleaning\" with a monthly frequency [1][9].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-3-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "input_tokens": 6204,
+   "output_tokens": 86,
+   "cost_usd": 0.00168,
+   "llm_calls": 3,
+   "seconds": 0.104,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "How many months of office cleaning were billed on invoice INV-260180 from Joyce Consulting Limited?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-3-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-line-unit-price",
+   "type": "table",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka jest cena netto za jednostkę usługi „Usługi tłumaczeniowe” na fakturze FV/2026/07/074 wystawionej przez Pastucha Usługi Sp. z o.o.?",
+   "reference": "75,00 PLN",
+   "answer": "Cena netto za jednostkę usługi „Usługi tłumaczeniowe” na fakturze FV/2026/07/074 wynosi 75,00 PLN [1][6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-0-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "input_tokens": 8830,
+   "output_tokens": 131,
+   "cost_usd": 0.002404,
+   "llm_calls": 3,
+   "seconds": 0.105,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaka jest cena netto za jednostkę usługi „Usługi tłumaczeniowe” na fakturze FV/2026/07/074 wystawionej przez Pastucha Usługi Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q3",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-line-vat",
+   "type": "table",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka jest kwota VAT dla pozycji „Licencja oprogramowania” na fakturze FV/2026/01/136 wystawionej przez Pastucha Usługi Sp. z o.o.?",
+   "reference": "1 225,44 PLN",
+   "answer": "1 225,44 PLN [6]. Kwota ta dotyczy usługi zaklasyfikowanej jako licencja oprogramowania na fakturze nr FV/2026/01/136 [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ]
+   ],
+   "input_tokens": 9094,
+   "output_tokens": 125,
+   "cost_usd": 0.002461,
+   "llm_calls": 3,
+   "seconds": 0.097,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaka jest kwota VAT dla pozycji „Licencja oprogramowania” na fakturze FV/2026/01/136 wystawionej przez Pastucha Usługi Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-missing-invoice",
+   "type": "unanswerable",
+   "language": "en",
+   "kind": "refusal",
+   "question": "What is the total of invoice INV-268231 from Whittaker Services Ltd?",
+   "reference": "Not stated in the documents.",
+   "answer": "The documents do not state the total for invoice INV-268231. There is no invoice with that number provided in the sources.",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [],
+   "relevant": [],
+   "input_tokens": 10553,
+   "output_tokens": 161,
+   "cost_usd": 0.00288,
+   "llm_calls": 5,
+   "seconds": 0.134,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "What is the total of invoice INV-268231 from Whittaker Services Ltd?",
+     "Whittaker Services Ltd invoice INV-268231 payment amount total"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-2-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-2-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-2-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-2-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-2-q1",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-notice-period",
+   "type": "single_fact",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaki okres wypowiedzenia przewiduje umowa nr 75/2025 zawarta z Pastucha Usługi Sp. z o.o.?",
+   "reference": "90 dni",
+   "answer": "90 dni [7]. Każda ze stron może rozwiązać umowę z zachowaniem tego okresu ze skutkiem na koniec miesiąca kalendarzowego [7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ]
+   ],
+   "input_tokens": 8966,
+   "output_tokens": 105,
+   "cost_usd": 0.002399,
+   "llm_calls": 3,
+   "seconds": 0.088,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaki okres wypowiedzenia przewiduje umowa nr 75/2025 zawarta z Pastucha Usługi Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-0",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-0",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-0",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-0",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-0",
+      2,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-paid-date",
+   "type": "image",
+   "language": "en",
+   "kind": "date",
+   "question": "On what date was invoice INV-260180 from Joyce Consulting Limited paid?",
+   "reference": "16 January 2026",
+   "answer": "2026-01-16. This payment date is indicated by the stamp on the invoice [11].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ]
+   ],
+   "input_tokens": 5494,
+   "output_tokens": 79,
+   "cost_usd": 0.001492,
+   "llm_calls": 3,
+   "seconds": 0.083,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "On what date was invoice INV-260180 from Joyce Consulting Limited paid?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      4,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-payment-days",
+   "type": "single_fact",
+   "language": "en",
+   "kind": "number",
+   "question": "Within how many days of the invoice date must invoices under the service agreement SA-2025-26 with Whittaker Services Ltd be paid?",
+   "reference": "14 days",
+   "answer": "14 days [1][7]. Invoices under the service agreement SA-2025-26 are payable by bank transfer within this timeframe [7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-ctr-2",
+     null
+    ],
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "input_tokens": 5926,
+   "output_tokens": 175,
+   "cost_usd": 0.001744,
+   "llm_calls": 4,
+   "seconds": 0.108,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "payment_terms",
+      "category": "contract",
+      "operation": "min",
+      "field": "payment_terms_days",
+      "numbers": [
+       "SA-2025-26"
+      ],
+      "date_field": "effective_date"
+     }
+    ],
+    "values": [
+     "14"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-2"
+    ],
+    "labelled": [
+     "syn-w4-ctr-2"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Within how many days of the invoice date must invoices under the service agreement SA-2025-26 with Whittaker Services Ltd be paid?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-3",
+      2,
+      []
+     ],
+     [
+      "syn-w1-ctr-3",
+      2,
+      []
+     ],
+     [
+      "syn-w0-ctr-3",
+      2,
+      []
+     ],
+     [
+      "syn-w4-inv-2-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-pl-on-en-end",
+   "type": "cross_lingual",
+   "language": "pl",
+   "kind": "date",
+   "question": "Do kiedy obowiązuje umowa SA-2025-77 z Joyce Consulting Limited?",
+   "reference": "30 czerwca 2026 r.",
+   "answer": "Umowa SA-2025-77 obowiązuje do 30 czerwca 2026 r. [1][6]",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ],
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "input_tokens": 9485,
+   "output_tokens": 82,
+   "cost_usd": 0.002494,
+   "llm_calls": 3,
+   "seconds": 0.088,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Do kiedy obowiązuje umowa SA-2025-77 zawarta z Joyce Consulting Limited?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-1",
+      3,
+      []
+     ],
+     [
+      "syn-w3-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-0",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w2-ctr-1",
+      0,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-pl-on-en-invoice",
+   "type": "cross_lingual",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka jest kwota do zapłaty na fakturze INV-260261 od Whittaker Services Ltd?",
+   "reference": "637,00 GBP",
+   "answer": "Kwota do zapłaty na fakturze INV-260261 wynosi 637,00 GBP [1]. Jest to wartość brutto tego dokumentu [1].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-2-q3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-2-q3",
+     1
+    ]
+   ],
+   "input_tokens": 7279,
+   "output_tokens": 89,
+   "cost_usd": 0.001953,
+   "llm_calls": 3,
+   "seconds": 0.093,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaka jest kwota do zapłaty na fakturze INV-260261 od Whittaker Services Ltd?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-2-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w3-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w2-inv-1-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w2-inv-1-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q1",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-pl-on-en-law",
+   "type": "cross_lingual",
+   "language": "pl",
+   "kind": "text",
+   "question": "Jakie prawo reguluje umowę SA-2025-26 z Whittaker Services Ltd?",
+   "reference": "Anglii i Walii",
+   "answer": "Prawo Anglii i Walii [1]. Reguluje ono umowę o świadczenie usług nr SA-2025-26 zawartą pomiędzy Sąsiadek Dystrybucja Sp. z o.o. a Whittaker Services Ltd [1].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-2",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "input_tokens": 7486,
+   "output_tokens": 113,
+   "cost_usd": 0.002041,
+   "llm_calls": 3,
+   "seconds": 0.105,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jakie prawo reguluje umowę SA-2025-26 zawartą z Whittaker Services Ltd?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-ctr-2",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      0,
+      []
+     ],
+     [
+      "syn-w4-ctr-2",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-1",
+      0,
+      []
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-pl-on-en-payment-days",
+   "type": "cross_lingual",
+   "language": "pl",
+   "kind": "number",
+   "question": "W ciągu ilu dni należy opłacić faktury zgodnie z umową SA-2025-77 z Joyce Consulting Limited?",
+   "reference": "14 dni",
+   "answer": "14 dni [1]. Zgodnie z umową SA-2025-77 płatność powinna nastąpić w terminie 14 dni [1].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "input_tokens": 8092,
+   "output_tokens": 183,
+   "cost_usd": 0.002298,
+   "llm_calls": 4,
+   "seconds": 0.092,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "payment_terms",
+      "category": "contract",
+      "operation": "sum",
+      "field": "payment_terms_days",
+      "party": "Joyce Consulting Limited",
+      "numbers": [
+       "SA-2025-77"
+      ]
+     }
+    ],
+    "values": [
+     "14"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-3"
+    ],
+    "labelled": [
+     "syn-w4-ctr-3"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Jaki jest termin płatności faktur określony w umowie SA-2025-77 z Joyce Consulting Limited?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w0-ctr-0",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-0",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w4-ctr-0",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w3-ctr-1",
+      2,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-0",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-price-match",
+   "type": "cross_doc",
+   "language": "en",
+   "kind": "boolean",
+   "question": "Does the unit price for pallet storage on invoice INV-260118 from Joyce Consulting Limited match the rate in their contract?",
+   "reference": "Yes",
+   "answer": "Yes, it matches. The invoice lists the unit price for pallet storage as €7.00 [6][9], which is the same rate specified in Service Agreement SA-2025-77 [12].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ]
+   ],
+   "input_tokens": 7140,
+   "output_tokens": 208,
+   "cost_usd": 0.002097,
+   "llm_calls": 4,
+   "seconds": 0.098,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoice_line",
+      "category": "invoice",
+      "operation": "list",
+      "issuer": "Joyce Consulting Limited",
+      "numbers": [
+       "INV-260118"
+      ]
+     },
+     {
+      "name": "contract_details",
+      "category": "contract",
+      "operation": "list",
+      "party": "Joyce Consulting Limited",
+      "numbers": []
+     }
+    ],
+    "values": [
+     null,
+     null
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-3",
+     "syn-w4-inv-3-q2"
+    ],
+    "labelled": [
+     "syn-w4-ctr-3",
+     "syn-w4-inv-3-q2"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Does the unit price for pallet storage on invoice INV-260118 from Joyce Consulting Limited match the rate in their contract?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-3",
+      1,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w1-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-price-mismatch",
+   "type": "cross_doc",
+   "language": "en",
+   "kind": "boolean",
+   "question": "Does the unit price for road transport Warsaw-Berlin on invoice INV-260387 from Whittaker Services Ltd match the rate in their contract?",
+   "reference": "No",
+   "answer": "No. The unit price on invoice INV-260387 is 700.70 GBP [15], while the rate specified in the service agreement SA-2025-26 is 637.00 GBP [7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-inv-2-q2",
+     1
+    ],
+    [
+     "syn-w4-ctr-2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-2",
+     1
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     1
+    ]
+   ],
+   "input_tokens": 10441,
+   "output_tokens": 308,
+   "cost_usd": 0.003072,
+   "llm_calls": 6,
+   "seconds": 0.155,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoice_unit_price",
+      "category": "invoice",
+      "operation": "list",
+      "issuer": "Whittaker Services Ltd",
+      "numbers": [
+       "INV-260387"
+      ]
+     },
+     {
+      "name": "contract_rate",
+      "category": "contract",
+      "operation": "list",
+      "party": "Whittaker Services Ltd",
+      "numbers": []
+     }
+    ],
+    "values": [
+     null,
+     null
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-2",
+     "syn-w4-inv-2-q2"
+    ],
+    "labelled": [
+     "syn-w4-ctr-2",
+     "syn-w4-inv-2-q2"
+    ],
+    "searches": 2,
+    "queries_tried": [
+     "Does the unit price for road transport Warsaw-Berlin on invoice INV-260387 from Whittaker Services Ltd match the rate in their contract?",
+     "Whittaker Services Ltd Service Agreement SA-2025-26 road transport pricing terms"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-3",
+      1,
+      []
+     ],
+     [
+      "syn-w3-ctr-2",
+      4,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      1,
+      []
+     ],
+     [
+      "syn-w0-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-ctr-2",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-2-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-2-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-2-q1",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-2-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-q1-pln-gross",
+   "type": "aggregate",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka jest łączna kwota brutto faktur w PLN wystawionych dla Sąsiadek Dystrybucja Sp. z o.o. w pierwszym kwartale 2026 r.?",
+   "reference": "20 306,07 PLN",
+   "answer": "Dokumenty nie zawierają informacji o fakturach wystawionych dla Sąsiadek Dystrybucja Sp. z o.o. w pierwszym kwartale 2026 r. Łączna kwota brutto dla tego okresu wynosi 0 PLN [computed].",
+   "correct": false,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q1",
+     1
+    ]
+   ],
+   "input_tokens": 993,
+   "output_tokens": 276,
+   "cost_usd": 0.000662,
+   "llm_calls": 3,
+   "seconds": 0.068,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "total_gross_q1_2026",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "gross_total",
+      "recipient": "Sąsiadki Dystrybucja Sp. z o.o.",
+      "numbers": [],
+      "date_from": "2026-01-01",
+      "date_to": "2026-03-31",
+      "currency": "PLN"
+     }
+    ],
+    "values": [
+     null
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [],
+    "labelled": [
+     "syn-w4-inv-0-q1",
+     "syn-w4-inv-1-q1"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "Jaka jest łączna kwota brutto faktur w PLN wystawionych dla Sąsiadek Dystrybucja Sp. z o.o. w okresie od 2026-01-01 do 2026-03-31?"
+    ],
+    "grounded": null,
+    "hits": [],
+    "failure": "filters missed documents"
+   }
+  },
+  {
+   "id": "syn-w4-q2-net",
+   "type": "aggregate",
+   "language": "pl",
+   "kind": "number",
+   "question": "Ile wyniosła łączna wartość netto faktur od Pastucha Usługi Sp. z o.o. w drugim kwartale 2026 r.?",
+   "reference": "3 774,00 PLN",
+   "answer": "3774.00 PLN. Kwota ta wynika z faktury FV/2026/04/267 wystawionej w kwietniu 2026 roku, czyli w drugim kwartale [1].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-0-q2",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q2",
+     1
+    ]
+   ],
+   "input_tokens": 1161,
+   "output_tokens": 239,
+   "cost_usd": 0.000649,
+   "llm_calls": 3,
+   "seconds": 0.161,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "total_net",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "net_total",
+      "issuer": "Pastucha Usługi Sp. z o.o.",
+      "numbers": [],
+      "date_from": "2026-04-01",
+      "date_to": "2026-06-30"
+     }
+    ],
+    "values": [
+     "3774.00"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-0-q2"
+    ],
+    "labelled": [
+     "syn-w4-inv-0-q2"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "Jaka była łączna wartość netto faktur wystawionych przez Pastucha Usługi Sp. z o.o. w okresie od 2026-04-01 do 2026-06-30?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-q3-net",
+   "type": "aggregate",
+   "language": "en",
+   "kind": "number",
+   "question": "What was the total net amount invoiced by Whittaker Services Ltd in Q3 2026?",
+   "reference": "£637.00",
+   "answer": "637.00 GBP. This amount represents the net total for invoice INV-260261 issued on 2026-07-18, which falls within the third quarter of 2026 [1].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-2-q3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-2-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1074,
+   "output_tokens": 219,
+   "cost_usd": 0.000597,
+   "llm_calls": 3,
+   "seconds": 0.085,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "total_net",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "net_total",
+      "issuer": "Whittaker Services Ltd",
+      "numbers": [],
+      "date_from": "2026-07-01",
+      "date_to": "2026-09-30"
+     }
+    ],
+    "values": [
+     "637.00"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-2-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-2-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "What was the total net amount invoiced by Whittaker Services Ltd between 2026-07-01 and 2026-09-30?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-receipt-total",
+   "type": "image",
+   "language": "en",
+   "kind": "number",
+   "question": "What was the total on the receipt from Owen Cabs dated 26 July 2026?",
+   "reference": "£38.55",
+   "answer": "38.55 GBP [1]. This total is confirmed by the receipt images showing a taxi fare of £38.55 [6][7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-rec-2",
+     null
+    ],
+    [
+     "syn-w4-rec-2",
+     1
+    ],
+    [
+     "syn-w4-rec-2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-rec-2",
+     1
+    ]
+   ],
+   "input_tokens": 4701,
+   "output_tokens": 77,
+   "cost_usd": 0.001291,
+   "llm_calls": 3,
+   "seconds": 0.083,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "total on the receipt from Owen Cabs dated 26 July 2026"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-rec-2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-rec-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-rec-3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-rec-3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-rec-3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-rec-2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-rec-2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-rec-2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-rec-3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-rec-2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-receipts-pln",
+   "type": "aggregate",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka jest łączna kwota dwóch paragonów w PLN: od sprzedawcy „Papiernik Wylegała” z dnia 23.09.2026 i od sprzedawcy „Stacja Paliw Nieszporek” z dnia 08.02.2026?",
+   "reference": "758,31 PLN",
+   "answer": "758,31 PLN. Kwota ta stanowi sumę paragonów z dnia 23.09.2026 oraz 08.02.2026 [1][2].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-rec-0",
+     null
+    ],
+    [
+     "syn-w4-rec-1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-rec-0",
+     1
+    ],
+    [
+     "syn-w4-rec-1",
+     1
+    ]
+   ],
+   "input_tokens": 1260,
+   "output_tokens": 359,
+   "cost_usd": 0.000853,
+   "llm_calls": 3,
+   "seconds": 0.258,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "receipt1",
+      "category": "receipt",
+      "operation": "sum",
+      "field": "total",
+      "issuer": "Papiernik Wylegała",
+      "numbers": [],
+      "date_from": "2026-09-23",
+      "date_to": "2026-09-23",
+      "currency": "PLN"
+     },
+     {
+      "name": "receipt2",
+      "category": "receipt",
+      "operation": "sum",
+      "field": "total",
+      "issuer": "Stacja Paliw Nieszporek",
+      "numbers": [],
+      "date_from": "2026-02-08",
+      "date_to": "2026-02-08",
+      "currency": "PLN"
+     }
+    ],
+    "values": [
+     "360.25",
+     "398.06"
+    ],
+    "expression": "receipt1 + receipt2",
+    "expression_value": "758.31",
+    "error": null,
+    "matched": [
+     "syn-w4-rec-0",
+     "syn-w4-rec-1"
+    ],
+    "labelled": [
+     "syn-w4-rec-0",
+     "syn-w4-rec-1"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "Jaka jest łączna kwota paragonu od sprzedawcy Papiernik Wylegała z dnia 2026-09-23 oraz paragonu od sprzedawcy Stacja Paliw Nieszporek z dnia 2026-02-08 w walucie PLN"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-reverse-charge-count",
+   "type": "aggregate",
+   "language": "en",
+   "kind": "number",
+   "question": "How many invoices addressed to Sąsiadek Dystrybucja Sp. z o.o. were issued under the reverse charge mechanism?",
+   "reference": "6",
+   "answer": "6. There are 6 invoices issued to Sąsiadek Dystrybucja Sp. z o.o. that specify a reverse charge mechanism [1][2][3][4][5][6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-2-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     null
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-2-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1932,
+   "output_tokens": 165,
+   "cost_usd": 0.000731,
+   "llm_calls": 3,
+   "seconds": 0.088,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "reverse_charge_invoices",
+      "category": "invoice",
+      "operation": "count",
+      "recipient": "Sąsiadek Dystrybucja Sp. z o.o.",
+      "numbers": [],
+      "reverse_charge": true
+     }
+    ],
+    "values": [
+     "6"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-2-q1",
+     "syn-w4-inv-2-q2",
+     "syn-w4-inv-2-q3",
+     "syn-w4-inv-3-q1",
+     "syn-w4-inv-3-q2",
+     "syn-w4-inv-3-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-2-q1",
+     "syn-w4-inv-2-q2",
+     "syn-w4-inv-2-q3",
+     "syn-w4-inv-3-q1",
+     "syn-w4-inv-3-q2",
+     "syn-w4-inv-3-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "How many invoices addressed to Sąsiadek Dystrybucja Sp. z o.o. were issued under the reverse charge mechanism?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-scan-gross",
+   "type": "image",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the total amount on invoice INV-260118 from Joyce Consulting Limited?",
+   "reference": "€736.00",
+   "answer": "The total amount on invoice INV-260118 is €736.00 [1][6]. This amount represents the sum of pallet storage and office cleaning services provided [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-3-q2",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ]
+   ],
+   "input_tokens": 7531,
+   "output_tokens": 92,
+   "cost_usd": 0.002021,
+   "llm_calls": 3,
+   "seconds": 0.09,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "What is the total amount on invoice INV-260118 from Joyce Consulting Limited?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-3-q3",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-seller-nip",
+   "type": "single_fact",
+   "language": "pl",
+   "kind": "text",
+   "question": "Jaki NIP sprzedawcy podano na fakturze FV/2026/04/400 wystawionej przez Świerkosz Serwis Sp. z o.o.?",
+   "reference": "976-140-19-87",
+   "answer": "976-140-19-87 [6][7]. Numer ten został podany na fakturze wystawionej przez firmę Świerkosz Serwis Sp. z o.o. [6][7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q1",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ]
+   ],
+   "input_tokens": 8206,
+   "output_tokens": 126,
+   "cost_usd": 0.00224,
+   "llm_calls": 3,
+   "seconds": 0.105,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 1,
+    "queries_tried": [
+     "Jaki NIP sprzedawcy podano na fakturze FV/2026/04/400 wystawionej przez Świerkosz Serwis Sp. z o.o.?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-seller-phone",
+   "type": "unanswerable",
+   "language": "pl",
+   "kind": "refusal",
+   "question": "Jaki numer telefonu sprzedawcy podano na fakturze FV/2026/07/161 wystawionej przez Świerkosz Serwis Sp. z o.o.?",
+   "reference": "Dokumenty tego nie podają.",
+   "answer": "Dokumenty nie podają numeru telefonu sprzedawcy na fakturze FV/2026/07/161 [1][6][8].",
+   "correct": true,
+   "method": "judge",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-inv-1-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-1-q3",
+     1
+    ]
+   ],
+   "input_tokens": 13271,
+   "output_tokens": 189,
+   "cost_usd": 0.003601,
+   "llm_calls": 5,
+   "seconds": 0.139,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "Jaki numer telefonu sprzedawcy podano na fakturze FV/2026/07/161 wystawionej przez Świerkosz Serwis Sp. z o.o.?",
+     "dane kontaktowe Świerkosz Serwis Sp. z o.o. faktura FV/2026/07/161 numer telefonu sprzedawcy"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-1-q3",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-termination-penalty",
+   "type": "unanswerable",
+   "language": "en",
+   "kind": "refusal",
+   "question": "What penalty does the service agreement SA-2025-77 with Joyce Consulting Limited set for early termination?",
+   "reference": "Not stated in the documents.",
+   "answer": "The service agreement SA-2025-77 does not state a penalty for early termination [6]. It only specifies that either party may terminate the agreement by providing 90 days' written notice [6].",
+   "correct": true,
+   "method": "rule",
+   "intent": "retrieve",
+   "citations": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-3",
+     null
+    ]
+   ],
+   "input_tokens": 10787,
+   "output_tokens": 187,
+   "cost_usd": 0.002977,
+   "llm_calls": 5,
+   "seconds": 0.119,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "retrieve",
+    "computed": null,
+    "searches": 2,
+    "queries_tried": [
+     "What penalty does the service agreement SA-2025-77 with Joyce Consulting Limited set for early termination?",
+     "SA-2025-77 Joyce Consulting Limited service agreement notice period termination clause"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w3-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w1-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-ctr-2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-3",
+      0,
+      []
+     ],
+     [
+      "syn-w4-inv-3-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-3-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "cuad-633e50ec",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-ctr-3",
+      3,
+      []
+     ],
+     [
+      "syn-w0-ctr-2",
+      2,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-terms-ok",
+   "type": "cross_doc",
+   "language": "pl",
+   "kind": "boolean",
+   "question": "Czy termin płatności na fakturze FV/2026/04/400 wystawionej przez Świerkosz Serwis Sp. z o.o. jest zgodny z warunkami płatności z umowy?",
+   "reference": "Tak",
+   "answer": "Tak, termin płatności na fakturze FV/2026/04/400 jest zgodny z warunkami umowy. Umowa nr 60/2025 przewiduje płatność w terminie 14 dni, a faktura została wystawiona 13 kwietnia 2026 r. z terminem płatności przypadającym 27 kwietnia 2026 r [1][2][7].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-inv-1-q2",
+     null
+    ],
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-1",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ]
+   ],
+   "input_tokens": 8564,
+   "output_tokens": 333,
+   "cost_usd": 0.002641,
+   "llm_calls": 4,
+   "seconds": 0.101,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoice_terms",
+      "category": "invoice",
+      "operation": "list",
+      "numbers": [
+       "FV/2026/04/400"
+      ],
+      "date_field": "due_date"
+     },
+     {
+      "name": "contract_terms",
+      "category": "contract",
+      "operation": "list",
+      "field": "payment_terms_days",
+      "party": "Świerkosz Serwis Sp. z o.o.",
+      "numbers": []
+     }
+    ],
+    "values": [
+     null,
+     null
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-1",
+     "syn-w4-inv-1-q2"
+    ],
+    "labelled": [
+     "syn-w4-ctr-1",
+     "syn-w4-inv-1-q2"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Czy termin płatności na fakturze FV/2026/04/400 wystawionej przez Świerkosz Serwis Sp. z o.o. jest zgodny z warunkami płatności zapisanymi w umowie z tym wykonawcą?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-ctr-0",
+      6,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q1",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w2-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-terms-wrong",
+   "type": "cross_doc",
+   "language": "pl",
+   "kind": "boolean",
+   "question": "Czy termin płatności na fakturze FV/2026/04/267 wystawionej przez Pastucha Usługi Sp. z o.o. jest zgodny z warunkami płatności z umowy?",
+   "reference": "Nie",
+   "answer": "Nie. Termin płatności na fakturze FV/2026/04/267 wynosi 7 dni, podczas gdy umowa nr 75/2025 przewiduje płatność w terminie 60 dni [1][2][9].",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-inv-0-q2",
+     null
+    ],
+    [
+     "syn-w4-ctr-0",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     1
+    ]
+   ],
+   "input_tokens": 9010,
+   "output_tokens": 282,
+   "cost_usd": 0.002675,
+   "llm_calls": 4,
+   "seconds": 0.115,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoice_due",
+      "category": "invoice",
+      "operation": "list",
+      "issuer": "Pastucha Usługi Sp. z o.o.",
+      "numbers": [
+       "FV/2026/04/267"
+      ]
+     },
+     {
+      "name": "contract_terms",
+      "category": "contract",
+      "operation": "list",
+      "party": "Pastucha Usługi Sp. z o.o.",
+      "numbers": []
+     }
+    ],
+    "values": [
+     null,
+     null
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q2"
+    ],
+    "labelled": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q2"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Czy termin płatności na fakturze FV/2026/04/267 wystawionej przez Pastucha Usługi Sp. z o.o. jest zgodny z terminem płatności określonym w umowie z tym kontrahentem?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      1,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-1-q1",
+      3,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "id": "syn-w4-vendor-count",
+   "type": "aggregate",
+   "language": "en",
+   "kind": "number",
+   "question": "How many invoices did Joyce Consulting Limited issue in 2026?",
+   "reference": "3",
+   "answer": "3. There are 3 invoices from Joyce Consulting Limited dated in 2026 [1][2][3].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-3-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-3-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1409,
+   "output_tokens": 157,
+   "cost_usd": 0.000588,
+   "llm_calls": 3,
+   "seconds": 0.076,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "invoice_count",
+      "category": "invoice",
+      "operation": "count",
+      "issuer": "Joyce Consulting Limited",
+      "numbers": [],
+      "date_from": "2026-01-01",
+      "date_to": "2026-12-31"
+     }
+    ],
+    "values": [
+     "3"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-3-q1",
+     "syn-w4-inv-3-q2",
+     "syn-w4-inv-3-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-3-q1",
+     "syn-w4-inv-3-q2",
+     "syn-w4-inv-3-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "How many invoices did Joyce Consulting Limited issue in 2026?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-vendor-gross",
+   "type": "aggregate",
+   "language": "pl",
+   "kind": "number",
+   "question": "Jaka jest łączna kwota brutto faktur wystawionych przez Pastucha Usługi Sp. z o.o. w 2026 r.?",
+   "reference": "27 162,09 PLN",
+   "answer": "27162.09 PLN. Kwota ta stanowi sumę wartości brutto z trzech faktur wystawionych przez Pastucha Usługi Sp. z o.o. w 2026 roku [1][2][3].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-0-q2",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1566,
+   "output_tokens": 216,
+   "cost_usd": 0.000715,
+   "llm_calls": 3,
+   "seconds": 0.075,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "total_gross",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "gross_total",
+      "issuer": "Pastucha Usługi Sp. z o.o.",
+      "numbers": [],
+      "date_from": "2026-01-01",
+      "date_to": "2026-12-31"
+     }
+    ],
+    "values": [
+     "27162.09"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-0-q1",
+     "syn-w4-inv-0-q2",
+     "syn-w4-inv-0-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-0-q1",
+     "syn-w4-inv-0-q2",
+     "syn-w4-inv-0-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "Jaka jest łączna kwota brutto faktur wystawionych przez Pastucha Usługi Sp. z o.o. w 2026 r.?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-vendor-net",
+   "type": "aggregate",
+   "language": "en",
+   "kind": "number",
+   "question": "What is the total net amount invoiced by Whittaker Services Ltd in 2026?",
+   "reference": "£5,991.40",
+   "answer": "5991.40 GBP. This is the sum of the net totals from the three invoices issued by Whittaker Services Ltd in 2026 [1][2][3].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-2-q1",
+     null
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     null
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-2-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1406,
+   "output_tokens": 192,
+   "cost_usd": 0.000639,
+   "llm_calls": 3,
+   "seconds": 0.084,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "total_net_2026",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "net_total",
+      "issuer": "Whittaker Services Ltd",
+      "numbers": [],
+      "date_from": "2026-01-01",
+      "date_to": "2026-12-31"
+     }
+    ],
+    "values": [
+     "5991.40"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-2-q1",
+     "syn-w4-inv-2-q2",
+     "syn-w4-inv-2-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-2-q1",
+     "syn-w4-inv-2-q2",
+     "syn-w4-inv-2-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "What is the total net amount invoiced by Whittaker Services Ltd in 2026?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-vendor-vat",
+   "type": "aggregate",
+   "language": "pl",
+   "kind": "number",
+   "question": "Ile łącznie podatku VAT naliczył Świerkosz Serwis Sp. z o.o. na swoich fakturach w 2026 r.?",
+   "reference": "2 012,73 PLN",
+   "answer": "2012,73 PLN. Jest to suma podatku VAT ze wszystkich trzech faktur wystawionych przez Świerkosz Serwis Sp. z o.o. w 2026 roku [1][2][3][computed].",
+   "correct": true,
+   "method": "rule",
+   "intent": "aggregate",
+   "citations": [
+    [
+     "syn-w4-inv-1-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q2",
+     null
+    ],
+    [
+     "syn-w4-inv-1-q1",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-inv-1-q1",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q2",
+     1
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     1
+    ]
+   ],
+   "input_tokens": 1542,
+   "output_tokens": 228,
+   "cost_usd": 0.000728,
+   "llm_calls": 3,
+   "seconds": 0.064,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "aggregate",
+    "queries": [
+     {
+      "name": "vat_total",
+      "category": "invoice",
+      "operation": "sum",
+      "field": "tax_total",
+      "issuer": "Świerkosz Serwis Sp. z o.o.",
+      "numbers": [],
+      "date_from": "2026-01-01",
+      "date_to": "2026-12-31"
+     }
+    ],
+    "values": [
+     "2012.73"
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-inv-1-q1",
+     "syn-w4-inv-1-q2",
+     "syn-w4-inv-1-q3"
+    ],
+    "labelled": [
+     "syn-w4-inv-1-q1",
+     "syn-w4-inv-1-q2",
+     "syn-w4-inv-1-q3"
+    ],
+    "searches": 0,
+    "queries_tried": [
+     "Jaka jest łączna kwota podatku VAT na fakturach wystawionych przez Świerkosz Serwis Sp. z o.o. w 2026 roku?"
+    ],
+    "grounded": null,
+    "hits": []
+   }
+  },
+  {
+   "id": "syn-w4-within-term",
+   "type": "cross_doc",
+   "language": "pl",
+   "kind": "boolean",
+   "question": "Czy faktura FV/2026/07/074 wystawiona przez Pastucha Usługi Sp. z o.o. została wystawiona w okresie obowiązywania umowy?",
+   "reference": "Tak",
+   "answer": "Tak, faktura została wystawiona w okresie obowiązywania umowy. Dokument wystawiono 24 lipca 2026 r. [1][7], podczas gdy umowa nr 75/2025 obowiązuje od 1 stycznia 2026 r. do 31 grudnia 2026 r. [2]",
+   "correct": true,
+   "method": "rule",
+   "intent": "mixed",
+   "citations": [
+    [
+     "syn-w4-inv-0-q3",
+     null
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ],
+    [
+     "syn-w4-ctr-0",
+     null
+    ]
+   ],
+   "relevant": [
+    [
+     "syn-w4-ctr-0",
+     1
+    ],
+    [
+     "syn-w4-inv-0-q3",
+     1
+    ]
+   ],
+   "input_tokens": 9168,
+   "output_tokens": 271,
+   "cost_usd": 0.002698,
+   "llm_calls": 4,
+   "seconds": 0.099,
+   "cached": true,
+   "paid_calls": 0,
+   "diagnostics": {
+    "intent": "mixed",
+    "queries": [
+     {
+      "name": "invoice_date",
+      "category": "invoice",
+      "operation": "list",
+      "numbers": [
+       "FV/2026/07/074"
+      ],
+      "date_field": "issue_date"
+     },
+     {
+      "name": "contract_range",
+      "category": "contract",
+      "operation": "list",
+      "party": "Pastucha Usługi Sp. z o.o.",
+      "numbers": []
+     }
+    ],
+    "values": [
+     null,
+     null
+    ],
+    "expression": null,
+    "expression_value": null,
+    "error": null,
+    "matched": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q3"
+    ],
+    "labelled": [
+     "syn-w4-ctr-0",
+     "syn-w4-inv-0-q3"
+    ],
+    "searches": 1,
+    "queries_tried": [
+     "Czy faktura FV/2026/07/074 wystawiona przez Pastucha Usługi Sp. z o.o. została wystawiona w okresie obowiązywania umowy?"
+    ],
+    "grounded": null,
+    "hits": [
+     [
+      "syn-w4-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q3",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q1",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-0-q2",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w1-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w0-inv-0-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      2,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w3-inv-1-q3",
+      0,
+      [
+       1
+      ]
+     ],
+     [
+      "syn-w4-inv-1-q2",
+      0,
+      [
+       1
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

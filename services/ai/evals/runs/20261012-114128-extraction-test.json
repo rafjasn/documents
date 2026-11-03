@@ -1,0 +1,2610 @@
+{
+ "run_id": "20261012-114128-extraction-test",
+ "split": "test",
+ "extract_model": "google_genai:gemini-3.1-flash-lite",
+ "vision_model": "google_genai:gemini-3.1-flash-lite",
+ "created": "2026-10-12T11:41:28+00:00",
+ "kind": "extraction",
+ "summary": {
+  "documents": 32,
+  "overall": {
+   "fields": 248,
+   "correct": 247,
+   "precision": 0.996,
+   "recall": 0.996,
+   "f1": 0.996
+  },
+  "by_category": {
+   "CONTRACT": {
+    "fields": 44,
+    "correct": 44,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "INVOICE": {
+    "fields": 136,
+    "correct": 136,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "RECEIPT": {
+    "fields": 68,
+    "correct": 67,
+    "precision": 0.985,
+    "recall": 0.985,
+    "f1": 0.985
+   }
+  },
+  "by_source": {
+   "sroie": {
+    "fields": 36,
+    "correct": 35,
+    "precision": 0.972,
+    "recall": 0.972,
+    "f1": 0.972
+   },
+   "synthetic": {
+    "fields": 212,
+    "correct": 212,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_language": {
+   "en": {
+    "fields": 142,
+    "correct": 141,
+    "precision": 0.993,
+    "recall": 0.993,
+    "f1": 0.993
+   },
+   "pl": {
+    "fields": 106,
+    "correct": 106,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_format": {
+   "docx": {
+    "fields": 22,
+    "correct": 22,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "image": {
+    "fields": 36,
+    "correct": 35,
+    "precision": 0.972,
+    "recall": 0.972,
+    "f1": 0.972
+   },
+   "pdf": {
+    "fields": 123,
+    "correct": 123,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "photo": {
+    "fields": 32,
+    "correct": 32,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "scanned_pdf": {
+    "fields": 35,
+    "correct": 35,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_field": {
+   "contract.autoRenewal": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.contractNumber": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.effectiveDate": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.endDate": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.governingLaw": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.noticePeriodDays": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.parties.buyer": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.parties.vendor": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.paymentTermsDays": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.valueCap.amount": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.valueCap.currency": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.buyer.name": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.buyer.taxId": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.currency": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.dueDate": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.grossTotal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.invoiceNumber": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.issueDate": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.netTotal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.paidDate": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.taxTotal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.vendor.name": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.vendor.taxId": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.currency": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.date": {
+    "fields": 16,
+    "correct": 16,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.merchant.name": {
+    "fields": 16,
+    "correct": 15,
+    "precision": 0.938,
+    "recall": 0.938,
+    "f1": 0.938
+   },
+   "receipt.merchant.taxId": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.paymentMethod": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.receiptNumber": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.taxTotal": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.total": {
+    "fields": 16,
+    "correct": 16,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "category_accuracy": 0.906,
+  "line_items": {
+   "expected": 25,
+   "matched": 25,
+   "f1": 1.0
+  },
+  "cost_usd": "0.05644475"
+ },
+ "documents": [
+  {
+   "doc_id": "sroie-014",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-014",
+     "field": "merchant.name",
+     "expected": "ASIA MART",
+     "predicted": "ASIA MART",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-014",
+     "field": "date",
+     "expected": "2017-12-22",
+     "predicted": "2017-12-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-014",
+     "field": "total",
+     "expected": "32.70",
+     "predicted": "32.70",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00315175",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-224",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-224",
+     "field": "merchant.name",
+     "expected": "BOON SENG PAPER SDN BHD",
+     "predicted": "BOON SENG PAPER SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-224",
+     "field": "date",
+     "expected": "2018-03-19",
+     "predicted": "2018-03-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-224",
+     "field": "total",
+     "expected": "31.80",
+     "predicted": "31.80",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00167275",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-233",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-233",
+     "field": "merchant.name",
+     "expected": "Y SOON FATT S/B",
+     "predicted": "Y SOON FATT S/B",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-233",
+     "field": "date",
+     "expected": "2017-02-09",
+     "predicted": "2017-02-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-233",
+     "field": "total",
+     "expected": "362.50",
+     "predicted": "362.50",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0023735",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-253",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-253",
+     "field": "merchant.name",
+     "expected": "TOKYO KITCHEN (CITTA MALL) TOKYO KITCHEN SDN BHD",
+     "predicted": "TOKYO KITCHEN SDN BHD",
+     "outcome": "wrong"
+    },
+    {
+     "doc_id": "sroie-253",
+     "field": "date",
+     "expected": "2017-04-23",
+     "predicted": "2017-04-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-253",
+     "field": "total",
+     "expected": "113.80",
+     "predicted": "113.80",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00243400",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-268",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-268",
+     "field": "merchant.name",
+     "expected": "99 SPEED MART S/B",
+     "predicted": "99 Speed Mart S/B",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-268",
+     "field": "date",
+     "expected": "2017-11-01",
+     "predicted": "2017-11-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-268",
+     "field": "total",
+     "expected": "52.10",
+     "predicted": "52.10",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00247550",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-302",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-302",
+     "field": "merchant.name",
+     "expected": "AEON CO. (M) BHD",
+     "predicted": "AEON CO. (M) BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-302",
+     "field": "date",
+     "expected": "2018-04-22",
+     "predicted": "2018-04-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-302",
+     "field": "total",
+     "expected": "98.35",
+     "predicted": "98.35",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00256025",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-363",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-363",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "GARDENIA BAKERIES (KL) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-363",
+     "field": "date",
+     "expected": "2017-10-29",
+     "predicted": "2017-10-29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-363",
+     "field": "total",
+     "expected": "58.86",
+     "predicted": "58.86",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00242750",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-371",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-371",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "Gardenia Bakeries (KL) Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-371",
+     "field": "date",
+     "expected": "2017-10-10",
+     "predicted": "2017-10-10",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-371",
+     "field": "total",
+     "expected": "27.20",
+     "predicted": "27.20",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0027235",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-426",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-426",
+     "field": "merchant.name",
+     "expected": "AEON CO. (M) BHD",
+     "predicted": "AEON CO. (M) BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-426",
+     "field": "date",
+     "expected": "2018-05-27",
+     "predicted": "2018-05-27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-426",
+     "field": "total",
+     "expected": "99.90",
+     "predicted": "99.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00281650",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-455",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-455",
+     "field": "merchant.name",
+     "expected": "ENW HARDWARE CENTRE (M) SDN. BHD.",
+     "predicted": "ENW Hardware Centre (M) Sdn. Bhd.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-455",
+     "field": "date",
+     "expected": "2018-04-14",
+     "predicted": "2018-04-14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-455",
+     "field": "total",
+     "expected": "156.00",
+     "predicted": "156.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00272175",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-472",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-472",
+     "field": "merchant.name",
+     "expected": "SANYU STATIONERY SHOP",
+     "predicted": "SANYO STATIONERY SHOP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-472",
+     "field": "date",
+     "expected": "2017-04-18",
+     "predicted": "2017-04-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-472",
+     "field": "total",
+     "expected": "8.70",
+     "predicted": "8.70",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.001830",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-539",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-539",
+     "field": "merchant.name",
+     "expected": "GERBANG ALAF RESTAURANTS SDN BHD",
+     "predicted": "Gerbang Alaf Restaurants Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-539",
+     "field": "date",
+     "expected": "2018-06-24",
+     "predicted": "2018-06-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-539",
+     "field": "total",
+     "expected": "12.80",
+     "predicted": "12.80",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00192050",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-ctr-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "parties.vendor",
+     "expected": "Pastucha Usługi Sp. z o.o.",
+     "predicted": "Pastucha Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "parties.buyer",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "contractNumber",
+     "expected": "75/2025",
+     "predicted": "75/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "paymentTermsDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "valueCap.amount",
+     "expected": "34000.00",
+     "predicted": "34000.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-0",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0011335",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-ctr-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "parties.vendor",
+     "expected": "Świerkosz Serwis Sp. z o.o.",
+     "predicted": "Świerkosz Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "parties.buyer",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "contractNumber",
+     "expected": "60/2025",
+     "predicted": "60/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "valueCap.amount",
+     "expected": "8000.00",
+     "predicted": "8000.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-1",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00135275",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-ctr-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "parties.vendor",
+     "expected": "Whittaker Services Ltd",
+     "predicted": "Whittaker Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "parties.buyer",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "contractNumber",
+     "expected": "SA-2025-26",
+     "predicted": "SA-2025-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "valueCap.amount",
+     "expected": "9100.00",
+     "predicted": "9100.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "valueCap.currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-2",
+     "field": "governingLaw",
+     "expected": "the laws of England and Wales",
+     "predicted": "laws of England and Wales",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.000991",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-ctr-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "parties.vendor",
+     "expected": "Joyce Consulting Limited",
+     "predicted": "Joyce Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "parties.buyer",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "contractNumber",
+     "expected": "SA-2025-77",
+     "predicted": "SA-2025-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "endDate",
+     "expected": "2026-06-30",
+     "predicted": "2026-06-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "valueCap.amount",
+     "expected": "4900.00",
+     "predicted": "4900.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "valueCap.currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-ctr-3",
+     "field": "governingLaw",
+     "expected": "the laws of Ireland",
+     "predicted": "laws of Ireland",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00132375",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-0-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "vendor.name",
+     "expected": "Pastucha Usługi Sp. z o.o.",
+     "predicted": "Pastucha Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "vendor.taxId",
+     "expected": "723-905-58-08",
+     "predicted": "723-905-58-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/136",
+     "predicted": "FV/2026/01/136",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "issueDate",
+     "expected": "2026-01-08",
+     "predicted": "2026-01-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "dueDate",
+     "expected": "2026-03-09",
+     "predicted": "2026-03-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "netTotal",
+     "expected": "10428.00",
+     "predicted": "10428.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "taxTotal",
+     "expected": "2398.44",
+     "predicted": "2398.44",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "grossTotal",
+     "expected": "12826.44",
+     "predicted": "12826.44",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001263",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-0-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "vendor.name",
+     "expected": "Pastucha Usługi Sp. z o.o.",
+     "predicted": "Pastucha Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "vendor.taxId",
+     "expected": "723-905-58-08",
+     "predicted": "723-905-58-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/267",
+     "predicted": "FV/2026/04/267",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "issueDate",
+     "expected": "2026-04-17",
+     "predicted": "2026-04-17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "dueDate",
+     "expected": "2026-04-24",
+     "predicted": "2026-04-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "netTotal",
+     "expected": "3774.00",
+     "predicted": "3774.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "taxTotal",
+     "expected": "868.02",
+     "predicted": "868.02",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "grossTotal",
+     "expected": "4642.02",
+     "predicted": "4642.02",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q2",
+     "field": "paidDate",
+     "expected": "2026-04-21",
+     "predicted": "2026-04-21",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00236425",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-0-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "vendor.name",
+     "expected": "Pastucha Usługi Sp. z o.o.",
+     "predicted": "Pastucha Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "vendor.taxId",
+     "expected": "723-905-58-08",
+     "predicted": "723-905-58-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/074",
+     "predicted": "FV/2026/07/074",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "issueDate",
+     "expected": "2026-07-24",
+     "predicted": "2026-07-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "dueDate",
+     "expected": "2026-09-22",
+     "predicted": "2026-09-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "netTotal",
+     "expected": "7881.00",
+     "predicted": "7881.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "taxTotal",
+     "expected": "1812.63",
+     "predicted": "1812.63",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "grossTotal",
+     "expected": "9693.63",
+     "predicted": "9693.63",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-0-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00121525",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-1-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "vendor.name",
+     "expected": "Świerkosz Serwis Sp. z o.o.",
+     "predicted": "Świerkosz Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "vendor.taxId",
+     "expected": "976-140-19-87",
+     "predicted": "976-140-19-87",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/117",
+     "predicted": "FV/2026/01/117",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "issueDate",
+     "expected": "2026-01-11",
+     "predicted": "2026-01-11",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "dueDate",
+     "expected": "2026-01-25",
+     "predicted": "2026-01-25",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "netTotal",
+     "expected": "6081.00",
+     "predicted": "6081.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "taxTotal",
+     "expected": "1398.63",
+     "predicted": "1398.63",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "grossTotal",
+     "expected": "7479.63",
+     "predicted": "7479.63",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q1",
+     "field": "paidDate",
+     "expected": "2026-01-25",
+     "predicted": "2026-01-25",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00142650",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-1-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "vendor.name",
+     "expected": "Świerkosz Serwis Sp. z o.o.",
+     "predicted": "Świerkosz Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "vendor.taxId",
+     "expected": "976-140-19-87",
+     "predicted": "976-140-19-87",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/400",
+     "predicted": "FV/2026/04/400",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "issueDate",
+     "expected": "2026-04-13",
+     "predicted": "2026-04-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "dueDate",
+     "expected": "2026-04-27",
+     "predicted": "2026-04-27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "netTotal",
+     "expected": "1335.00",
+     "predicted": "1335.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "taxTotal",
+     "expected": "307.05",
+     "predicted": "307.05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "grossTotal",
+     "expected": "1642.05",
+     "predicted": "1642.05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00111475",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-1-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "vendor.name",
+     "expected": "Świerkosz Serwis Sp. z o.o.",
+     "predicted": "Świerkosz Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "vendor.taxId",
+     "expected": "976-140-19-87",
+     "predicted": "976-140-19-87",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/161",
+     "predicted": "FV/2026/07/161",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "issueDate",
+     "expected": "2026-07-21",
+     "predicted": "2026-07-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "dueDate",
+     "expected": "2026-08-04",
+     "predicted": "2026-08-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "netTotal",
+     "expected": "1335.00",
+     "predicted": "1335.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "taxTotal",
+     "expected": "307.05",
+     "predicted": "307.05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "grossTotal",
+     "expected": "1642.05",
+     "predicted": "1642.05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-1-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00224975",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-2-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "vendor.name",
+     "expected": "Whittaker Services Ltd",
+     "predicted": "Whittaker Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "vendor.taxId",
+     "expected": "GB887003654",
+     "predicted": "GB887003654",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260238",
+     "predicted": "INV-260238",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "issueDate",
+     "expected": "2026-01-23",
+     "predicted": "2026-01-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "dueDate",
+     "expected": "2026-02-06",
+     "predicted": "2026-02-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "netTotal",
+     "expected": "3569.00",
+     "predicted": "3569.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "grossTotal",
+     "expected": "3569.00",
+     "predicted": "3569.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001093",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-2-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "vendor.name",
+     "expected": "Whittaker Services Ltd",
+     "predicted": "Whittaker Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "vendor.taxId",
+     "expected": "GB887003654",
+     "predicted": "GB887003654",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260387",
+     "predicted": "INV-260387",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "issueDate",
+     "expected": "2026-04-15",
+     "predicted": "2026-04-15",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "dueDate",
+     "expected": "2026-04-29",
+     "predicted": "2026-04-29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "netTotal",
+     "expected": "1785.40",
+     "predicted": "1785.40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "grossTotal",
+     "expected": "1785.40",
+     "predicted": "1785.40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00111125",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-2-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "vendor.name",
+     "expected": "Whittaker Services Ltd",
+     "predicted": "Whittaker Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "vendor.taxId",
+     "expected": "GB887003654",
+     "predicted": "GB887003654",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260261",
+     "predicted": "INV-260261",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "issueDate",
+     "expected": "2026-07-18",
+     "predicted": "2026-07-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "dueDate",
+     "expected": "2026-08-01",
+     "predicted": "2026-08-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "netTotal",
+     "expected": "637.00",
+     "predicted": "637.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "grossTotal",
+     "expected": "637.00",
+     "predicted": "637.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-2-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.0010255",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-3-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "vendor.name",
+     "expected": "Joyce Consulting Limited",
+     "predicted": "Joyce Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "vendor.taxId",
+     "expected": "IE185559287",
+     "predicted": "IE185559287",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260180",
+     "predicted": "INV-260180",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "issueDate",
+     "expected": "2026-01-03",
+     "predicted": "2026-01-03",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "dueDate",
+     "expected": "2026-01-17",
+     "predicted": "2026-01-17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "netTotal",
+     "expected": "841.00",
+     "predicted": "841.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "grossTotal",
+     "expected": "841.00",
+     "predicted": "841.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q1",
+     "field": "paidDate",
+     "expected": "2026-01-16",
+     "predicted": "2026-01-16",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00133775",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-3-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "vendor.name",
+     "expected": "Joyce Consulting Limited",
+     "predicted": "Joyce Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "vendor.taxId",
+     "expected": "IE185559287",
+     "predicted": "IE185559287",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260118",
+     "predicted": "INV-260118",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "issueDate",
+     "expected": "2026-04-08",
+     "predicted": "2026-04-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "dueDate",
+     "expected": "2026-04-22",
+     "predicted": "2026-04-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "netTotal",
+     "expected": "736.00",
+     "predicted": "736.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "grossTotal",
+     "expected": "736.00",
+     "predicted": "736.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q2",
+     "field": "paidDate",
+     "expected": "2026-04-18",
+     "predicted": "2026-04-18",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00230400",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-inv-3-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "vendor.name",
+     "expected": "Joyce Consulting Limited",
+     "predicted": "Joyce Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "vendor.taxId",
+     "expected": "IE185559287",
+     "predicted": "IE185559287",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "buyer.name",
+     "expected": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "predicted": "Sąsiadek Dystrybucja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "buyer.taxId",
+     "expected": "166-710-12-77",
+     "predicted": "166-710-12-77",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260349",
+     "predicted": "INV-260349",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "issueDate",
+     "expected": "2026-07-24",
+     "predicted": "2026-07-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "dueDate",
+     "expected": "2026-08-07",
+     "predicted": "2026-08-07",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "netTotal",
+     "expected": "1275.00",
+     "predicted": "1275.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "grossTotal",
+     "expected": "1275.00",
+     "predicted": "1275.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-inv-3-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001168",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-rec-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "merchant.name",
+     "expected": "Papiernik Wylegała",
+     "predicted": "Papiernik Wylegała",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "merchant.taxId",
+     "expected": "965-546-87-34",
+     "predicted": "965-546-87-34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "receiptNumber",
+     "expected": "9766/94",
+     "predicted": "9766/94",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "date",
+     "expected": "2026-09-23",
+     "predicted": "2026-09-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "total",
+     "expected": "360.25",
+     "predicted": "360.25",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "taxTotal",
+     "expected": "67.36",
+     "predicted": "67.36",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-0",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.0015115",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-rec-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "merchant.name",
+     "expected": "Stacja Paliw Nieszporek",
+     "predicted": "Stacja Paliw Nieszporek",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "merchant.taxId",
+     "expected": "619-009-72-81",
+     "predicted": "619-009-72-81",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "receiptNumber",
+     "expected": "1482/51",
+     "predicted": "1482/51",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "date",
+     "expected": "2026-02-08",
+     "predicted": "2026-02-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "total",
+     "expected": "398.06",
+     "predicted": "398.06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "taxTotal",
+     "expected": "74.43",
+     "predicted": "74.43",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-1",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00128725",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-rec-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "merchant.name",
+     "expected": "Owen Cabs",
+     "predicted": "Owen Cabs",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "merchant.taxId",
+     "expected": "GB358411553",
+     "predicted": "GB358411553",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "receiptNumber",
+     "expected": "3801/16",
+     "predicted": "3801/16",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "date",
+     "expected": "2026-07-26",
+     "predicted": "2026-07-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "total",
+     "expected": "38.55",
+     "predicted": "38.55",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "taxTotal",
+     "expected": "6.43",
+     "predicted": "6.43",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-2",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00105450",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w4-rec-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "merchant.name",
+     "expected": "Carr Cabs",
+     "predicted": "Carr Cabs",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "merchant.taxId",
+     "expected": "GB635428997",
+     "predicted": "GB635428997",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "receiptNumber",
+     "expected": "2178/52",
+     "predicted": "2178/52",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "date",
+     "expected": "2026-07-09",
+     "predicted": "2026-07-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "total",
+     "expected": "21.53",
+     "predicted": "21.53",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "taxTotal",
+     "expected": "3.59",
+     "predicted": "3.59",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w4-rec-3",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00101000",
+   "cached": true
+  }
+ ]
+}

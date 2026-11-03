@@ -1,0 +1,11 @@
+# The LLM gateway's image for AWS (Stage 09). Build context: repository root.
+# LiteLLM's image, pinned by digest as in docker-compose.yml, with the configuration and
+# telemetry callback that compose mounts from infrastructure/litellm. LiteLLM publishes
+# this version for linux/amd64 only, so its ECS task runs on x86.
+FROM ghcr.io/berriai/litellm-database:v1.104.2@sha256:5a9ff0fd7177372f2ccd8949cb121f67e281f4d13d026af51f9c096c0626f50a AS production
+COPY infrastructure/litellm/config.yaml /app/config.yaml
+COPY infrastructure/litellm/entrypoint.sh /app/telemetry-entrypoint.sh
+COPY infrastructure/litellm/gateway_telemetry.py /app/gateway_telemetry.py
+EXPOSE 4000
+ENTRYPOINT ["sh", "/app/telemetry-entrypoint.sh"]
+CMD ["--config", "/app/config.yaml", "--port", "4000", "--num_workers", "1"]
