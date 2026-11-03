@@ -6,7 +6,9 @@
         "dev": "next dev --port 3000",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "e2e:demo": "playwright test --project demo",
+        "e2e:record": "playwright test --project recording"
     },
     "dependencies": {
         "@tailwindcss/forms": "^0.5.11",
@@ -14,6 +16,7 @@
         "flatpickr": "^4.6.13",
         "lucide-react": "^1.8.0",
         "next": "16.2.4",
+        "pdfjs-dist": "^6.3.289",
         "react": "^19.2.5",
         "react-dom": "^19.2.5",
         "react-dropzone": "^15.0.0",
@@ -21,6 +24,7 @@
         "tailwind-merge": "^3.5.0"
     },
     "devDependencies": {
+        "@playwright/test": "^1.63.0",
         "@svgr/webpack": "^8.1.0",
         "@types/node": "^25.6.0",
         "@types/react": "^19.2.14",

@@ -1,3 +1,5 @@
+// First, so tracing is set up before the app loads.
+import { measureRequests, serveMetrics, traceChatRequests } from './telemetry';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -17,6 +19,8 @@ async function bootstrap() {
     const port = config.get<number>('app.port', 3001);
     const corsOrigin = config.get<string>('app.corsOrigin', 'http://localhost:3000');
 
+    app.use(traceChatRequests);
+    app.use(measureRequests);
     app.enableCors({ origin: corsOrigin, credentials: true });
     app.setGlobalPrefix('api');
     app.useGlobalPipes(
@@ -48,6 +52,7 @@ async function bootstrap() {
 
     app.enableShutdownHooks();
     await app.listen(port);
+    serveMetrics(Number(process.env.METRICS_PORT ?? 9464));
     logger.log(`API running on http://localhost:${port}/api`, 'Bootstrap');
 }
 

@@ -1,0 +1,17 @@
+{
+    "documentId": "6f1c2a9e-4b7d-4c2e-9a51-3d8e0f7b2c10",
+    "status": "CLASSIFYING",
+    "timestamp": "2026-10-11T09:30:04.512Z",
+    "document": {
+        "category": "INVOICE",
+        "metadata": {
+            "keywords": ["faktura", "transport"],
+            "tags": ["invoice"],
+            "names": ["Acme Logistics Sp. z o.o."],
+            "locations": ["Warszawa"],
+            "language": "pl",
+            "confidence": 0.94,
+            "pageCount": 1
+        }
+    }
+}

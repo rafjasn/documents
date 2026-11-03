@@ -1,0 +1,1 @@
+{"type": "done", "intent": "aggregate", "usage": {"inputTokens": 5120, "outputTokens": 184, "costUsd": 0.001556, "llmCalls": 3}, "traceId": "2f6c1e7a9b3d4c58a1e0f7b6d5c4a392"}

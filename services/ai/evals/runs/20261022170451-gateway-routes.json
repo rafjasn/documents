@@ -1,0 +1,140 @@
+{
+  "kind": "gateway-routes",
+  "created": "2026-10-22T17:05:47.117372+00:00",
+  "gateway": "litellm v1.104.2",
+  "model": "google_genai:gemini-3.1-flash-lite",
+  "checks": [
+    {
+      "route": "direct",
+      "check": "structured: route",
+      "ok": true,
+      "detail": "{'intent': 'aggregate', 'language': 'pl'} {'model': 'gemini-3.1-flash-lite', 'input': 195, 'output': 51, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "direct",
+      "check": "structured: extraction",
+      "ok": true,
+      "detail": "{'category': 'INVOICE'} {'model': 'gemini-3.1-flash-lite', 'input': 597, 'output': 643, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "direct",
+      "check": "streaming with usage",
+      "ok": true,
+      "detail": "5 text chunks, first after 0.80s, usage {'model': 'gemini-3.1-flash-lite', 'input': 11, 'output': 84, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "direct",
+      "check": "cached-token counts",
+      "ok": true,
+      "detail": "2 calls; input 10767, cached 0; input 10765, cached 8165"
+    },
+    {
+      "route": "direct",
+      "check": "low media resolution",
+      "ok": true,
+      "detail": "input tokens: default 1101, low 282"
+    },
+    {
+      "route": "direct",
+      "check": "usage and model name",
+      "ok": true,
+      "detail": "{'model': 'gemini-3.1-flash-lite', 'input': 12, 'output': 63, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "router",
+      "check": "structured: route",
+      "ok": true,
+      "detail": "{'intent': 'aggregate', 'language': 'pl'} {'model': 'gemini-3.1-flash-lite', 'input': 195, 'output': 52, 'cache_read': None, 'reasoning': None}"
+    },
+    {
+      "route": "router",
+      "check": "structured: extraction",
+      "ok": true,
+      "detail": "{'category': 'INVOICE'} {'model': 'gemini-3.1-flash-lite', 'input': 597, 'output': 696, 'cache_read': None, 'reasoning': None}"
+    },
+    {
+      "route": "router",
+      "check": "streaming with usage",
+      "ok": true,
+      "detail": "5 text chunks, first after 0.69s, usage {'model': 'gemini-3.1-flash-lite', 'input': 11, 'output': 90, 'cache_read': None, 'reasoning': None}"
+    },
+    {
+      "route": "router",
+      "check": "cached-token counts",
+      "ok": true,
+      "detail": "1 calls; input 10767, cached 8165"
+    },
+    {
+      "route": "router",
+      "check": "low media resolution",
+      "ok": true,
+      "detail": "input tokens: default 1101, low 282"
+    },
+    {
+      "route": "router",
+      "check": "usage and model name",
+      "ok": true,
+      "detail": "{'model': 'gemini-3.1-flash-lite', 'input': 12, 'output': 64, 'cache_read': None, 'reasoning': None}"
+    },
+    {
+      "route": "router",
+      "check": "end user: spend recorded",
+      "ok": true,
+      "detail": "reply 'OK.'; customer spend 4e-06"
+    },
+    {
+      "route": "router",
+      "check": "end user: refused over budget",
+      "ok": true,
+      "detail": "served, refused (user)"
+    },
+    {
+      "route": "pass-through",
+      "check": "structured: route",
+      "ok": true,
+      "detail": "{'intent': 'aggregate', 'language': 'pl'} {'model': 'gemini-3.1-flash-lite', 'input': 195, 'output': 51, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "pass-through",
+      "check": "structured: extraction",
+      "ok": true,
+      "detail": "{'category': 'INVOICE'} {'model': 'gemini-3.1-flash-lite', 'input': 597, 'output': 662, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "pass-through",
+      "check": "streaming with usage",
+      "ok": true,
+      "detail": "6 text chunks, first after 0.64s, usage {'model': 'gemini-3.1-flash-lite', 'input': 11, 'output': 97, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "pass-through",
+      "check": "cached-token counts",
+      "ok": true,
+      "detail": "1 calls; input 10767, cached 8165"
+    },
+    {
+      "route": "pass-through",
+      "check": "low media resolution",
+      "ok": true,
+      "detail": "input tokens: default 1101, low 282"
+    },
+    {
+      "route": "pass-through",
+      "check": "usage and model name",
+      "ok": true,
+      "detail": "{'model': 'gemini-3.1-flash-lite', 'input': 12, 'output': 68, 'cache_read': 0, 'reasoning': None}"
+    },
+    {
+      "route": "pass-through",
+      "check": "end user: spend recorded",
+      "ok": true,
+      "detail": "reply 'OK.'; customer spend 4e-06"
+    },
+    {
+      "route": "pass-through",
+      "check": "end user: refused over budget",
+      "ok": true,
+      "detail": "served, refused (user)"
+    }
+  ]
+}

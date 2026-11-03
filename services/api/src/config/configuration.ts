@@ -61,6 +61,8 @@ export const appConfig = registerAs('app', () => ({
     jwtExpiration: process.env.JWT_EXPIRATION || '24h',
     corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3000',
     maxFileSizeMb: parseInt(process.env.MAX_FILE_SIZE_MB || '50', 10),
+    // The Python AI service (internal): chat answers stream from it.
+    aiServiceUrl: (process.env.AI_SERVICE_URL || 'http://localhost:8000').replace(/\/$/, ''),
     allowedMimeTypes: [
         'application/pdf',
         'image/png',

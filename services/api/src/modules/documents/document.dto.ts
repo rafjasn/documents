@@ -1,6 +1,7 @@
 import { IsEnum, IsOptional, IsString, MaxLength, Min, IsInt } from 'class-validator';
 import { Exclude, Expose, Type } from 'class-transformer';
 import { DocumentStatus } from '@documents/shared';
+import type { DocumentIndex, ExtractedFields } from '@documents/shared';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class PresignUploadDto {
@@ -81,6 +82,28 @@ export class DocumentResponseDto {
     @Expose()
     @ApiPropertyOptional()
     metadata?: Record<string, any>;
+
+    @Expose()
+    @ApiPropertyOptional({ description: 'Detected language of the content, e.g. en or pl' })
+    language?: string;
+
+    @Expose()
+    @ApiPropertyOptional({
+        description:
+            'Typed fields of an invoice, receipt or contract (packages/shared/contracts/extracted-fields.schema.json)'
+    })
+    extracted?: ExtractedFields;
+
+    @Expose()
+    @ApiPropertyOptional({ description: "Where the document's chunks are indexed" })
+    index?: DocumentIndex;
+
+    @Expose()
+    @ApiPropertyOptional({
+        description: 'Text addressed to an AI system, removed before any model read the document',
+        type: [String]
+    })
+    quarantined?: string[];
 
     @Expose()
     @ApiPropertyOptional()

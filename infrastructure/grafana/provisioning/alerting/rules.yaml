@@ -1,0 +1,149 @@
+# Alert rules (Stage 10c), evaluated by Grafana's own alerting against Prometheus.
+# Without traffic a ratio has no data, which counts as OK: an idle stack is healthy.
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: documents
+      folder: Documents
+      interval: 1m
+      rules:
+          - uid: chat-latency-p95
+            title: Chat p95 latency above 15 s
+            condition: C
+            for: 5m
+            noDataState: OK
+            execErrState: Error
+            annotations:
+                summary: The slowest 5% of questions in the last 10 minutes took over 15 s to answer
+            labels:
+                severity: warning
+            data:
+                - refId: A
+                  relativeTimeRange: { from: 600, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      refId: A
+                      instant: true
+                      expr: histogram_quantile(0.95, sum by (le) (rate(docai_chat_seconds_bucket[10m])))
+                - refId: C
+                  datasourceUid: __expr__
+                  model:
+                      refId: C
+                      type: threshold
+                      expression: A
+                      conditions:
+                          - evaluator: { type: gt, params: [15] }
+
+          - uid: error-rate
+            title: Chat and upload error rate above 20%
+            condition: C
+            for: 1m
+            noDataState: OK
+            execErrState: Error
+            annotations:
+                summary: Over a fifth of the questions and uploads of the last 5 minutes failed
+            labels:
+                severity: critical
+            data:
+                - refId: A
+                  relativeTimeRange: { from: 300, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      refId: A
+                      instant: true
+                      # Failures over attempts, chat and uploads together; refusals over a
+                      # budget are the gateway working, not failures.
+                      expr: >-
+                          ((sum(increase(docai_chat_requests_total{outcome="failed"}[5m])) or vector(0))
+                          + (sum(increase(docai_documents_total{status="failed"}[5m])) or vector(0)))
+                          / ((sum(increase(docai_chat_requests_total[5m])) or vector(0))
+                          + (sum(increase(docai_documents_total[5m])) or vector(0)))
+                - refId: C
+                  datasourceUid: __expr__
+                  model:
+                      refId: C
+                      type: threshold
+                      expression: A
+                      conditions:
+                          - evaluator: { type: gt, params: [0.2] }
+
+          - uid: hourly-spend
+            title: Model spend above $$1 an hour
+            condition: C
+            for: 0s
+            noDataState: OK
+            execErrState: Error
+            annotations:
+                summary: The services' model calls cost over $$1 in the last hour
+            labels:
+                severity: warning
+            data:
+                - refId: A
+                  relativeTimeRange: { from: 3600, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      refId: A
+                      instant: true
+                      expr: sum(increase(docai_llm_cost_usd_total{job!="evals"}[1h]))
+                - refId: C
+                  datasourceUid: __expr__
+                  model:
+                      refId: C
+                      type: threshold
+                      expression: A
+                      conditions:
+                          - evaluator: { type: gt, params: [1] }
+
+          - uid: queue-held-up
+            title: Uploads waiting on the queue for 10 minutes
+            condition: C
+            for: 10m
+            noDataState: OK
+            execErrState: Error
+            annotations:
+                summary: The processing queue has held waiting messages for 10 minutes
+            labels:
+                severity: warning
+            data:
+                - refId: A
+                  relativeTimeRange: { from: 300, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      refId: A
+                      instant: true
+                      expr: max(docai_queue_messages{state="visible"})
+                - refId: C
+                  datasourceUid: __expr__
+                  model:
+                      refId: C
+                      type: threshold
+                      expression: A
+                      conditions:
+                          - evaluator: { type: gt, params: [0] }
+
+          - uid: messages-old-at-receipt
+            title: Uploads older than 5 minutes when the worker gets them
+            condition: C
+            for: 5m
+            noDataState: OK
+            execErrState: Error
+            annotations:
+                summary: The p95 age of messages at receipt, over 15 minutes, is above 5 minutes
+            labels:
+                severity: warning
+            data:
+                - refId: A
+                  relativeTimeRange: { from: 900, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      refId: A
+                      instant: true
+                      expr: histogram_quantile(0.95, sum by (le) (rate(docai_queue_message_age_seconds_bucket[15m])))
+                - refId: C
+                  datasourceUid: __expr__
+                  model:
+                      refId: C
+                      type: threshold
+                      expression: A
+                      conditions:
+                          - evaluator: { type: gt, params: [300] }

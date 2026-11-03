@@ -1,0 +1,13 @@
+{
+  "kind": "budget-gate",
+  "check": "global",
+  "created": "20261022171155",
+  "results": {
+    "question": "error: The daily limit on the service's AI usage has been reached. It resets at 2026-10-23 00:00 UTC.",
+    "upload": {
+      "status": "FAILED",
+      "errorMessage": "The daily limit on the service's AI usage has been reached. It resets at 2026-10-23 00:00 UTC."
+    }
+  },
+  "passed": true
+}

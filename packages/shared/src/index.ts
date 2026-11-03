@@ -4,6 +4,7 @@ export enum DocumentStatus {
     EXTRACTING = 'EXTRACTING',
     CLASSIFYING = 'CLASSIFYING',
     SUMMARIZING = 'SUMMARIZING',
+    INDEXING = 'INDEXING',
     COMPLETED = 'COMPLETED',
     FAILED = 'FAILED'
 }
@@ -18,10 +19,17 @@ export interface DocumentRecord {
     s3Key: string;
     status: DocumentStatus;
     category?: string;
-    extractedText?: string;
     summary?: string;
     thumbnailKey?: string;
     metadata?: DocumentMetadata;
+    /** Detected language of the content, e.g. en or pl. */
+    language?: string;
+    /** Typed fields of an invoice, receipt or contract. */
+    extracted?: ExtractedFields;
+    /** Where the document's chunks are indexed. */
+    index?: DocumentIndex;
+    /** Text addressed to an AI system, cut at ingest before any model read it. */
+    quarantined?: string[];
     errorMessage?: string;
     retryCount: number;
     createdAt: string;
@@ -43,27 +51,83 @@ export interface DocumentMetadata {
     category?: string;
 }
 
-export interface ProcessingJobMessage {
-    documentId: string;
-    userId: string;
-    s3Key: string;
-    mimeType: string;
+// Extracted fields: the JSON Schema in packages/shared/contracts/extracted-fields.schema.json
+// is the reference. Optional fields are absent when the document doesn't state them.
+
+export interface Party {
+    name: string;
+    taxId?: string;
 }
 
-export interface ThumbnailJobMessage {
-    documentId: string;
-    userId: string;
-    s3Key: string;
-    mimeType: string;
+export interface Money {
+    amount: number;
+    currency?: string;
 }
 
-export interface ChatMessage {
-    id: string;
-    documentId: string;
-    userId: string;
-    role: 'user' | 'assistant';
-    content: string;
-    createdAt: string;
+export interface InvoiceLine {
+    description: string;
+    quantity?: number;
+    unitPrice?: number;
+    netAmount?: number;
+    taxRate?: number;
+}
+
+export interface InvoiceFields {
+    kind: 'invoice';
+    vendor: Party;
+    buyer?: Party;
+    invoiceNumber?: string;
+    issueDate?: string;
+    dueDate?: string;
+    currency?: string;
+    netTotal?: number;
+    taxTotal?: number;
+    grossTotal?: number;
+    paidDate?: string;
+    reverseCharge: boolean;
+    lineItems: InvoiceLine[];
+}
+
+export interface ReceiptItem {
+    description: string;
+    quantity?: number;
+    unitPrice?: number;
+    amount?: number;
+}
+
+export interface ReceiptFields {
+    kind: 'receipt';
+    merchant: Party;
+    receiptNumber?: string;
+    date?: string;
+    currency?: string;
+    total?: number;
+    taxTotal?: number;
+    paymentMethod?: 'cash' | 'card' | 'transfer' | 'other';
+    items: ReceiptItem[];
+}
+
+export interface ContractFields {
+    kind: 'contract';
+    parties: Party[];
+    contractNumber?: string;
+    effectiveDate?: string;
+    endDate?: string;
+    autoRenewal?: boolean;
+    noticePeriodDays?: number;
+    paymentTermsDays?: number;
+    valueCap?: Money;
+    governingLaw?: string;
+}
+
+export type ExtractedFields = InvoiceFields | ReceiptFields | ContractFields;
+
+export interface DocumentIndex {
+    collection: string;
+    version: number;
+    chunkCount: number;
+    embeddingModel: string;
+    indexedAt: string;
 }
 
 export interface WsDocumentStatusEvent {
@@ -73,12 +137,74 @@ export interface WsDocumentStatusEvent {
     timestamp: string;
 }
 
-export interface WsChatResponseEvent {
-    documentId: string;
-    sessionId: string;
-    chunk: string;
-    done: boolean;
+// Chat: conversations stored by the API, and the stream ai-service sends through it.
+// The JSON Schemas in packages/shared/contracts are the reference for ChatRequest and
+// ChatStreamEvent.
+
+export type ChatRole = 'user' | 'assistant';
+export type ChatIntent = 'smalltalk' | 'retrieve' | 'aggregate' | 'mixed';
+
+export interface ChatScope {
+    documentIds?: string[];
+    categories?: ('INVOICE' | 'RECEIPT' | 'CONTRACT' | 'OTHER')[];
+    languages?: string[];
+    dateFrom?: string;
+    dateTo?: string;
 }
+
+export interface Conversation {
+    id: string;
+    userId: string;
+    title: string;
+    scope: ChatScope;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface Citation {
+    citationId: number;
+    docId: string;
+    title: string;
+    page: number | null;
+    pages: number[];
+    bbox: [number, number, number, number] | null;
+    chunkId: number | null;
+    snippet: string;
+}
+
+export interface ChatUsage {
+    inputTokens: number;
+    outputTokens: number;
+    costUsd: number | null;
+    llmCalls: number;
+}
+
+export interface ConversationMessage {
+    id: string;
+    conversationId: string;
+    role: ChatRole;
+    content: string;
+    citations?: Citation[];
+    usage?: ChatUsage;
+    intent?: ChatIntent;
+    traceId?: string | null;
+    createdAt: string;
+}
+
+export interface ChatRequest {
+    conversationId: string;
+    message: string;
+    history: { role: ChatRole; content: string }[];
+    scope: ChatScope;
+}
+
+export type ChatStreamEvent =
+    | { type: 'step'; node: string; label: string }
+    | { type: 'token'; text: string }
+    | { type: 'reset' }
+    | { type: 'citations'; citations: Citation[] }
+    | { type: 'done'; intent: ChatIntent; usage: ChatUsage; traceId: string | null }
+    | { type: 'error'; message: string };
 
 export interface PaginatedResult<T> {
     items: T[];

@@ -20,6 +20,7 @@
         "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": true,
         "@aws-cdk/aws-iam:minimizePolicies": true,
         "@aws-cdk/core:validateSnapshotRemovalPolicy": true,
-        "imageTag": "latest"
+        "@aws-cdk/core:defaultCrossStackReferences": "strong",
+        "@aws-cdk/core:validateAgainstDefaultRules": true
     }
 }

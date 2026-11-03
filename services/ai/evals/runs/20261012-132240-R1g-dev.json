@@ -1,0 +1,6650 @@
+{
+ "run_id": "20261012-132240-R1g-dev",
+ "variant": "R1g",
+ "description": "Reranker: gte-multilingual-reranker-base, on V3",
+ "split": "dev",
+ "index": {
+  "chunker": "structure",
+  "chunk_tokens": 400,
+  "context": "none",
+  "embedder": "e5-small",
+  "stem": null,
+  "parent_tokens": 1200,
+  "name": "structure400-none-e5-small-words"
+ },
+ "retrieval": {
+  "dense": true,
+  "sparse": true,
+  "rerank": true,
+  "parents": false,
+  "candidates": 50,
+  "rrf_k": 60
+ },
+ "reranker": "gte-multilingual",
+ "created": "2026-10-12T13:22:40+00:00",
+ "index_stats": {
+  "collection": "eval-structure400-none-e5-small-words",
+  "documents": 200,
+  "chunks": 1932,
+  "built": false,
+  "seconds": 0.0,
+  "context_calls": 0,
+  "context_cost_usd": "0",
+  "embedding_cost_usd": "0"
+ },
+ "kind": "retrieval",
+ "summary": {
+  "overall": {
+   "n": 71,
+   "recall@5": 0.857,
+   "recall@10": 0.911,
+   "mrr@10": 0.84,
+   "ndcg@10": 0.816,
+   "doc_recall@10": 0.925
+  },
+  "by_type": {
+   "aggregate": {
+    "n": 12,
+    "recall@5": 0.75,
+    "recall@10": 0.847,
+    "mrr@10": 0.812,
+    "ndcg@10": 0.747,
+    "doc_recall@10": 0.847
+   },
+   "cross_doc": {
+    "n": 10,
+    "recall@5": 0.583,
+    "recall@10": 0.75,
+    "mrr@10": 0.95,
+    "ndcg@10": 0.69,
+    "doc_recall@10": 0.75
+   },
+   "cross_lingual": {
+    "n": 10,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.925,
+    "ndcg@10": 0.943,
+    "doc_recall@10": 1.0
+   },
+   "image": {
+    "n": 10,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.95,
+    "ndcg@10": 0.963,
+    "doc_recall@10": 1.0
+   },
+   "single_fact": {
+    "n": 16,
+    "recall@5": 0.875,
+    "recall@10": 0.875,
+    "mrr@10": 0.698,
+    "ndcg@10": 0.743,
+    "doc_recall@10": 0.938
+   },
+   "table": {
+    "n": 7,
+    "recall@5": 0.857,
+    "recall@10": 1.0,
+    "mrr@10": 0.786,
+    "ndcg@10": 0.837,
+    "doc_recall@10": 1.0
+   },
+   "unanswerable": {
+    "n": 6,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.833,
+    "ndcg@10": 0.877,
+    "doc_recall@10": 1.0
+   }
+  },
+  "by_language": {
+   "en": {
+    "n": 42,
+    "recall@5": 0.889,
+    "recall@10": 0.929,
+    "mrr@10": 0.821,
+    "ndcg@10": 0.829,
+    "doc_recall@10": 0.952
+   },
+   "pl": {
+    "n": 29,
+    "recall@5": 0.81,
+    "recall@10": 0.885,
+    "mrr@10": 0.868,
+    "ndcg@10": 0.797,
+    "doc_recall@10": 0.885
+   }
+  },
+  "latency_seconds": {
+   "p50": 37.143,
+   "p95": 44.855
+  }
+ },
+ "results": [
+  {
+   "id": "cuad-52ecfab2-law",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Which jurisdiction's law governs the License And Hosting Agreement between Corio Inc. and Changepoint, Inc.?",
+   "relevant": [
+    [
+     "cuad-52ecfab2",
+     13
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-52ecfab2",
+     [
+      1
+     ],
+     0.7189
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      1
+     ],
+     0.6663
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      13
+     ],
+     0.6399
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      13
+     ],
+     0.5878
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      3,
+      4
+     ],
+     0.5598
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      10
+     ],
+     0.5515
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      1
+     ],
+     0.5209
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      4
+     ],
+     0.52
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      20,
+      21
+     ],
+     0.5164
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      12
+     ],
+     0.5054
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@10": 0.5,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 45.678
+  },
+  {
+   "id": "cuad-52ecfab2-pl-agreement-date",
+   "type": "cross_lingual",
+   "language": "pl",
+   "question": "Kiedy zawarto umowę „License And Hosting Agreement” pomiędzy Corio Inc. a Changepoint, Inc.?",
+   "relevant": [
+    [
+     "cuad-52ecfab2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-52ecfab2",
+     [
+      1
+     ],
+     0.9653
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      1
+     ],
+     0.7555
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      2
+     ],
+     0.6436
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      2
+     ],
+     0.6304
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      1
+     ],
+     0.5808
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      3
+     ],
+     0.5657
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      4
+     ],
+     0.5655
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      12
+     ],
+     0.5613
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      13
+     ],
+     0.5471
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      2
+     ],
+     0.5431
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 40.086
+  },
+  {
+   "id": "cuad-5300bf86-agreement-date",
+   "type": "single_fact",
+   "language": "en",
+   "question": "On what date was the License And Hosting Agreement between Corio Inc. and Commerce One, Inc. entered into?",
+   "relevant": [
+    [
+     "cuad-5300bf86",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-5300bf86",
+     [
+      1
+     ],
+     0.9659
+    ],
+    [
+     "cuad-52ecfab2",
+     [
+      1
+     ],
+     0.6895
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      1
+     ],
+     0.6008
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      8
+     ],
+     0.5671
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      10
+     ],
+     0.5592
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      2,
+      3
+     ],
+     0.5473
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      4
+     ],
+     0.5426
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      4
+     ],
+     0.5423
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      10
+     ],
+     0.5419
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      3,
+      4
+     ],
+     0.5389
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 40.841
+  },
+  {
+   "id": "cuad-5af0e1cf-law",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Which jurisdiction's law governs the Consulting Agreement between CORAL GOLD RESOURCED LTD. and INTERMARK CAPITAL CORP.?",
+   "relevant": [
+    [
+     "cuad-5af0e1cf",
+     8
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-5af0e1cf",
+     [
+      1
+     ],
+     0.6732
+    ],
+    [
+     "cuad-5af0e1cf",
+     [
+      1
+     ],
+     0.6238
+    ],
+    [
+     "cuad-5af0e1cf",
+     [
+      9,
+      10
+     ],
+     0.4808
+    ],
+    [
+     "cuad-1671407c",
+     [
+      12,
+      13
+     ],
+     0.4246
+    ],
+    [
+     "cuad-6ade5c02",
+     [
+      3
+     ],
+     0.4109
+    ],
+    [
+     "cuad-40301079",
+     [
+      3
+     ],
+     0.4109
+    ],
+    [
+     "cuad-6703dfa5",
+     [
+      15,
+      16
+     ],
+     0.409
+    ],
+    [
+     "cuad-774bb0ed",
+     [
+      13,
+      14
+     ],
+     0.3597
+    ],
+    [
+     "cuad-3e4b050b",
+     [
+      4
+     ],
+     0.3229
+    ],
+    [
+     "cuad-6bf2b778",
+     [
+      1
+     ],
+     0.3211
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@10": 0.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 41.6
+  },
+  {
+   "id": "cuad-5ef8a094-party",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Who is the other party to the Support And Maintenance Agreement with On2 Technologies, Inc.?",
+   "relevant": [
+    [
+     "cuad-5ef8a094",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-5ef8a094",
+     [
+      1
+     ],
+     0.6819
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      2
+     ],
+     0.6239
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      1
+     ],
+     0.5746
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      2
+     ],
+     0.5369
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      2
+     ],
+     0.5186
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      5,
+      6
+     ],
+     0.5158
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      1
+     ],
+     0.5092
+    ],
+    [
+     "cuad-01ccc1bf",
+     [
+      1
+     ],
+     0.5068
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      6,
+      7,
+      8
+     ],
+     0.4871
+    ],
+    [
+     "cuad-5ef8a094",
+     [
+      5
+     ],
+     0.4769
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 41.694
+  },
+  {
+   "id": "cuad-601546a6-law",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Which jurisdiction's law governs the Online Hosting Agreement between Diplomat Direct Marketing Corporation and Tadeo E-Commerce Corp.?",
+   "relevant": [
+    [
+     "cuad-601546a6",
+     4
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-601546a6",
+     [
+      1
+     ],
+     0.7629
+    ],
+    [
+     "cuad-601546a6",
+     [
+      4,
+      5
+     ],
+     0.5782
+    ],
+    [
+     "cuad-601546a6",
+     [
+      3
+     ],
+     0.5278
+    ],
+    [
+     "cuad-601546a6",
+     [
+      3
+     ],
+     0.5242
+    ],
+    [
+     "cuad-601546a6",
+     [
+      1
+     ],
+     0.524
+    ],
+    [
+     "cuad-601546a6",
+     [
+      4
+     ],
+     0.5195
+    ],
+    [
+     "cuad-601546a6",
+     [
+      5,
+      6
+     ],
+     0.4949
+    ],
+    [
+     "cuad-601546a6",
+     [
+      3,
+      4
+     ],
+     0.4835
+    ],
+    [
+     "cuad-601546a6",
+     [
+      3
+     ],
+     0.4745
+    ],
+    [
+     "cuad-601546a6",
+     [
+      5
+     ],
+     0.4607
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.6309297535714575,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 41.485
+  },
+  {
+   "id": "cuad-60a1637f-agreement-date",
+   "type": "single_fact",
+   "language": "en",
+   "question": "On what date was the Transportation Service Agreement between Arkansas Western Pipeline Company and Associated Natural Gas Company entered into?",
+   "relevant": [
+    [
+     "cuad-60a1637f",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-60a1637f",
+     [
+      1
+     ],
+     0.9096
+    ],
+    [
+     "cuad-60a1637f",
+     [
+      3,
+      4
+     ],
+     0.6826
+    ],
+    [
+     "cuad-60a1637f",
+     [
+      3,
+      4
+     ],
+     0.6596
+    ],
+    [
+     "cuad-60a1637f",
+     [
+      6
+     ],
+     0.5696
+    ],
+    [
+     "cuad-60a1637f",
+     [
+      5,
+      6
+     ],
+     0.5653
+    ],
+    [
+     "cuad-60a1637f",
+     [
+      4
+     ],
+     0.5427
+    ],
+    [
+     "cuad-60a1637f",
+     [
+      6
+     ],
+     0.5331
+    ],
+    [
+     "cuad-211d2d97",
+     [
+      3,
+      4
+     ],
+     0.5122
+    ],
+    [
+     "cuad-211d2d97",
+     [
+      1
+     ],
+     0.4902
+    ],
+    [
+     "cuad-60a1637f",
+     [
+      4
+     ],
+     0.4583
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 39.379
+  },
+  {
+   "id": "cuad-6241dce3-renewal",
+   "type": "single_fact",
+   "language": "en",
+   "question": "What is the renewal term of the Support And Maintenance Agreement of XACCT Technologies, Inc.?",
+   "relevant": [
+    [
+     "cuad-6241dce3",
+     2
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-6241dce3",
+     [
+      2
+     ],
+     0.7936
+    ],
+    [
+     "cuad-6241dce3",
+     [
+      1
+     ],
+     0.6751
+    ],
+    [
+     "cuad-6241dce3",
+     [
+      2,
+      3
+     ],
+     0.6304
+    ],
+    [
+     "cuad-6241dce3",
+     [
+      1
+     ],
+     0.555
+    ],
+    [
+     "cuad-6241dce3",
+     [
+      3
+     ],
+     0.5399
+    ],
+    [
+     "cuad-1354daf6",
+     [
+      1
+     ],
+     0.5273
+    ],
+    [
+     "syn-w4-ctr-2",
+     [
+      1
+     ],
+     0.495
+    ],
+    [
+     "syn-w0-ctr-2",
+     [
+      1
+     ],
+     0.4926
+    ],
+    [
+     "syn-w2-ctr-2",
+     [
+      1
+     ],
+     0.4924
+    ],
+    [
+     "cuad-6241dce3",
+     [
+      1,
+      2
+     ],
+     0.4895
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 40.825
+  },
+  {
+   "id": "cuad-633e50ec-party",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Who is the other party to the Consulting Agreement with Global Technologies, Ltd?",
+   "relevant": [
+    [
+     "cuad-633e50ec",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-633e50ec",
+     [
+      1
+     ],
+     0.676
+    ],
+    [
+     "cuad-633e50ec",
+     [
+      7
+     ],
+     0.6198
+    ],
+    [
+     "cuad-633e50ec",
+     [
+      1
+     ],
+     0.4129
+    ],
+    [
+     "cuad-5af0e1cf",
+     [
+      7
+     ],
+     0.3374
+    ],
+    [
+     "cuad-0eb4f837",
+     [
+      2
+     ],
+     0.3337
+    ],
+    [
+     "cuad-5af0e1cf",
+     [
+      1
+     ],
+     0.3272
+    ],
+    [
+     "cuad-2bd2769c",
+     [
+      1
+     ],
+     0.3264
+    ],
+    [
+     "cuad-5af0e1cf",
+     [
+      1
+     ],
+     0.3247
+    ],
+    [
+     "cuad-1671407c",
+     [
+      2
+     ],
+     0.2596
+    ],
+    [
+     "cuad-5300bf86",
+     [
+      5
+     ],
+     0.2525
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 39.726
+  },
+  {
+   "id": "sroie-031-total",
+   "type": "image",
+   "language": "en",
+   "question": "What is the total amount on the receipt from AEON CO. (M) BHD dated 06/03/2018?",
+   "relevant": [
+    [
+     "sroie-031",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "sroie-031",
+     [
+      1
+     ],
+     0.9645
+    ],
+    [
+     "sroie-094",
+     [
+      1
+     ],
+     0.7188
+    ],
+    [
+     "sroie-426",
+     [
+      1
+     ],
+     0.71
+    ],
+    [
+     "sroie-094",
+     [
+      1
+     ],
+     0.701
+    ],
+    [
+     "sroie-197",
+     [
+      1
+     ],
+     0.699
+    ],
+    [
+     "sroie-302",
+     [
+      1
+     ],
+     0.6963
+    ],
+    [
+     "sroie-031",
+     [
+      1
+     ],
+     0.6691
+    ],
+    [
+     "sroie-426",
+     [
+      1
+     ],
+     0.6424
+    ],
+    [
+     "sroie-197",
+     [
+      1
+     ],
+     0.6207
+    ],
+    [
+     "sroie-302",
+     [
+      1
+     ],
+     0.6203
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 40.944
+  },
+  {
+   "id": "sroie-094-date",
+   "type": "image",
+   "language": "en",
+   "question": "On what date was the receipt from AEON CO. (M) BHD with a total of RM 5.90 issued?",
+   "relevant": [
+    [
+     "sroie-094",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "sroie-094",
+     [
+      1
+     ],
+     0.7988
+    ],
+    [
+     "sroie-094",
+     [
+      1
+     ],
+     0.6761
+    ],
+    [
+     "sroie-302",
+     [
+      1
+     ],
+     0.6308
+    ],
+    [
+     "sroie-031",
+     [
+      1
+     ],
+     0.5992
+    ],
+    [
+     "sroie-426",
+     [
+      1
+     ],
+     0.5948
+    ],
+    [
+     "sroie-222",
+     [
+      1
+     ],
+     0.5935
+    ],
+    [
+     "sroie-426",
+     [
+      1
+     ],
+     0.5604
+    ],
+    [
+     "sroie-197",
+     [
+      1
+     ],
+     0.5585
+    ],
+    [
+     "sroie-222",
+     [
+      1
+     ],
+     0.544
+    ],
+    [
+     "sroie-302",
+     [
+      1
+     ],
+     0.5414
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 43.299
+  },
+  {
+   "id": "sroie-321-total",
+   "type": "image",
+   "language": "en",
+   "question": "What is the total amount on the receipt from HAXINCONE RESOURCES SDN BHD dated 20/04/2018?",
+   "relevant": [
+    [
+     "sroie-321",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "sroie-321",
+     [
+      1
+     ],
+     0.6683
+    ],
+    [
+     "sroie-321",
+     [
+      1
+     ],
+     0.5613
+    ],
+    [
+     "sroie-095",
+     [
+      1
+     ],
+     0.4656
+    ],
+    [
+     "sroie-302",
+     [
+      1
+     ],
+     0.4526
+    ],
+    [
+     "syn-w0-inv-1-q2",
+     [
+      1
+     ],
+     0.3946
+    ],
+    [
+     "sroie-204",
+     [
+      1
+     ],
+     0.3936
+    ],
+    [
+     "sroie-372",
+     [
+      1
+     ],
+     0.3871
+    ],
+    [
+     "sroie-224",
+     [
+      1
+     ],
+     0.3854
+    ],
+    [
+     "sroie-426",
+     [
+      1
+     ],
+     0.3826
+    ],
+    [
+     "sroie-306",
+     [
+      1
+     ],
+     0.3798
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 40.998
+  },
+  {
+   "id": "sroie-328-date",
+   "type": "image",
+   "language": "en",
+   "question": "On what date was the receipt from GARDENIA BAKERIES (KI ) SDN BHD with a total of RM 33.05 issued?",
+   "relevant": [
+    [
+     "sroie-328",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "sroie-328",
+     [
+      1
+     ],
+     0.7065
+    ],
+    [
+     "sroie-352",
+     [
+      1
+     ],
+     0.6357
+    ],
+    [
+     "sroie-372",
+     [
+      1
+     ],
+     0.6327
+    ],
+    [
+     "sroie-363",
+     [
+      1
+     ],
+     0.6285
+    ],
+    [
+     "sroie-371",
+     [
+      1
+     ],
+     0.6215
+    ],
+    [
+     "sroie-363",
+     [
+      1
+     ],
+     0.6144
+    ],
+    [
+     "sroie-343",
+     [
+      1
+     ],
+     0.6058
+    ],
+    [
+     "sroie-328",
+     [
+      1
+     ],
+     0.5966
+    ],
+    [
+     "sroie-368",
+     [
+      1
+     ],
+     0.5846
+    ],
+    [
+     "sroie-352",
+     [
+      1
+     ],
+     0.5716
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 42.457
+  },
+  {
+   "id": "sroie-368-date",
+   "type": "image",
+   "language": "en",
+   "question": "On what date was the receipt from GARDENIA BAKERIES (KL) SDN BHD with a total of RM 23.56 issued?",
+   "relevant": [
+    [
+     "sroie-368",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "sroie-372",
+     [
+      1
+     ],
+     0.9485
+    ],
+    [
+     "sroie-368",
+     [
+      1
+     ],
+     0.8178
+    ],
+    [
+     "sroie-372",
+     [
+      1
+     ],
+     0.6891
+    ],
+    [
+     "sroie-363",
+     [
+      1
+     ],
+     0.6782
+    ],
+    [
+     "sroie-328",
+     [
+      1
+     ],
+     0.6613
+    ],
+    [
+     "sroie-363",
+     [
+      1
+     ],
+     0.6568
+    ],
+    [
+     "sroie-338",
+     [
+      1
+     ],
+     0.6538
+    ],
+    [
+     "sroie-352",
+     [
+      1
+     ],
+     0.6534
+    ],
+    [
+     "sroie-343",
+     [
+      1
+     ],
+     0.6457
+    ],
+    [
+     "sroie-352",
+     [
+      1
+     ],
+     0.6374
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.6309297535714575,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 42.368
+  },
+  {
+   "id": "sroie-515-total",
+   "type": "image",
+   "language": "en",
+   "question": "What is the total amount on the receipt from AIK HUAT HARDWARE ENTERPRISE (SETIA ALAM) SDN BHD dated 04/09/2017?",
+   "relevant": [
+    [
+     "sroie-515",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "sroie-515",
+     [
+      1
+     ],
+     0.9492
+    ],
+    [
+     "sroie-515",
+     [
+      1
+     ],
+     0.6104
+    ],
+    [
+     "sroie-473",
+     [
+      1
+     ],
+     0.5705
+    ],
+    [
+     "sroie-012",
+     [
+      1
+     ],
+     0.5559
+    ],
+    [
+     "sroie-486",
+     [
+      1
+     ],
+     0.5264
+    ],
+    [
+     "sroie-473",
+     [
+      1
+     ],
+     0.5121
+    ],
+    [
+     "sroie-352",
+     [
+      1
+     ],
+     0.5058
+    ],
+    [
+     "sroie-012",
+     [
+      1
+     ],
+     0.5048
+    ],
+    [
+     "sroie-468",
+     [
+      1
+     ],
+     0.5023
+    ],
+    [
+     "sroie-302",
+     [
+      1
+     ],
+     0.4988
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 45.121
+  },
+  {
+   "id": "syn-w3-after-term",
+   "type": "cross_doc",
+   "language": "en",
+   "question": "Was invoice INV-260234 from O'Donnell Consulting Limited issued within the term of their contract?",
+   "relevant": [
+    [
+     "syn-w3-ctr-3",
+     null
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.5922
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.5866
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.563
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.5191
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.5152
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.4837
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.4683
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.4656
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.4575
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.4059
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.7977228895450266,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 33.628
+  },
+  {
+   "id": "syn-w3-amount-due",
+   "type": "single_fact",
+   "language": "en",
+   "question": "What is the total amount due on invoice INV-260056 from O'Donnell Consulting Limited?",
+   "relevant": [
+    [
+     "syn-w3-inv-3-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.9657
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.9656
+    ],
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.8509
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.7935
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.6936
+    ],
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.651
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.6454
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     [
+      1
+     ],
+     0.6404
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.6124
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.5955
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.6309297535714575,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 28.704
+  },
+  {
+   "id": "syn-w3-auto-renewal",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Does the service agreement SA-2025-84 with O'Donnell Consulting Limited renew automatically?",
+   "relevant": [
+    [
+     "syn-w3-ctr-3",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.9643
+    ],
+    [
+     "syn-w1-ctr-3",
+     [],
+     0.6245
+    ],
+    [
+     "cuad-1354daf6",
+     [
+      1
+     ],
+     0.5588
+    ],
+    [
+     "syn-w4-ctr-3",
+     [],
+     0.5538
+    ],
+    [
+     "syn-w2-ctr-3",
+     [],
+     0.5435
+    ],
+    [
+     "syn-w0-ctr-3",
+     [],
+     0.5266
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.5222
+    ],
+    [
+     "cuad-78702e07",
+     [
+      4
+     ],
+     0.4598
+    ],
+    [
+     "cuad-5af0e1cf",
+     [
+      2
+     ],
+     0.4543
+    ],
+    [
+     "syn-w0-ctr-2",
+     [
+      1
+     ],
+     0.453
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 40.601
+  },
+  {
+   "id": "syn-w3-cap-exceeded",
+   "type": "cross_doc",
+   "language": "pl",
+   "question": "Czy łączna wartość netto faktur wystawionych przez Herba Usługi Sp. z o.o. w 2026 r. przekroczyła limit wartości umowy?",
+   "relevant": [
+    [
+     "syn-w3-ctr-0",
+     1
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6399
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.614
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5186
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5095
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.4842
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.4798
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.4784
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.472
+    ],
+    [
+     "syn-w1-inv-1-q1",
+     [
+      1
+     ],
+     0.4653
+    ],
+    [
+     "syn-w0-inv-0-q2",
+     [
+      1
+     ],
+     0.4648
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 0.75,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.664550862590272,
+    "doc_recall@10": 0.75
+   },
+   "seconds": 39.049
+  },
+  {
+   "id": "syn-w3-cap-of-contract",
+   "type": "cross_doc",
+   "language": "pl",
+   "question": "Jaki jest limit wartości umowy, na podstawie której Leżoń Serwis Sp. z o.o. wystawił fakturę FV/2026/07/123?",
+   "relevant": [
+    [
+     "syn-w3-inv-1-q3",
+     1
+    ],
+    [
+     "syn-w3-ctr-1",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.6714
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.6617
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.6434
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.6166
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.6136
+    ],
+    [
+     "syn-w0-inv-1-q3",
+     [
+      1
+     ],
+     0.598
+    ],
+    [
+     "syn-w0-inv-1-q3",
+     [
+      1
+     ],
+     0.5817
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.5715
+    ],
+    [
+     "syn-w2-inv-0-q3",
+     [
+      1
+     ],
+     0.5714
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.5701
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.6131471927654584,
+    "doc_recall@10": 0.5
+   },
+   "seconds": 29.894
+  },
+  {
+   "id": "syn-w3-cap-remaining",
+   "type": "cross_doc",
+   "language": "en",
+   "question": "How much of the value cap in the contract with Clark Services Ltd remained unused after invoice INV-260306?",
+   "relevant": [
+    [
+     "syn-w3-ctr-2",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5797
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5525
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5476
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5297
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.52
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.477
+    ],
+    [
+     "syn-w2-inv-2-q1",
+     [
+      1
+     ],
+     0.4703
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.4659
+    ],
+    [
+     "syn-w2-inv-2-q3",
+     [
+      1
+     ],
+     0.3976
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.3964
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.3333333333333333,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.7720911544214064,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 26.564
+  },
+  {
+   "id": "syn-w3-cap-within",
+   "type": "cross_doc",
+   "language": "pl",
+   "question": "Czy łączna wartość netto faktur wystawionych przez Leżoń Serwis Sp. z o.o. w 2026 r. przekroczyła limit wartości umowy?",
+   "relevant": [
+    [
+     "syn-w3-ctr-1",
+     null
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6624
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6529
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.6506
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.6028
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5987
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5893
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.5848
+    ],
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.5807
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.5715
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.5565
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 0.75,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.7087212693585175,
+    "doc_recall@10": 0.75
+   },
+   "seconds": 37.143
+  },
+  {
+   "id": "syn-w3-contract-rate",
+   "type": "table",
+   "language": "pl",
+   "question": "Jaka jest stawka netto za usługę „Składowanie palet” w umowie nr 91/2025 z Herba Usługi Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-0",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.8587
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.8117
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.678
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.6739
+    ],
+    [
+     "syn-w1-ctr-0",
+     [
+      1
+     ],
+     0.6619
+    ],
+    [
+     "syn-w3-ctr-0",
+     [
+      1
+     ],
+     0.6558
+    ],
+    [
+     "syn-w1-inv-0-q3",
+     [
+      1
+     ],
+     0.5962
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.5822
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.5739
+    ],
+    [
+     "syn-w1-inv-0-q3",
+     [
+      1
+     ],
+     0.5707
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.16666666666666666,
+    "ndcg@10": 0.3562071871080222,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 37.31
+  },
+  {
+   "id": "syn-w3-contract-rate-docx",
+   "type": "table",
+   "language": "pl",
+   "question": "Jaka stawka netto obowiązuje za usługę „Sprzątanie biura” zgodnie z umową nr 43/2025 z Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-1",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.9614
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.8937
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.8522
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.7709
+    ],
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.7179
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.6951
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.6053
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5866
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.5823
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.5693
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 40.92
+  },
+  {
+   "id": "syn-w3-contract-rate-en",
+   "type": "table",
+   "language": "en",
+   "question": "What rate does the service agreement SA-2025-62 with Clark Services Ltd set for road transport Warsaw-Berlin?",
+   "relevant": [
+    [
+     "syn-w3-ctr-2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.7279
+    ],
+    [
+     "syn-w4-ctr-2",
+     [
+      1
+     ],
+     0.6852
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.6787
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.6638
+    ],
+    [
+     "syn-w2-ctr-3",
+     [],
+     0.6052
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.604
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     [
+      1
+     ],
+     0.5829
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.5823
+    ],
+    [
+     "syn-w0-ctr-3",
+     [],
+     0.5817
+    ],
+    [
+     "syn-w2-inv-3-q2",
+     [
+      1
+     ],
+     0.581
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@10": 0.5,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 34.24
+  },
+  {
+   "id": "syn-w3-contracts-to-year-end",
+   "type": "aggregate",
+   "language": "pl",
+   "question": "Ile umów zawartych przez Klęczar Handel Sp. z o.o. obowiązuje do 31 grudnia 2026 r.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-0",
+     1
+    ],
+    [
+     "syn-w3-ctr-1",
+     null
+    ],
+    [
+     "syn-w3-ctr-2",
+     1
+    ],
+    [
+     "syn-w3-ctr-3",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.9657
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.7953
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.716
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.6946
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.639
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6339
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.6302
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6204
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.5921
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.575
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.5855700749881525,
+    "doc_recall@10": 0.5
+   },
+   "seconds": 33.265
+  },
+  {
+   "id": "syn-w3-delivery-address",
+   "type": "unanswerable",
+   "language": "en",
+   "question": "What is the delivery address on invoice INV-260082 from O'Donnell Consulting Limited?",
+   "relevant": [
+    [
+     "syn-w3-inv-3-q1",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.8685
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.6302
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.611
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.5924
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5915
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.5704
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.5329
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5295
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.5291
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.5022
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 34.662
+  },
+  {
+   "id": "syn-w3-due-date",
+   "type": "single_fact",
+   "language": "pl",
+   "question": "Jaki jest termin płatności faktury FV/2026/07/123 wystawionej przez Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-1-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.7801
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.7661
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.7228
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.6937
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.6759
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.6723
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.6698
+    ],
+    [
+     "syn-w1-inv-0-q3",
+     [
+      1
+     ],
+     0.6581
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.6412
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6403
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.6309297535714575,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 34.95
+  },
+  {
+   "id": "syn-w3-early-payment-discount",
+   "type": "unanswerable",
+   "language": "pl",
+   "question": "Jaki rabat za wcześniejszą płatność przewiduje umowa nr 43/2025 z Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-1",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.7854
+    ],
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.779
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.7481
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6915
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.654
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.6495
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.6179
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.607
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.589
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.5858
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.6309297535714575,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 37.947
+  },
+  {
+   "id": "syn-w3-en-on-pl-cap",
+   "type": "cross_lingual",
+   "language": "en",
+   "question": "What is the value cap in agreement no. 43/2025 with Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-1",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.6605
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.5997
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.5871
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.5819
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.5804
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.5338
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.5066
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.5001
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.4987
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.4846
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 38.53
+  },
+  {
+   "id": "syn-w3-en-on-pl-due",
+   "type": "cross_lingual",
+   "language": "en",
+   "question": "What is the due date of invoice FV/2026/07/204 from Herba Usługi Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.6944
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.5533
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5521
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.5494
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.5489
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.5481
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.5472
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5426
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.5401
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     [
+      1
+     ],
+     0.5391
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 35.959
+  },
+  {
+   "id": "syn-w3-en-on-pl-notice",
+   "type": "cross_lingual",
+   "language": "en",
+   "question": "What notice period applies to agreement no. 43/2025 with Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-1",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.8646
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.6345
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.6198
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.5888
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.5538
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.5513
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.5422
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.5362
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.5077
+    ],
+    [
+     "syn-w4-ctr-3",
+     [],
+     0.4997
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 37.07
+  },
+  {
+   "id": "syn-w3-en-on-pl-receipt",
+   "type": "cross_lingual",
+   "language": "en",
+   "question": "What was the total on the receipt from Papiernik Buszta dated 20 March 2026?",
+   "relevant": [
+    [
+     "syn-w3-rec-0",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-rec-0",
+     [
+      1
+     ],
+     0.7796
+    ],
+    [
+     "syn-w3-rec-0",
+     [
+      1
+     ],
+     0.6956
+    ],
+    [
+     "syn-w2-rec-0",
+     [
+      1
+     ],
+     0.5394
+    ],
+    [
+     "syn-w4-rec-2",
+     [
+      1
+     ],
+     0.5289
+    ],
+    [
+     "syn-w3-rec-3",
+     [
+      1
+     ],
+     0.515
+    ],
+    [
+     "syn-w0-rec-1",
+     [
+      1
+     ],
+     0.5137
+    ],
+    [
+     "syn-w4-inv-0-q1",
+     [
+      1
+     ],
+     0.5024
+    ],
+    [
+     "syn-w0-rec-1",
+     [
+      1
+     ],
+     0.4914
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.4858
+    ],
+    [
+     "syn-w4-rec-2",
+     [
+      1
+     ],
+     0.477
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 29.646
+  },
+  {
+   "id": "syn-w3-en-on-pl-vat",
+   "type": "cross_lingual",
+   "language": "en",
+   "question": "How much VAT is charged on invoice FV/2026/07/123 from Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-1-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.9557
+    ],
+    [
+     "syn-w1-inv-1-q1",
+     [
+      1
+     ],
+     0.9177
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.9148
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.886
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.823
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.802
+    ],
+    [
+     "syn-w2-inv-0-q3",
+     [
+      1
+     ],
+     0.7978
+    ],
+    [
+     "syn-w2-inv-0-q1",
+     [
+      1
+     ],
+     0.7651
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.7547
+    ],
+    [
+     "syn-w0-inv-1-q3",
+     [
+      1
+     ],
+     0.7366
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 42.449
+  },
+  {
+   "id": "syn-w3-end-date",
+   "type": "single_fact",
+   "language": "pl",
+   "question": "Do kiedy obowiązuje umowa nr 43/2025 zawarta z Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-1",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.9655
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6509
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6466
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.6319
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.6304
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.623
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.6017
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.5795
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5417
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.5397
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 36.954
+  },
+  {
+   "id": "syn-w3-eur-total",
+   "type": "aggregate",
+   "language": "en",
+   "question": "What is the total amount invoiced to Klęczar Handel Sp. z o.o. in EUR in 2026?",
+   "relevant": [
+    [
+     "syn-w3-inv-3-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6993
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.6683
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.6537
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.6524
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6463
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6441
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.637
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.6344
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.6321
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.6073
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@10": 0.0,
+    "doc_recall@10": 0.0
+   },
+   "seconds": 32.498
+  },
+  {
+   "id": "syn-w3-governing-law",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Which law governs the service agreement SA-2025-62 with Clark Services Ltd?",
+   "relevant": [
+    [
+     "syn-w3-ctr-2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.5802
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5751
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.5721
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.561
+    ],
+    [
+     "syn-w1-inv-2-q1",
+     [
+      1
+     ],
+     0.5521
+    ],
+    [
+     "syn-w1-inv-2-q3",
+     [
+      1
+     ],
+     0.5476
+    ],
+    [
+     "syn-w0-inv-3-q1",
+     [
+      1
+     ],
+     0.544
+    ],
+    [
+     "syn-w2-inv-2-q1",
+     [
+      1
+     ],
+     0.5394
+    ],
+    [
+     "syn-w2-inv-2-q2",
+     [
+      1
+     ],
+     0.5386
+    ],
+    [
+     "syn-w4-inv-3-q1",
+     [
+      1
+     ],
+     0.5358
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@10": 0.5,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 36.403
+  },
+  {
+   "id": "syn-w3-image-fee-table",
+   "type": "image",
+   "language": "en",
+   "question": "What rate does the service agreement SA-2025-84 with O'Donnell Consulting Limited set for security monitoring?",
+   "relevant": [
+    [
+     "syn-w3-ctr-3",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.8461
+    ],
+    [
+     "syn-w2-ctr-2",
+     [
+      1
+     ],
+     0.5479
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.5449
+    ],
+    [
+     "syn-w1-ctr-2",
+     [
+      1
+     ],
+     0.5226
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.5081
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.4845
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.4685
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.4683
+    ],
+    [
+     "syn-w1-inv-2-q1",
+     [
+      1
+     ],
+     0.4568
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.456
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 35.221
+  },
+  {
+   "id": "syn-w3-invoice-signatory",
+   "type": "unanswerable",
+   "language": "pl",
+   "question": "Kto podpisał fakturę FV/2026/01/083 wystawioną przez Herba Usługi Sp. z o.o. w imieniu sprzedawcy?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q1",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6686
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6348
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5952
+    ],
+    [
+     "syn-w2-inv-0-q1",
+     [
+      1
+     ],
+     0.5453
+    ],
+    [
+     "syn-w2-inv-0-q1",
+     [
+      1
+     ],
+     0.5312
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.5063
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.5057
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.5032
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.4967
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.4849
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 34.05
+  },
+  {
+   "id": "syn-w3-largest-invoice",
+   "type": "aggregate",
+   "language": "en",
+   "question": "Which invoice from Clark Services Ltd had the highest total amount?",
+   "relevant": [
+    [
+     "syn-w3-inv-2-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5612
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.561
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.5495
+    ],
+    [
+     "syn-w2-inv-2-q1",
+     [
+      1
+     ],
+     0.4922
+    ],
+    [
+     "syn-w0-inv-2-q1",
+     [
+      1
+     ],
+     0.4701
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.4693
+    ],
+    [
+     "syn-w2-inv-2-q3",
+     [
+      1
+     ],
+     0.455
+    ],
+    [
+     "syn-w1-inv-2-q3",
+     [
+      1
+     ],
+     0.4493
+    ],
+    [
+     "syn-w1-inv-2-q1",
+     [
+      1
+     ],
+     0.4445
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.4411
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 30.13
+  },
+  {
+   "id": "syn-w3-late-interest",
+   "type": "unanswerable",
+   "language": "en",
+   "question": "What late-payment interest rate does the service agreement SA-2025-62 with Clark Services Ltd specify?",
+   "relevant": [
+    [
+     "syn-w3-ctr-2",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5042
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.5027
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.4926
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.4834
+    ],
+    [
+     "syn-w1-inv-2-q3",
+     [
+      1
+     ],
+     0.4798
+    ],
+    [
+     "syn-w1-inv-3-q1",
+     [
+      1
+     ],
+     0.4796
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.4746
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.4711
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.4679
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.467
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.6309297535714575,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 33.5
+  },
+  {
+   "id": "syn-w3-line-net",
+   "type": "table",
+   "language": "en",
+   "question": "What is the net amount for road transport Warsaw-Berlin on invoice INV-260112 from Clark Services Ltd?",
+   "relevant": [
+    [
+     "syn-w3-inv-2-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.9577
+    ],
+    [
+     "syn-w1-inv-3-q3",
+     [
+      1
+     ],
+     0.6768
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.6742
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.6726
+    ],
+    [
+     "syn-w4-ctr-2",
+     [
+      1
+     ],
+     0.6241
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.6236
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.6192
+    ],
+    [
+     "syn-w2-ctr-3",
+     [],
+     0.6185
+    ],
+    [
+     "syn-w1-inv-3-q3",
+     [
+      1
+     ],
+     0.5814
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.5813
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 29.813
+  },
+  {
+   "id": "syn-w3-line-quantity",
+   "type": "table",
+   "language": "en",
+   "question": "How many user-months of software licence were billed on invoice INV-260082 from O'Donnell Consulting Limited?",
+   "relevant": [
+    [
+     "syn-w3-inv-3-q1",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.756
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5984
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5463
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5358
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5215
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.515
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.507
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.4823
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.4509
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.4505
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 36.225
+  },
+  {
+   "id": "syn-w3-line-unit-price",
+   "type": "table",
+   "language": "pl",
+   "question": "Jaka jest cena netto za jednostkę usługi „Składowanie palet” na fakturze FV/2026/04/280 wystawionej przez Herba Usługi Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.8844
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.7464
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.735
+    ],
+    [
+     "syn-w0-inv-1-q2",
+     [
+      1
+     ],
+     0.6769
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.6766
+    ],
+    [
+     "syn-w1-inv-0-q3",
+     [
+      1
+     ],
+     0.6562
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.6561
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.6371
+    ],
+    [
+     "syn-w0-inv-1-q3",
+     [
+      1
+     ],
+     0.6362
+    ],
+    [
+     "syn-w1-ctr-0",
+     [
+      1
+     ],
+     0.6158
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 37.07
+  },
+  {
+   "id": "syn-w3-line-vat",
+   "type": "table",
+   "language": "pl",
+   "question": "Jaka jest kwota VAT dla pozycji „Sprzątanie biura” na fakturze FV/2026/07/123 wystawionej przez Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-1-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.9647
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.9263
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.8807
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.8441
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.8086
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.7923
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.7539
+    ],
+    [
+     "syn-w1-inv-0-q3",
+     [
+      1
+     ],
+     0.7151
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.7061
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.7024
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 35.393
+  },
+  {
+   "id": "syn-w3-notice-period",
+   "type": "single_fact",
+   "language": "pl",
+   "question": "Jaki okres wypowiedzenia przewiduje umowa nr 91/2025 zawarta z Herba Usługi Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-ctr-0",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-0",
+     [
+      1
+     ],
+     0.7396
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.6224
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.6102
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6068
+    ],
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.6022
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.6001
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.5913
+    ],
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.5634
+    ],
+    [
+     "syn-w2-ctr-0",
+     [
+      1
+     ],
+     0.5204
+    ],
+    [
+     "syn-w1-ctr-0",
+     [
+      1
+     ],
+     0.5202
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 35.765
+  },
+  {
+   "id": "syn-w3-paid-date",
+   "type": "image",
+   "language": "en",
+   "question": "On what date was invoice INV-260082 from O'Donnell Consulting Limited paid?",
+   "relevant": [
+    [
+     "syn-w3-inv-3-q1",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.9661
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.7115
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.6366
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.6133
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.6104
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5958
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.5901
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.5806
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5771
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5678
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 28.223
+  },
+  {
+   "id": "syn-w3-payment-days",
+   "type": "single_fact",
+   "language": "en",
+   "question": "Within how many days of the invoice date must invoices under the service agreement SA-2025-62 with Clark Services Ltd be paid?",
+   "relevant": [
+    [
+     "syn-w3-ctr-2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "cuad-0eb4f837",
+     [
+      8
+     ],
+     0.5512
+    ],
+    [
+     "syn-w2-ctr-3",
+     [],
+     0.5503
+    ],
+    [
+     "syn-w1-ctr-3",
+     [],
+     0.547
+    ],
+    [
+     "syn-w4-ctr-3",
+     [],
+     0.5447
+    ],
+    [
+     "syn-w0-ctr-3",
+     [],
+     0.5446
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.5405
+    ],
+    [
+     "cuad-4de0a000",
+     [
+      5
+     ],
+     0.5257
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.5206
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.5178
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.5119
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@10": 0.0,
+    "doc_recall@10": 0.0
+   },
+   "seconds": 33.0
+  },
+  {
+   "id": "syn-w3-pl-on-en-end",
+   "type": "cross_lingual",
+   "language": "pl",
+   "question": "Do kiedy obowiązuje umowa SA-2025-84 z O'Donnell Consulting Limited?",
+   "relevant": [
+    [
+     "syn-w3-ctr-3",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.8267
+    ],
+    [
+     "syn-w1-ctr-3",
+     [],
+     0.4954
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.4623
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.4604
+    ],
+    [
+     "syn-w0-ctr-0",
+     [
+      1
+     ],
+     0.454
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.4538
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.4492
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.4491
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.4482
+    ],
+    [
+     "syn-w3-ctr-0",
+     [
+      1
+     ],
+     0.4466
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 38.221
+  },
+  {
+   "id": "syn-w3-pl-on-en-invoice",
+   "type": "cross_lingual",
+   "language": "pl",
+   "question": "Jaka jest kwota do zapłaty na fakturze INV-260306 od Clark Services Ltd?",
+   "relevant": [
+    [
+     "syn-w3-inv-2-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.8387
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.7126
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.6354
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5627
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5288
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5234
+    ],
+    [
+     "syn-w2-inv-2-q1",
+     [
+      1
+     ],
+     0.5049
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.4959
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.4922
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.489
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 34.821
+  },
+  {
+   "id": "syn-w3-pl-on-en-law",
+   "type": "cross_lingual",
+   "language": "pl",
+   "question": "Jakie prawo reguluje umowę SA-2025-62 z Clark Services Ltd?",
+   "relevant": [
+    [
+     "syn-w3-ctr-2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w1-ctr-1",
+     [],
+     0.6316
+    ],
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.605
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.5811
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.5662
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.5551
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.5273
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.5257
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5208
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.5137
+    ],
+    [
+     "syn-w1-ctr-3",
+     [],
+     0.491
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.25,
+    "ndcg@10": 0.43067655807339306,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 32.326
+  },
+  {
+   "id": "syn-w3-pl-on-en-payment-days",
+   "type": "cross_lingual",
+   "language": "pl",
+   "question": "W ciągu ilu dni należy opłacić faktury zgodnie z umową SA-2025-84 z O'Donnell Consulting Limited?",
+   "relevant": [
+    [
+     "syn-w3-ctr-3",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.7752
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.5223
+    ],
+    [
+     "syn-w2-ctr-3",
+     [],
+     0.5143
+    ],
+    [
+     "syn-w2-ctr-1",
+     [],
+     0.5068
+    ],
+    [
+     "syn-w4-ctr-1",
+     [],
+     0.5026
+    ],
+    [
+     "syn-w4-ctr-3",
+     [],
+     0.5025
+    ],
+    [
+     "syn-w0-ctr-3",
+     [],
+     0.4977
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.4911
+    ],
+    [
+     "syn-w0-ctr-1",
+     [],
+     0.4824
+    ],
+    [
+     "syn-w3-ctr-1",
+     [],
+     0.4664
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 34.606
+  },
+  {
+   "id": "syn-w3-price-match",
+   "type": "cross_doc",
+   "language": "en",
+   "question": "Does the unit price for security monitoring on invoice INV-260056 from O'Donnell Consulting Limited match the rate in their contract?",
+   "relevant": [
+    [
+     "syn-w3-ctr-3",
+     null
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.7871
+    ],
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.6308
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.5936
+    ],
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.5745
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.5572
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.557
+    ],
+    [
+     "syn-w1-ctr-2",
+     [
+      1
+     ],
+     0.5507
+    ],
+    [
+     "syn-w2-ctr-2",
+     [
+      1
+     ],
+     0.5475
+    ],
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.5164
+    ],
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.4894
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.8503449055347546,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 29.26
+  },
+  {
+   "id": "syn-w3-price-mismatch",
+   "type": "cross_doc",
+   "language": "en",
+   "question": "Does the unit price for road transport Warsaw-Berlin on invoice INV-260306 from Clark Services Ltd match the rate in their contract?",
+   "relevant": [
+    [
+     "syn-w3-ctr-2",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.93
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.6453
+    ],
+    [
+     "syn-w4-ctr-2",
+     [
+      1
+     ],
+     0.6418
+    ],
+    [
+     "syn-w3-ctr-2",
+     [
+      1
+     ],
+     0.6393
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.6065
+    ],
+    [
+     "syn-w0-ctr-3",
+     [],
+     0.5962
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5962
+    ],
+    [
+     "syn-w2-ctr-3",
+     [],
+     0.5737
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5518
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5468
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.8772153153380493,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 31.592
+  },
+  {
+   "id": "syn-w3-q1-pln-gross",
+   "type": "aggregate",
+   "language": "pl",
+   "question": "Jaka jest łączna kwota brutto faktur w PLN wystawionych dla Klęczar Handel Sp. z o.o. w pierwszym kwartale 2026 r.?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.8424
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.744
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.7313
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.7175
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.7138
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.7003
+    ],
+    [
+     "syn-w1-inv-0-q3",
+     [
+      1
+     ],
+     0.6404
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.5888
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5795
+    ],
+    [
+     "syn-w1-inv-1-q1",
+     [
+      1
+     ],
+     0.5741
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 34.338
+  },
+  {
+   "id": "syn-w3-q2-net",
+   "type": "aggregate",
+   "language": "pl",
+   "question": "Ile wyniosła łączna wartość netto faktur od Herba Usługi Sp. z o.o. w drugim kwartale 2026 r.?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6438
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6326
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5516
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5499
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.5472
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5167
+    ],
+    [
+     "syn-w1-inv-0-q1",
+     [
+      1
+     ],
+     0.5162
+    ],
+    [
+     "syn-w2-inv-1-q1",
+     [
+      1
+     ],
+     0.5137
+    ],
+    [
+     "syn-w1-inv-1-q1",
+     [
+      1
+     ],
+     0.506
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5047
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.25,
+    "ndcg@10": 0.43067655807339306,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 36.327
+  },
+  {
+   "id": "syn-w3-q3-net",
+   "type": "aggregate",
+   "language": "en",
+   "question": "What was the total net amount invoiced by Clark Services Ltd in Q3 2026?",
+   "relevant": [
+    [
+     "syn-w3-inv-2-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.5427
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.542
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.5251
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5147
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.4475
+    ],
+    [
+     "syn-w2-inv-3-q2",
+     [
+      1
+     ],
+     0.4382
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     [
+      1
+     ],
+     0.4218
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.4063
+    ],
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.4056
+    ],
+    [
+     "syn-w4-inv-3-q3",
+     [
+      1
+     ],
+     0.4048
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.6309297535714575,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 27.043
+  },
+  {
+   "id": "syn-w3-receipt-total",
+   "type": "image",
+   "language": "en",
+   "question": "What was the total on the receipt from Alexander Cabs dated 13 May 2026?",
+   "relevant": [
+    [
+     "syn-w3-rec-2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-rec-2",
+     [
+      1
+     ],
+     0.8448
+    ],
+    [
+     "syn-w3-rec-2",
+     [
+      1
+     ],
+     0.7976
+    ],
+    [
+     "syn-w4-rec-2",
+     [
+      1
+     ],
+     0.5673
+    ],
+    [
+     "syn-w4-rec-2",
+     [
+      1
+     ],
+     0.5458
+    ],
+    [
+     "syn-w1-rec-2",
+     [
+      1
+     ],
+     0.5142
+    ],
+    [
+     "syn-w4-rec-3",
+     [
+      1
+     ],
+     0.5098
+    ],
+    [
+     "syn-w1-rec-3",
+     [
+      1
+     ],
+     0.5086
+    ],
+    [
+     "syn-w1-rec-2",
+     [
+      1
+     ],
+     0.4988
+    ],
+    [
+     "syn-w3-rec-3",
+     [
+      1
+     ],
+     0.4914
+    ],
+    [
+     "syn-w1-rec-3",
+     [
+      1
+     ],
+     0.4859
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 30.632
+  },
+  {
+   "id": "syn-w3-receipts-pln",
+   "type": "aggregate",
+   "language": "pl",
+   "question": "Jaka jest łączna kwota dwóch paragonów w PLN: od sprzedawcy „Papiernik Buszta” z dnia 20.03.2026 i od sprzedawcy „Bistro Bartkowicz” z dnia 12.04.2026?",
+   "relevant": [
+    [
+     "syn-w3-rec-0",
+     1
+    ],
+    [
+     "syn-w3-rec-1",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-rec-1",
+     [
+      1
+     ],
+     0.6568
+    ],
+    [
+     "syn-w3-rec-0",
+     [
+      1
+     ],
+     0.6486
+    ],
+    [
+     "syn-w3-rec-0",
+     [
+      1
+     ],
+     0.6211
+    ],
+    [
+     "syn-w3-rec-1",
+     [
+      1
+     ],
+     0.5931
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5709
+    ],
+    [
+     "syn-w0-rec-1",
+     [
+      1
+     ],
+     0.5381
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     [
+      1
+     ],
+     0.5126
+    ],
+    [
+     "syn-w2-rec-0",
+     [
+      1
+     ],
+     0.51
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5069
+    ],
+    [
+     "syn-w2-rec-0",
+     [
+      1
+     ],
+     0.496
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 38.629
+  },
+  {
+   "id": "syn-w3-reverse-charge-count",
+   "type": "aggregate",
+   "language": "en",
+   "question": "How many invoices addressed to Klęczar Handel Sp. z o.o. were issued under the reverse charge mechanism?",
+   "relevant": [
+    [
+     "syn-w3-inv-2-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     1
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.5561
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.5508
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.5496
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.5495
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.5446
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.5438
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.5408
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5382
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.5278
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.5277
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.9489415452074043,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 38.489
+  },
+  {
+   "id": "syn-w3-scan-gross",
+   "type": "image",
+   "language": "pl",
+   "question": "Jaka jest kwota brutto faktury FV/2026/01/083 wystawionej przez Herba Usługi Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q1",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.9663
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.9533
+    ],
+    [
+     "syn-w2-inv-0-q1",
+     [
+      1
+     ],
+     0.7608
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.7139
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.7051
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.7002
+    ],
+    [
+     "syn-w2-inv-0-q1",
+     [
+      1
+     ],
+     0.6879
+    ],
+    [
+     "syn-w4-inv-0-q1",
+     [
+      1
+     ],
+     0.6361
+    ],
+    [
+     "syn-w0-inv-1-q1",
+     [
+      1
+     ],
+     0.6332
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.6154
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 43.202
+  },
+  {
+   "id": "syn-w3-seller-nip",
+   "type": "single_fact",
+   "language": "pl",
+   "question": "Jaki NIP sprzedawcy podano na fakturze FV/2026/04/280 wystawionej przez Herba Usługi Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.9342
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.7453
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.7192
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.6869
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.6799
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.6589
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.6463
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.6342
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.6295
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     [
+      1
+     ],
+     0.6244
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 41.864
+  },
+  {
+   "id": "syn-w3-seller-phone",
+   "type": "unanswerable",
+   "language": "pl",
+   "question": "Jaki numer telefonu sprzedawcy podano na fakturze FV/2026/07/123 wystawionej przez Leżoń Serwis Sp. z o.o.?",
+   "relevant": [
+    [
+     "syn-w3-inv-1-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.7866
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.7074
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     [
+      1
+     ],
+     0.7047
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.6619
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.651
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.6454
+    ],
+    [
+     "syn-w2-inv-1-q3",
+     [
+      1
+     ],
+     0.6393
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.6252
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.6207
+    ],
+    [
+     "syn-w2-inv-0-q3",
+     [
+      1
+     ],
+     0.6143
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 39.742
+  },
+  {
+   "id": "syn-w3-termination-penalty",
+   "type": "unanswerable",
+   "language": "en",
+   "question": "What penalty does the service agreement SA-2025-84 with O'Donnell Consulting Limited set for early termination?",
+   "relevant": [
+    [
+     "syn-w3-ctr-3",
+     null
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.7031
+    ],
+    [
+     "syn-w1-ctr-3",
+     [],
+     0.5476
+    ],
+    [
+     "syn-w2-ctr-3",
+     [],
+     0.5012
+    ],
+    [
+     "syn-w4-ctr-3",
+     [],
+     0.4972
+    ],
+    [
+     "syn-w0-ctr-3",
+     [],
+     0.4856
+    ],
+    [
+     "cuad-79a220ee",
+     [
+      2
+     ],
+     0.4621
+    ],
+    [
+     "cuad-5af0e1cf",
+     [
+      3
+     ],
+     0.4533
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.4495
+    ],
+    [
+     "syn-w2-inv-3-q1",
+     [
+      1
+     ],
+     0.4422
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.4365
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 42.89
+  },
+  {
+   "id": "syn-w3-terms-ok",
+   "type": "cross_doc",
+   "language": "pl",
+   "question": "Czy termin płatności na fakturze FV/2026/04/280 wystawionej przez Herba Usługi Sp. z o.o. jest zgodny z warunkami płatności z umowy?",
+   "relevant": [
+    [
+     "syn-w3-ctr-0",
+     1
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.6211
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5897
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.5892
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5739
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5688
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5449
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5442
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5243
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.5186
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.5129
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 0.5,
+    "ndcg@10": 0.38685280723454163,
+    "doc_recall@10": 0.5
+   },
+   "seconds": 44.855
+  },
+  {
+   "id": "syn-w3-terms-wrong",
+   "type": "cross_doc",
+   "language": "pl",
+   "question": "Czy termin płatności na fakturze FV/2026/04/173 wystawionej przez Leżoń Serwis Sp. z o.o. jest zgodny z warunkami płatności z umowy?",
+   "relevant": [
+    [
+     "syn-w3-ctr-1",
+     null
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.7439
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.64
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.5851
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     [
+      1
+     ],
+     0.5591
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5577
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.5496
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.5476
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5473
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.5397
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.5336
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.6131471927654584,
+    "doc_recall@10": 0.5
+   },
+   "seconds": 52.952
+  },
+  {
+   "id": "syn-w3-vendor-count",
+   "type": "aggregate",
+   "language": "en",
+   "question": "How many invoices did O'Donnell Consulting Limited issue in 2026?",
+   "relevant": [
+    [
+     "syn-w3-inv-3-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-3-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-3-q3",
+     [
+      1
+     ],
+     0.6394
+    ],
+    [
+     "syn-w3-inv-3-q1",
+     [
+      1
+     ],
+     0.6273
+    ],
+    [
+     "syn-w3-inv-3-q2",
+     [
+      1
+     ],
+     0.6123
+    ],
+    [
+     "syn-w3-ctr-3",
+     [],
+     0.535
+    ],
+    [
+     "syn-w1-inv-3-q1",
+     [
+      1
+     ],
+     0.5072
+    ],
+    [
+     "syn-w1-inv-3-q3",
+     [
+      1
+     ],
+     0.4981
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.4976
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.4767
+    ],
+    [
+     "syn-w1-inv-2-q2",
+     [
+      1
+     ],
+     0.4714
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.4702
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 1.0,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 45.649
+  },
+  {
+   "id": "syn-w3-vendor-gross",
+   "type": "aggregate",
+   "language": "pl",
+   "question": "Jaka jest łączna kwota brutto faktur wystawionych przez Herba Usługi Sp. z o.o. w 2026 r.?",
+   "relevant": [
+    [
+     "syn-w3-inv-0-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.7761
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.7551
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.6275
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.5908
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.5759
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.5726
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.5594
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5446
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.5427
+    ],
+    [
+     "syn-w1-inv-0-q3",
+     [
+      1
+     ],
+     0.5346
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.3333333333333333,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.758586654365518,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 39.328
+  },
+  {
+   "id": "syn-w3-vendor-net",
+   "type": "aggregate",
+   "language": "en",
+   "question": "What is the total net amount invoiced by Clark Services Ltd in 2026?",
+   "relevant": [
+    [
+     "syn-w3-inv-2-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-2-q1",
+     [
+      1
+     ],
+     0.5981
+    ],
+    [
+     "syn-w2-inv-3-q3",
+     [
+      1
+     ],
+     0.5911
+    ],
+    [
+     "syn-w3-inv-2-q3",
+     [
+      1
+     ],
+     0.5807
+    ],
+    [
+     "syn-w3-inv-2-q2",
+     [
+      1
+     ],
+     0.5615
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.4949
+    ],
+    [
+     "syn-w4-inv-2-q2",
+     [
+      1
+     ],
+     0.4849
+    ],
+    [
+     "syn-w1-inv-3-q2",
+     [
+      1
+     ],
+     0.4815
+    ],
+    [
+     "syn-w4-inv-2-q3",
+     [
+      1
+     ],
+     0.4726
+    ],
+    [
+     "syn-w0-inv-2-q2",
+     [
+      1
+     ],
+     0.4699
+    ],
+    [
+     "syn-w4-inv-3-q2",
+     [
+      1
+     ],
+     0.4691
+    ]
+   ],
+   "metrics": {
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.9060254355346823,
+    "doc_recall@10": 1.0
+   },
+   "seconds": 35.313
+  },
+  {
+   "id": "syn-w3-vendor-vat",
+   "type": "aggregate",
+   "language": "pl",
+   "question": "Ile łącznie podatku VAT naliczył Leżoń Serwis Sp. z o.o. na swoich fakturach w 2026 r.?",
+   "relevant": [
+    [
+     "syn-w3-inv-1-q1",
+     1
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     1
+    ],
+    [
+     "syn-w3-inv-1-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.7985
+    ],
+    [
+     "syn-w0-inv-0-q1",
+     [
+      1
+     ],
+     0.7959
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.7841
+    ],
+    [
+     "syn-w3-inv-1-q1",
+     [
+      1
+     ],
+     0.7744
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.7711
+    ],
+    [
+     "syn-w3-inv-1-q2",
+     [
+      1
+     ],
+     0.7167
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.7039
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.6985
+    ],
+    [
+     "syn-w4-inv-0-q2",
+     [
+      1
+     ],
+     0.6766
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.6701
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.6666666666666666,
+    "recall@10": 0.6666666666666666,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.7039180890341347,
+    "doc_recall@10": 0.6666666666666666
+   },
+   "seconds": 38.961
+  },
+  {
+   "id": "syn-w3-within-term",
+   "type": "cross_doc",
+   "language": "pl",
+   "question": "Czy faktura FV/2026/07/204 wystawiona przez Herba Usługi Sp. z o.o. została wystawiona w okresie obowiązywania umowy?",
+   "relevant": [
+    [
+     "syn-w3-ctr-0",
+     1
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     1
+    ]
+   ],
+   "retrieved": [
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.639
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.5718
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.5356
+    ],
+    [
+     "syn-w3-inv-0-q3",
+     [
+      1
+     ],
+     0.5217
+    ],
+    [
+     "syn-w3-inv-0-q2",
+     [
+      1
+     ],
+     0.5026
+    ],
+    [
+     "syn-w4-inv-1-q3",
+     [
+      1
+     ],
+     0.5013
+    ],
+    [
+     "syn-w0-inv-0-q3",
+     [
+      1
+     ],
+     0.4979
+    ],
+    [
+     "syn-w3-inv-0-q1",
+     [
+      1
+     ],
+     0.4947
+    ],
+    [
+     "syn-w1-inv-1-q3",
+     [
+      1
+     ],
+     0.4941
+    ],
+    [
+     "syn-w2-inv-1-q2",
+     [
+      1
+     ],
+     0.4932
+    ]
+   ],
+   "metrics": {
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 1.0,
+    "ndcg@10": 0.6131471927654584,
+    "doc_recall@10": 0.5
+   },
+   "seconds": 38.151
+  }
+ ]
+}

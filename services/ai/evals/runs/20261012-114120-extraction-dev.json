@@ -1,0 +1,2610 @@
+{
+ "run_id": "20261012-114120-extraction-dev",
+ "split": "dev",
+ "extract_model": "google_genai:gemini-3.1-flash-lite",
+ "vision_model": "google_genai:gemini-3.1-flash-lite",
+ "created": "2026-10-12T11:41:20+00:00",
+ "kind": "extraction",
+ "summary": {
+  "documents": 32,
+  "overall": {
+   "fields": 248,
+   "correct": 248,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  },
+  "by_category": {
+   "CONTRACT": {
+    "fields": 44,
+    "correct": 44,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "INVOICE": {
+    "fields": 136,
+    "correct": 136,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "RECEIPT": {
+    "fields": 68,
+    "correct": 68,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_source": {
+   "sroie": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "synthetic": {
+    "fields": 212,
+    "correct": 212,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_language": {
+   "en": {
+    "fields": 142,
+    "correct": 142,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "pl": {
+    "fields": 106,
+    "correct": 106,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_format": {
+   "docx": {
+    "fields": 22,
+    "correct": 22,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "image": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "pdf": {
+    "fields": 123,
+    "correct": 123,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "photo": {
+    "fields": 32,
+    "correct": 32,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "scanned_pdf": {
+    "fields": 35,
+    "correct": 35,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_field": {
+   "contract.autoRenewal": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.contractNumber": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.effectiveDate": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.endDate": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.governingLaw": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.noticePeriodDays": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.parties.buyer": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.parties.vendor": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.paymentTermsDays": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.valueCap.amount": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.valueCap.currency": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.buyer.name": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.buyer.taxId": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.currency": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.dueDate": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.grossTotal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.invoiceNumber": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.issueDate": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.netTotal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.paidDate": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.taxTotal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.vendor.name": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.vendor.taxId": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.currency": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.date": {
+    "fields": 16,
+    "correct": 16,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.merchant.name": {
+    "fields": 16,
+    "correct": 16,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.merchant.taxId": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.paymentMethod": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.receiptNumber": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.taxTotal": {
+    "fields": 4,
+    "correct": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.total": {
+    "fields": 16,
+    "correct": 16,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "category_accuracy": 0.938,
+  "line_items": {
+   "expected": 27,
+   "matched": 27,
+   "f1": 1.0
+  },
+  "cost_usd": "0.05130250"
+ },
+ "documents": [
+  {
+   "doc_id": "sroie-031",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-031",
+     "field": "merchant.name",
+     "expected": "AEON CO. (M) BHD",
+     "predicted": "AEON CO. (M) BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-031",
+     "field": "date",
+     "expected": "2018-03-06",
+     "predicted": "2018-03-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-031",
+     "field": "total",
+     "expected": "75.00",
+     "predicted": "75.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00178900",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-085",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-085",
+     "field": "merchant.name",
+     "expected": "MR. D.I.Y. SDN BHD",
+     "predicted": "MR. D.I.Y. SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-085",
+     "field": "date",
+     "expected": "2017-12-28",
+     "predicted": "2017-12-28",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-085",
+     "field": "total",
+     "expected": "9.90",
+     "predicted": "9.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00184125",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-094",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-094",
+     "field": "merchant.name",
+     "expected": "AEON CO. (M) BHD",
+     "predicted": "AEON CO. (M) BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-094",
+     "field": "date",
+     "expected": "2018-02-09",
+     "predicted": "2018-02-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-094",
+     "field": "total",
+     "expected": "5.90",
+     "predicted": "5.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0017985",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-197",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-197",
+     "field": "merchant.name",
+     "expected": "AEON CO. (M) BHD",
+     "predicted": "AEON CO. (M) BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-197",
+     "field": "date",
+     "expected": "2018-03-12",
+     "predicted": "2018-03-12",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-197",
+     "field": "total",
+     "expected": "42.50",
+     "predicted": "42.50",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00226450",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-227",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-227",
+     "field": "merchant.name",
+     "expected": "TONYMOLY VIVA CITY",
+     "predicted": "TONYMOLY VIVA CITY",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-227",
+     "field": "date",
+     "expected": "2018-03-29",
+     "predicted": "2018-03-29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-227",
+     "field": "total",
+     "expected": "39.90",
+     "predicted": "39.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.001714",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-312",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-312",
+     "field": "merchant.name",
+     "expected": "GUARDIAN HEALTH AND BEAUTY SDN BHD",
+     "predicted": "Guardian Health And Beauty Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-312",
+     "field": "date",
+     "expected": "2018-05-19",
+     "predicted": "2018-05-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-312",
+     "field": "total",
+     "expected": "38.37",
+     "predicted": "38.37",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00214200",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-321",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-321",
+     "field": "merchant.name",
+     "expected": "HAXINCONE RESOURCES SDN BHD",
+     "predicted": "Maxincone Resources Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-321",
+     "field": "date",
+     "expected": "2018-04-20",
+     "predicted": "2018-04-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-321",
+     "field": "total",
+     "expected": "3.70",
+     "predicted": "3.70",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00145525",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-328",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-328",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KI ) SDN BHD",
+     "predicted": "GARDENIA BAKERIES (KL) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-328",
+     "field": "date",
+     "expected": "2017-07-21",
+     "predicted": "2017-07-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-328",
+     "field": "total",
+     "expected": "33.05",
+     "predicted": "33.05",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00269475",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-368",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-368",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "GARDENIA BAKERIES (KL) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-368",
+     "field": "date",
+     "expected": "2017-10-15",
+     "predicted": "2017-10-15",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-368",
+     "field": "total",
+     "expected": "23.56",
+     "predicted": "23.56",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00265400",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-413",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-413",
+     "field": "merchant.name",
+     "expected": "ANN GIAP TRADING SDN BHD",
+     "predicted": "ANN GIAP TRADING SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-413",
+     "field": "date",
+     "expected": "2017-09-30",
+     "predicted": "2017-09-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-413",
+     "field": "total",
+     "expected": "66.00",
+     "predicted": "66.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00184875",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-486",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-486",
+     "field": "merchant.name",
+     "expected": "SANYU STATIONERY SHOP",
+     "predicted": "SANYU STATIONERY SHOP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-486",
+     "field": "date",
+     "expected": "2017-10-20",
+     "predicted": "2017-10-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-486",
+     "field": "total",
+     "expected": "8.70",
+     "predicted": "8.70",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00184875",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-515",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-515",
+     "field": "merchant.name",
+     "expected": "AIK HUAT HARDWARE ENTERPRISE (SETIA ALAM) SDN BHD",
+     "predicted": "AIK HUAT HARDWARE ENTERPRISE (SETIA ALAM) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-515",
+     "field": "date",
+     "expected": "2017-09-04",
+     "predicted": "2017-09-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-515",
+     "field": "total",
+     "expected": "28.00",
+     "predicted": "28.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00201375",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-ctr-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "parties.vendor",
+     "expected": "Herba Usługi Sp. z o.o.",
+     "predicted": "Herba Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "parties.buyer",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "contractNumber",
+     "expected": "91/2025",
+     "predicted": "91/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "noticePeriodDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "valueCap.amount",
+     "expected": "16000.00",
+     "predicted": "16000.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-0",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00116325",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-ctr-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "parties.vendor",
+     "expected": "Leżoń Serwis Sp. z o.o.",
+     "predicted": "Leżoń Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "parties.buyer",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "contractNumber",
+     "expected": "43/2025",
+     "predicted": "43/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "paymentTermsDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "valueCap.amount",
+     "expected": "20300.00",
+     "predicted": "20300.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-1",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00124000",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-ctr-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "parties.vendor",
+     "expected": "Clark Services Ltd",
+     "predicted": "Clark Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "parties.buyer",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "contractNumber",
+     "expected": "SA-2025-62",
+     "predicted": "SA-2025-62",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "noticePeriodDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "paymentTermsDays",
+     "expected": "21",
+     "predicted": "21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "valueCap.amount",
+     "expected": "5300.00",
+     "predicted": "5300.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "valueCap.currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-2",
+     "field": "governingLaw",
+     "expected": "the laws of England and Wales",
+     "predicted": "laws of England and Wales",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0009545",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-ctr-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "parties.vendor",
+     "expected": "O'Donnell Consulting Limited",
+     "predicted": "O'Donnell Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "parties.buyer",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "contractNumber",
+     "expected": "SA-2025-84",
+     "predicted": "SA-2025-84",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "endDate",
+     "expected": "2026-06-30",
+     "predicted": "2026-06-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "paymentTermsDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "valueCap.amount",
+     "expected": "4200.00",
+     "predicted": "4200.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "valueCap.currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-ctr-3",
+     "field": "governingLaw",
+     "expected": "the laws of Ireland",
+     "predicted": "laws of Ireland",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00133625",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-0-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "vendor.name",
+     "expected": "Herba Usługi Sp. z o.o.",
+     "predicted": "Herba Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "vendor.taxId",
+     "expected": "324-350-61-26",
+     "predicted": "324-350-61-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/083",
+     "predicted": "FV/2026/01/083",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "issueDate",
+     "expected": "2026-01-21",
+     "predicted": "2026-01-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "dueDate",
+     "expected": "2026-02-04",
+     "predicted": "2026-02-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "netTotal",
+     "expected": "4608.00",
+     "predicted": "4608.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "taxTotal",
+     "expected": "1059.84",
+     "predicted": "1059.84",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "grossTotal",
+     "expected": "5667.84",
+     "predicted": "5667.84",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00243225",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-0-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "vendor.name",
+     "expected": "Herba Usługi Sp. z o.o.",
+     "predicted": "Herba Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "vendor.taxId",
+     "expected": "324-350-61-26",
+     "predicted": "324-350-61-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/280",
+     "predicted": "FV/2026/04/280",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "issueDate",
+     "expected": "2026-04-16",
+     "predicted": "2026-04-16",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "dueDate",
+     "expected": "2026-04-30",
+     "predicted": "2026-04-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "netTotal",
+     "expected": "5958.00",
+     "predicted": "5958.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "taxTotal",
+     "expected": "1370.34",
+     "predicted": "1370.34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "grossTotal",
+     "expected": "7328.34",
+     "predicted": "7328.34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.0012275",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-0-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "vendor.name",
+     "expected": "Herba Usługi Sp. z o.o.",
+     "predicted": "Herba Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "vendor.taxId",
+     "expected": "324-350-61-26",
+     "predicted": "324-350-61-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/204",
+     "predicted": "FV/2026/07/204",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "issueDate",
+     "expected": "2026-07-14",
+     "predicted": "2026-07-14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "dueDate",
+     "expected": "2026-07-28",
+     "predicted": "2026-07-28",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "netTotal",
+     "expected": "11646.00",
+     "predicted": "11646.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "taxTotal",
+     "expected": "2678.58",
+     "predicted": "2678.58",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "grossTotal",
+     "expected": "14324.58",
+     "predicted": "14324.58",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-0-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001212",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-1-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "vendor.name",
+     "expected": "Leżoń Serwis Sp. z o.o.",
+     "predicted": "Leżoń Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "vendor.taxId",
+     "expected": "275-490-93-79",
+     "predicted": "275-490-93-79",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/256",
+     "predicted": "FV/2026/01/256",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "issueDate",
+     "expected": "2026-01-18",
+     "predicted": "2026-01-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "dueDate",
+     "expected": "2026-03-19",
+     "predicted": "2026-03-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "netTotal",
+     "expected": "1915.00",
+     "predicted": "1915.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "taxTotal",
+     "expected": "440.45",
+     "predicted": "440.45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "grossTotal",
+     "expected": "2355.45",
+     "predicted": "2355.45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q1",
+     "field": "paidDate",
+     "expected": "2026-03-16",
+     "predicted": "2026-03-16",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00223925",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-1-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "vendor.name",
+     "expected": "Leżoń Serwis Sp. z o.o.",
+     "predicted": "Leżoń Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "vendor.taxId",
+     "expected": "275-490-93-79",
+     "predicted": "275-490-93-79",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/173",
+     "predicted": "FV/2026/04/173",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "issueDate",
+     "expected": "2026-04-10",
+     "predicted": "2026-04-10",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "dueDate",
+     "expected": "2026-04-17",
+     "predicted": "2026-04-17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "netTotal",
+     "expected": "1915.00",
+     "predicted": "1915.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "taxTotal",
+     "expected": "440.45",
+     "predicted": "440.45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "grossTotal",
+     "expected": "2355.45",
+     "predicted": "2355.45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q2",
+     "field": "paidDate",
+     "expected": "2026-04-16",
+     "predicted": "2026-04-16",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00233100",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-1-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "vendor.name",
+     "expected": "Leżoń Serwis Sp. z o.o.",
+     "predicted": "Leżoń Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "vendor.taxId",
+     "expected": "275-490-93-79",
+     "predicted": "275-490-93-79",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/123",
+     "predicted": "FV/2026/07/123",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "issueDate",
+     "expected": "2026-07-22",
+     "predicted": "2026-07-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "dueDate",
+     "expected": "2026-09-20",
+     "predicted": "2026-09-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "netTotal",
+     "expected": "8815.00",
+     "predicted": "8815.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "taxTotal",
+     "expected": "2027.45",
+     "predicted": "2027.45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "grossTotal",
+     "expected": "10842.45",
+     "predicted": "10842.45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-1-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.0012175",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-2-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "vendor.name",
+     "expected": "Clark Services Ltd",
+     "predicted": "Clark Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "vendor.taxId",
+     "expected": "GB224112295",
+     "predicted": "GB224112295",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260195",
+     "predicted": "INV-260195",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "issueDate",
+     "expected": "2026-01-23",
+     "predicted": "2026-01-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "dueDate",
+     "expected": "2026-02-13",
+     "predicted": "2026-02-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "netTotal",
+     "expected": "567.00",
+     "predicted": "567.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "grossTotal",
+     "expected": "567.00",
+     "predicted": "567.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00099325",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-2-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "vendor.name",
+     "expected": "Clark Services Ltd",
+     "predicted": "Clark Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "vendor.taxId",
+     "expected": "GB224112295",
+     "predicted": "GB224112295",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260306",
+     "predicted": "INV-260306",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "issueDate",
+     "expected": "2026-04-09",
+     "predicted": "2026-04-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "dueDate",
+     "expected": "2026-04-30",
+     "predicted": "2026-04-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "netTotal",
+     "expected": "1665.40",
+     "predicted": "1665.40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "grossTotal",
+     "expected": "1665.40",
+     "predicted": "1665.40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q2",
+     "field": "paidDate",
+     "expected": "2026-04-26",
+     "predicted": "2026-04-26",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00131275",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-2-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "vendor.name",
+     "expected": "Clark Services Ltd",
+     "predicted": "Clark Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "vendor.taxId",
+     "expected": "GB224112295",
+     "predicted": "GB224112295",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260112",
+     "predicted": "INV-260112",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "issueDate",
+     "expected": "2026-07-13",
+     "predicted": "2026-07-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "dueDate",
+     "expected": "2026-08-03",
+     "predicted": "2026-08-03",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "netTotal",
+     "expected": "1099.00",
+     "predicted": "1099.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "grossTotal",
+     "expected": "1099.00",
+     "predicted": "1099.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-2-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001124",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-3-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "vendor.name",
+     "expected": "O'Donnell Consulting Limited",
+     "predicted": "O'Donnell Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "vendor.taxId",
+     "expected": "IE589735221",
+     "predicted": "IE589735221",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260082",
+     "predicted": "INV-260082",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "issueDate",
+     "expected": "2026-01-14",
+     "predicted": "2026-01-14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "dueDate",
+     "expected": "2026-02-13",
+     "predicted": "2026-02-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "netTotal",
+     "expected": "556.00",
+     "predicted": "556.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "grossTotal",
+     "expected": "556.00",
+     "predicted": "556.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q1",
+     "field": "paidDate",
+     "expected": "2026-02-10",
+     "predicted": "2026-02-10",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00133850",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-3-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "vendor.name",
+     "expected": "O'Donnell Consulting Limited",
+     "predicted": "O'Donnell Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "vendor.taxId",
+     "expected": "IE589735221",
+     "predicted": "IE589735221",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260056",
+     "predicted": "INV-260056",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "issueDate",
+     "expected": "2026-04-04",
+     "predicted": "2026-04-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "dueDate",
+     "expected": "2026-05-04",
+     "predicted": "2026-05-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "netTotal",
+     "expected": "620.00",
+     "predicted": "620.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "grossTotal",
+     "expected": "620.00",
+     "predicted": "620.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001073",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-inv-3-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "vendor.name",
+     "expected": "O'Donnell Consulting Limited",
+     "predicted": "O'Donnell Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "vendor.taxId",
+     "expected": "IE589735221",
+     "predicted": "IE589735221",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "buyer.name",
+     "expected": "Klęczar Handel Sp. z o.o.",
+     "predicted": "Klęczar Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "buyer.taxId",
+     "expected": "918-062-27-06",
+     "predicted": "918-062-27-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260234",
+     "predicted": "INV-260234",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "issueDate",
+     "expected": "2026-07-06",
+     "predicted": "2026-07-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "dueDate",
+     "expected": "2026-08-05",
+     "predicted": "2026-08-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "netTotal",
+     "expected": "1132.00",
+     "predicted": "1132.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "grossTotal",
+     "expected": "1132.00",
+     "predicted": "1132.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-inv-3-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.0010895",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-rec-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "merchant.name",
+     "expected": "Papiernik Buszta",
+     "predicted": "Papiernik Buszta",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "merchant.taxId",
+     "expected": "107-526-40-86",
+     "predicted": "107-526-40-86",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "receiptNumber",
+     "expected": "9729/68",
+     "predicted": "9729/68",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "date",
+     "expected": "2026-03-20",
+     "predicted": "2026-03-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "total",
+     "expected": "262.03",
+     "predicted": "262.03",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "taxTotal",
+     "expected": "49.00",
+     "predicted": "49.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-0",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00117625",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-rec-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "merchant.name",
+     "expected": "Bistro Bartkowicz",
+     "predicted": "Bistro Bartkowicz",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "merchant.taxId",
+     "expected": "488-339-63-16",
+     "predicted": "488-339-63-16",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "receiptNumber",
+     "expected": "3896/84",
+     "predicted": "3896/84",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "date",
+     "expected": "2026-04-12",
+     "predicted": "2026-04-12",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "total",
+     "expected": "84.92",
+     "predicted": "84.92",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "taxTotal",
+     "expected": "15.88",
+     "predicted": "15.88",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-1",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.0015305",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-rec-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "merchant.name",
+     "expected": "Alexander Cabs",
+     "predicted": "Alexander Cabs",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "merchant.taxId",
+     "expected": "GB753942915",
+     "predicted": "GB753942915",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "receiptNumber",
+     "expected": "9886/67",
+     "predicted": "9886/67",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "date",
+     "expected": "2026-05-13",
+     "predicted": "2026-05-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "total",
+     "expected": "24.95",
+     "predicted": "24.95",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "taxTotal",
+     "expected": "4.16",
+     "predicted": "4.16",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-2",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00102800",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w3-rec-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "merchant.name",
+     "expected": "Bruce Stationers",
+     "predicted": "Bruce Stationers",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "merchant.taxId",
+     "expected": "GB288198846",
+     "predicted": "GB288198846",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "receiptNumber",
+     "expected": "4683/44",
+     "predicted": "4683/44",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "date",
+     "expected": "2026-04-08",
+     "predicted": "2026-04-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "total",
+     "expected": "93.38",
+     "predicted": "93.38",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "taxTotal",
+     "expected": "15.56",
+     "predicted": "15.56",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w3-rec-3",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00121875",
+   "cached": true
+  }
+ ]
+}

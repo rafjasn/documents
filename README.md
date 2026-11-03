@@ -1,186 +1,119 @@
 # Documents
+
 [![CI](https://github.com/rafjasn/documents/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rafjasn/documents/actions/workflows/ci.yml)
+[![Evaluation](https://github.com/rafjasn/documents/actions/workflows/eval.yml/badge.svg)](https://github.com/rafjasn/documents/actions/workflows/eval.yml)
 
-A full-stack document management platform built on AWS.
+Ask questions across invoices, receipts and contracts in English or Polish, with answers linked to the source page. Built around an evaluation harness for answer quality, retrieval and extraction.
 
-## Features
+![Document extraction, cross-document calculations and answers with page-level citations](docs/media/demo.gif)
 
-- Drag-and-drop file upload (PDF, DOCX, PNG, JPG, WEBP, TXT, CSV) via S3 presigned URLs — no file data passes through the API server
-- Automatic text extraction using pdf-parse, mammoth, and Tesseract OCR
-- AI classification and summarisation powered by a pluggable LLM backend (Ollama, OpenAI, Anthropic, or AWS Bedrock)
-- Thumbnail generation with sharp, in parallel with AI processing
-- Real-time processing status pushed to the browser over WebSocket (Socket.IO) via SNS - SQS fan-out
-- Authenticated document chat with streaming responses and persistent message history
-- Pluggable auth provider: Keycloak locally, AWS Cognito in production
+- **Document processing:** PDF, DOCX, scans and photos; OCR, figure captions and typed financial fields.
+- **Retrieval and answers:** contextual hybrid search, LangGraph orchestration, calculations in Python and highlighted citations.
+- **LLMOps:** evaluated prompt versions, daily spending limits, model fallback, distributed tracing and Grafana alerts.
+- **Access control:** JWT authentication, tenant-scoped retrieval and prompt-injection controls.
 
-## Technologies
+## Results
 
-- **Frontend** — Next.js, Tailwind CSS, Socket.IO client
-- **API** — NestJS, Socket.IO, Passport JWT, Swagger
-- **Worker** — NestJS, SQS long-polling, pdf-parse, mammoth, Tesseract, sharp
-- **Storage** — DynamoDB (single-table design), S3
-- **Messaging** — SQS, SNS
-- **AI** — Ollama, OpenAI, Anthropic, AWS Bedrock
-- **Auth** — Keycloak, AWS Cognito
-- **Infrastructure** — AWS CDK v2, ECS Fargate, ALB, ECR, CloudWatch
-- **Local dev** — LocalStack, Docker Compose
+72 held-out questions from a hand-reviewed set of 144 across 200 documents:
 
-## Local setup
-
-### Prerequisites
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) ≥ 4 with Compose v2
-- Node.js ≥ 20 and npm ≥ 10 (only needed if running outside Docker)
-
-### 1. Clone and configure
-
-```bash
-git clone <repo-url>
-cd documents
-cp .env.example .env
-```
-
-The defaults work out of the box with LocalStack and Ollama. To use a cloud AI provider set `AI_PROVIDER` and the corresponding key:
-
-| Variable | Default | Notes |
-|---|---|---|
-| `AI_PROVIDER` | `ollama` | `ollama` \| `openai` \| `anthropic` \| `bedrock` |
-| `AI_MODEL` | `llama3.2:3b` | Model name for the chosen provider |
-| `OPENAI_API_KEY` | — | Required when `AI_PROVIDER=openai` |
-| `ANTHROPIC_API_KEY` | — | Required when `AI_PROVIDER=anthropic` |
-
-### 2. Start all services
-
-```bash
-docker compose up --build
-```
-
-To run multiple replicas of the API and worker (traffic is distributed automatically):
-
-```bash
-docker compose up -d --scale api=3 --scale worker=2
-```
-
-| Service | URL |
+| Measure | Result |
 |---|---|
-| Frontend | http://localhost:3000 |
-| API | http://localhost/api |
-| Swagger UI | http://localhost/api/docs |
-| Keycloak admin | http://localhost:8080 (admin / admin) |
-| LocalStack | http://localhost:4566 |
+| Correct answers | **70/72 (97%)**, versus 43/72 (60%) for the single-document baseline |
+| Questions across documents | 9/10 (90%), versus 0/10 |
+| Totals, counts and averages | 12/12 (100%), versus 2/12 (17%) |
+| Polish questions | 27/28 (96%), versus 16/28 (57%) |
+| Citations that point to a relevant document and page | 0.986 |
+| Faithfulness: answers whose every claim is in their sources | 0.972 (70/72), judged by Gemma 4, a different model family from the one answering |
+| Latency, p50 / p95 | 3.8 s / 6.08 s |
+| Model cost per question | $0.00286 |
 
-LocalStack is initialised automatically — S3 bucket, DynamoDB table, SQS queues, and SNS topic are all created on first start.
+The baseline receives the correct document; library chat must retrieve its sources. This is a small domain-specific benchmark, measured on an M2 with 8 GB RAM. [Full results and methodology](docs/RESULTS.md).
 
-### 3. Open the app
+- **Retrieval** (dev split): MRR@10 0.909 and recall@10 0.941 at 17 ms per query, from contextual chunks with multilingual dense vectors and BM25.
+- **Extraction** (test split): field F1 0.996 on invoices, receipts and contracts, including scans and phone photos.
+- **Prompt injection:** attack success fell from 42.4% with the baseline defences to 9.1% with layered defences, and from 66.7% to 33.3% on paraphrases held out from tuning. No attack leaked another tenant's documents.
+- **Tried and dropped:** a cross-encoder reranker (MRR@10 from 0.909 to 0.799), a larger embedder, parent-chunk expansion and Polish stemming.
 
-Go to http://localhost:3000, register an account, and upload a document. Processing status updates appear in real time.
+## How it works
 
-## Testing
-
-Unit and integration tests use Jest and run entirely offline — no Docker or AWS credentials required.
-
-```bash
-# All workspaces
-npm test
-
-# Single service
-npm test -w @documents/api
-npm test -w @documents/worker
-
-# With coverage
-npm run test:cov -w @documents/api
-npm run test:cov -w @documents/worker
+```mermaid
+flowchart LR
+    upload([Upload]) --> s3[(S3)] --> queue[SQS] --> worker["Ingestion worker<br/>Docling · Tesseract · Gemini"]
+    worker -- "typed fields" --> ddb[(DynamoDB)]
+    worker -- "contextual chunks" --> qdrant[("Qdrant<br/>dense + BM25")]
+    question([Question]) --> api["API<br/>NestJS"] --> agent["AI service<br/>LangGraph"]
+    agent -- "hybrid search" --> qdrant
+    agent -- "compute in Python" --> ddb
+    agent -- "answer + citations" --> api
+    agent -- "model calls" --> gateway["LiteLLM gateway<br/>budgets + fallback"] --> gemini{{Gemini}}
+    worker -- "model calls" --> gateway
 ```
 
-End-to-end tests for the API require LocalStack to be running (`docker compose up localstack -d`):
+The gateway is optional; services can call Gemini directly. [Full architecture](docs/ARCHITECTURE.md).
+
+## How it is operated
+
+CI runs lint, types, tests and image builds. Candidate prompt evaluations pin versions and text hashes; promotion uses the passing record. A deliberately worse candidate scored **19/30** and was rejected. [Prompt workflow](services/ai/README.md#prompts-and-masking) · [Recorded checks](docs/RESULTS.md#operations).
+
+Prometheus and Grafana track latency, model usage and cost, uploads and queue health. Each of these checks was run and recorded:
+
+| Check | Result |
+|---|---|
+| A user over the daily budget, beside another user | The first refused in chat and at upload; the other served |
+| The global budget spent, or the gateway's database stopped | Every call refused, never served unchecked |
+| The primary model rate-limited | 4 of 4 calls answered by the fallback, and costed at its price |
+| The gateway's overhead (dev split) | $0.00281 and 4.22 s p50 a question, against $0.00278 and 4.15 s direct |
+| The synthetic tax IDs and account numbers in exported traces | 0 in 13,356 observations |
+| TEI stopped, then restarted | The error-rate alert fired after 104 s, and cleared 255 s after the restart |
+
+![Grafana dashboard showing chat latency, graph timings, model usage and spend, uploads and queue metrics](docs/media/dashboard.png)
+
+## Quick start
+
+Requires Docker with at least 6 GB RAM, [uv](https://docs.astral.sh/uv/) and a [Gemini API key](https://aistudio.google.com/apikey). Document content is sent to Gemini; trace masking applies to telemetry.
 
 ```bash
-# API e2e (auth tests run without LocalStack; document tests require it)
-npm run test:e2e -w @documents/api
-
-# With coverage
-npm run test:e2e:cov -w @documents/api
+git clone https://github.com/rafjasn/documents.git && cd documents
+cp .env.example .env  # set GEMINI_API_KEY; Apple Silicon: TEI_TAG=cpu-arm64-1.9.4
+docker compose up -d --build
+cd services/ai
+uv sync --extra corpus --extra serve
+uv run docai corpus build
+uv run docai security build
+SEED_PASSWORD=demo-password uv run --env-file ../../.env docai seed \
+    --email demo@documents.local --register --source cuad --source synthetic \
+    --fixture inj-override-en --wait
 ```
 
-## Linting
+Open <http://localhost> and sign in with `demo@documents.local` / `demo-password`. Follow the [demo walkthrough](docs/DEMO.md).
+
+The first seed processes 141 documents: 45 minutes and $0.66 in recorded Gemini calls. Cached seeds reuse previous work; reseed after LocalStack restarts to restore its S3 objects.
+
+Optional [gateway setup](services/ai/README.md#llm-gateway) enables budgets and fallback; [telemetry setup](services/ai/README.md#telemetry) adds tracing and dashboards.
+
+## Limitations
+
+- **Evaluation size:** 72 held-out questions over one domain and five synthetic companies, so one question moves accuracy by about 1.4 points. The judge is a model, spot-checked by hand.
+- **Prompt injection:** planted claims that don't address an AI still win a third of the held-out attacks, and a planted value can reach the extracted fields.
+
+## Development
 
 ```bash
-# All workspaces
-npm run lint
-
-# Single service
-npm run lint -w @documents/api
-npm run lint -w @documents/worker
-npm run lint -w @documents/frontend
+npm ci
+npm run build:shared
+npm test && npm run lint
+cd services/ai
+uv sync --all-extras
+uv run pytest
+uv run ruff check && uv run ruff format --check && uv run mypy
 ```
 
-## Deployment
+## Documentation
 
-Infrastructure is managed with AWS CDK v2 from the `infrastructure/cdk` directory.
+[Architecture](docs/ARCHITECTURE.md) · [Results](docs/RESULTS.md) · [Demo](docs/DEMO.md) · [AI service guide](services/ai/README.md) · [AWS infrastructure definitions](infrastructure/cdk/README.md)
 
-### Required environment variables
+**Stack:** Python, FastAPI, LangGraph, Gemini, Qdrant, Docling, Tesseract, LiteLLM, Langfuse, OpenTelemetry, Next.js, NestJS, Docker and AWS CDK.
 
-| Variable | Required for | Description |
-|---|---|---|
-| `ALLOWED_ORIGINS` | synth, deploy | Comma-separated list of origins allowed by the S3 bucket CORS policy. Must include the frontend origin (ALB DNS, CloudFront domain, or custom domain). Synth fails loudly if missing so the bucket can't be deployed with `*`. |
-| `COGNITO_USER_POOL_ID` | deploy | Existing Cognito user pool ID used by the API in AWS. For local `cdk synth`, the app loads the repo root `.env` and falls back to a placeholder if unset. |
-| `COGNITO_CLIENT_ID` | deploy | Cognito app client ID used for login and JWT audience validation. For local `cdk synth`, the app loads the repo root `.env` and falls back to a placeholder if unset. |
-| `CDK_REQUIRE_AUTH_ENV` | deploy | Set to `true` for deploy validation so missing Cognito auth env vars fail fast instead of using synth placeholders. |
-| `CDK_DEFAULT_ACCOUNT` | deploy | AWS account ID (auto-populated when using `aws configure`). |
-| `CDK_DEFAULT_REGION` | deploy | AWS region (defaults to `us-east-1`). |
+## License
 
-### Validate (no AWS credentials required)
-
-```bash
-npm run infra:synth
-```
-
-`cdk synth` loads the repo root `.env` automatically. If `COGNITO_USER_POOL_ID` or `COGNITO_CLIENT_ID` are blank locally, synth uses placeholder values so you do not need to export them just to validate the templates.
-
-### Bootstrap (once per account/region)
-
-```bash
-npx cdk bootstrap aws://<account-id>/<region>
-```
-
-### Deploy
-
-```bash
-# Stateful resources — VPC, S3, DynamoDB, SQS, SNS, ECR, IAM
-CDK_REQUIRE_AUTH_ENV=true \
-ALLOWED_ORIGINS=https://app.example.com \
-COGNITO_USER_POOL_ID=us-east-1_abc123 \
-COGNITO_CLIENT_ID=abc123exampleclient \
-  npx cdk deploy DocumentsInfraStack
-
-# Services — ECS tasks, ALB, CloudWatch (CI/CD normally handles this)
-CDK_REQUIRE_AUTH_ENV=true \
-ALLOWED_ORIGINS=https://app.example.com \
-COGNITO_USER_POOL_ID=us-east-1_abc123 \
-COGNITO_CLIENT_ID=abc123exampleclient \
-  npx cdk deploy DocumentsServicesStack --context imageTag=<git-sha>
-```
-
-The ALB DNS is assigned at deploy time. For a first-time deploy without a custom domain, deploy the services stack first, capture the `AlbDns` output, then redeploy the infra stack with `ALLOWED_ORIGINS=http://<alb-dns>`.
-
-Before deploying services, put required secrets in AWS Secrets Manager:
-
-```bash
-aws secretsmanager put-secret-value --secret-id documents/jwt-secret \
-  --secret-string "$(openssl rand -base64 32)"
-```
-
-### Destroy
-
-```bash
-npx cdk destroy --all --context removalPolicy=destroy
-```
-
-The `removalPolicy=destroy` context flag must be set at synth time for S3 and DynamoDB to be deleted with the stack.
-
-### CI/CD
-
-Two GitHub Actions workflows are included:
-
-- **`ci.yml`** — runs on every push and PR: CDK synth, TypeScript build, Jest tests, Docker build check
-- **`deploy.yml`** - builds and pushes Docker images to ECR, then deploys both CDK stacks via OIDC (no long-lived AWS credentials stored in GitHub)
+[MIT](LICENSE). CUAD v1 by The Atticus Project ([dataset](https://zenodo.org/records/4595826), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)); SROIE is research-only and excluded from the demo and CI bundle. The repository retains SROIE IDs, labelled fields and evaluation questions, without redistributing receipts. [Corpus details](services/ai/README.md#evaluation-corpus).

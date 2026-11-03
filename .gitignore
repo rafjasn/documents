@@ -14,8 +14,22 @@ Thumbs.db
 coverage/
 coverage-e2e/
 cdk.out/
+# The stacks are environment-agnostic and look nothing up; a context file would hold an account ID.
+cdk.context.json
 *.tsbuildinfo
 localstack-data/
 *.log
 npm-debug.log*
 terraform/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Playwright (frontend/e2e): results and screenshots of local runs
+frontend/e2e/.results/
+frontend/e2e/screenshots/
+frontend/playwright-report/

@@ -1,35 +1,38 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Badge from '@/components/ui/badge/Badge';
-import { Document } from '@/types';
+import ChatThread, { ActiveCitation } from '@/components/chat/ChatThread';
+import SourcePanel from '@/components/chat/SourcePanel';
+import ExtractedFields from './ExtractedFields';
+import { useChat } from '@/hooks/useChat';
+import { Conversation, Document } from '@/types';
 import {
-    formatFileSize,
+    CATEGORY_NAMES,
+    confidenceColor,
     formatDate,
-    statusLabel,
+    formatFileSize,
+    languageName,
     mimeTypeIcon,
-    confidenceColor
+    statusLabel
 } from '@/lib/utils';
 import {
-    ArrowLeft,
-    Download,
-    Trash2,
-    Loader2,
     AlertCircle,
-    FileText,
-    Tag,
-    Globe,
+    ArrowLeft,
     BarChart3,
+    Download,
+    ExternalLink,
+    FileText,
+    Globe,
+    Loader2,
     MessageSquare,
-    Send
+    MessageSquarePlus,
+    ShieldAlert,
+    Tag,
+    Trash2
 } from 'lucide-react';
 import { api } from '@/lib/api';
-
-interface ChatMsg {
-    role: 'user' | 'assistant';
-    content: string;
-}
 
 interface DocumentDetailProps {
     doc: Document;
@@ -38,112 +41,150 @@ interface DocumentDetailProps {
     onDelete: () => void;
 }
 
+const card =
+    'overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]';
+const label =
+    'flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400';
+const heading = `mb-4 ${label}`;
+
+function Chips({ label, values }: { label: string; values?: string[] }) {
+    if (!values?.length) return null;
+    return (
+        <div>
+            <p className="mb-1.5 text-xs text-gray-500 dark:text-gray-400">{label}</p>
+            <div className="flex flex-wrap gap-1.5">
+                {values.map((value, i) => (
+                    <span
+                        key={i}
+                        className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                    >
+                        {value}
+                    </span>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+/** Chat about this document: a conversation scoped to it, with the cited pages beside. */
+function DocumentChat({ doc }: { doc: Document }) {
+    const [conversationId, setConversationId] = useState<string | null>(null);
+    const [found, setFound] = useState(false); // looked for an earlier conversation
+    const [citation, setCitation] = useState<ActiveCitation | null>(null);
+    const [drawer, setDrawer] = useState(false);
+
+    useEffect(() => {
+        let current = true;
+        api.listConversations(doc.id)
+            .then(([latest]) => current && latest && setConversationId(latest.id))
+            .catch(() => {
+                // Without its history, the chat starts a new conversation.
+            })
+            .finally(() => current && setFound(true));
+        return () => {
+            current = false;
+        };
+    }, [doc.id]);
+
+    const create = useCallback(() => api.createConversation({ documentIds: [doc.id] }), [doc.id]);
+    const onCreated = useCallback((c: Conversation) => setConversationId(c.id), []);
+    const chat = useChat(conversationId, create, onCreated);
+
+    const message =
+        chat.messages.find((m) => m.key === citation?.messageKey) ??
+        [...chat.messages].reverse().find((m) => m.role === 'assistant' && m.citations.length > 0);
+    const panel = (onClose?: () => void) => (
+        <SourcePanel
+            citations={message?.citations ?? []}
+            activeId={citation && message?.key === citation.messageKey ? citation.citationId : null}
+            onSelect={(citationId) =>
+                message && setCitation({ messageKey: message.key, citationId })
+            }
+            onClose={onClose}
+            linkDocuments={false}
+        />
+    );
+
+    return (
+        <div
+            className={`${card} mt-6`}
+            data-testid="document-chat"
+            data-ready={found && !chat.loading}
+        >
+            <div className="mb-2 flex items-center justify-between">
+                <h2 className={label}>
+                    <MessageSquare size={16} />
+                    Ask about this document
+                </h2>
+                <div className="flex items-center gap-3 text-xs">
+                    {conversationId && (
+                        <Link
+                            href={`/chat?c=${conversationId}`}
+                            className="inline-flex items-center gap-1 text-brand-600 hover:underline dark:text-brand-400"
+                        >
+                            Open in Chat <ExternalLink size={12} />
+                        </Link>
+                    )}
+                    {chat.messages.length > 0 && (
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setConversationId(null);
+                                setCitation(null);
+                            }}
+                            className="inline-flex items-center gap-1 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
+                        >
+                            <MessageSquarePlus size={13} /> New conversation
+                        </button>
+                    )}
+                </div>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-5">
+                <div className="flex h-[36rem] flex-col lg:col-span-3">
+                    <ChatThread
+                        messages={chat.messages}
+                        loading={chat.loading}
+                        sending={chat.sending}
+                        onSend={chat.send}
+                        active={citation}
+                        onCite={(next) => {
+                            setCitation(next);
+                            setDrawer(true);
+                        }}
+                        placeholder="Ask something about this document…"
+                        empty={
+                            <p className="py-10 text-center text-sm text-gray-400 dark:text-gray-500">
+                                Ask about amounts, dates, parties or clauses. Answers cite the page
+                                they come from.
+                            </p>
+                        }
+                    />
+                </div>
+                <div className="hidden h-[36rem] lg:col-span-2 lg:block">{panel()}</div>
+            </div>
+            {drawer && citation && (
+                <div className="fixed inset-0 z-[100000] lg:hidden">
+                    <div
+                        className="absolute inset-0 bg-gray-900/40"
+                        onClick={() => setDrawer(false)}
+                    />
+                    <div className="absolute inset-y-0 right-0 w-full max-w-md bg-white p-4 shadow-xl dark:bg-gray-900">
+                        {panel(() => setDrawer(false))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
 export default function DocumentDetail({
     doc,
     deleting,
     onDownload,
     onDelete
 }: DocumentDetailProps) {
-    const [chatMessages, setChatMessages] = useState<ChatMsg[]>([]);
-    const [chatInput, setChatInput] = useState('');
-    const [chatLoading, setChatLoading] = useState(false);
-    const chatBottomRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!doc || doc.status !== 'COMPLETED') {
-            return;
-        }
-
-        api.getChatHistory(doc.id)
-            .then((msgs) =>
-                setChatMessages(
-                    msgs.map((m) => ({ role: m.role as 'user' | 'assistant', content: m.content }))
-                )
-            )
-            .catch(() => {});
-    }, [doc.id, doc.status]);
-
-    useEffect(() => {
-        chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [chatMessages]);
-
-    const handleChatSend = async () => {
-        if (!chatInput.trim()) return;
-        const message = chatInput.trim();
-        setChatInput('');
-        setChatMessages((prev) => [...prev, { role: 'user', content: message }]);
-        setChatLoading(true);
-        setChatMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
-
-        try {
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost';
-            const res = await api.fetchWithAuth(`${apiUrl}/api/ai/chat/${doc.id}/stream`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message })
-            });
-
-            if (!res.ok) {
-                throw new Error(`Chat failed: ${res.status}`);
-            }
-
-            const reader = res.body!.getReader();
-            const decoder = new TextDecoder();
-            let buffer = '';
-
-            while (true) {
-                const { done, value } = await reader.read();
-
-                if (done) {
-                    break;
-                }
-
-                buffer += decoder.decode(value, { stream: true });
-                const lines = buffer.split('\n');
-                buffer = lines.pop() ?? '';
-
-                for (const line of lines) {
-                    if (!line.startsWith('data: ')) {
-                        continue;
-                    }
-
-                    const payload = line.slice(6).trim();
-
-                    if (payload === '[DONE]') {
-                        break;
-                    }
-
-                    try {
-                        const { chunk } = JSON.parse(payload) as { chunk: string };
-                        setChatMessages((prev) => {
-                            const next = [...prev];
-                            next[next.length - 1] = {
-                                role: 'assistant',
-                                content: next[next.length - 1].content + chunk
-                            };
-                            return next;
-                        });
-                    } catch {
-                        // skip malformed SSE lines
-                    }
-                }
-            }
-        } catch {
-            setChatMessages((prev) => {
-                const next = [...prev];
-                next[next.length - 1] = {
-                    role: 'assistant',
-                    content: 'Sorry, something went wrong. Please try again.'
-                };
-                return next;
-            });
-        } finally {
-            setChatLoading(false);
-        }
-    };
-
     const meta = doc.metadata;
-    const isProcessing = doc.status === 'PROCESSING' || doc.status === 'PENDING';
+    const isProcessing = doc.status !== 'COMPLETED' && doc.status !== 'FAILED';
 
     const statusColor =
         doc.status === 'COMPLETED'
@@ -155,7 +196,7 @@ export default function DocumentDetail({
                 : 'info';
 
     return (
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
             <Link
                 href="/dashboard"
                 className="mb-6 inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
@@ -164,11 +205,12 @@ export default function DocumentDetail({
                 Back to documents
             </Link>
 
-            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] mb-6 p-6">
+            <div className={`${card} mb-6`}>
                 <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-4 min-w-0">
+                    <div className="flex min-w-0 items-start gap-4">
                         <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
                             {doc.thumbnailUrl ? (
+                                // eslint-disable-next-line @next/next/no-img-element
                                 <img
                                     width={56}
                                     height={56}
@@ -181,7 +223,7 @@ export default function DocumentDetail({
                             )}
                         </div>
                         <div className="min-w-0">
-                            <h1 className="text-xl font-bold text-gray-800 dark:text-white/90 truncate">
+                            <h1 className="truncate text-xl font-bold text-gray-800 dark:text-white/90">
                                 {doc.fileName}
                             </h1>
                             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -194,7 +236,17 @@ export default function DocumentDetail({
                                 </Badge>
                                 {doc.category && (
                                     <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-                                        {doc.category}
+                                        {CATEGORY_NAMES[doc.category] ?? doc.category}
+                                    </span>
+                                )}
+                                {doc.language && (
+                                    <span
+                                        data-testid="document-language"
+                                        title="Detected language of the content"
+                                        className="inline-flex items-center gap-1 rounded-full bg-blue-light-50 px-2.5 py-0.5 text-xs font-medium text-blue-light-700 dark:bg-blue-light-500/15 dark:text-blue-light-400"
+                                    >
+                                        <Globe size={12} />
+                                        {languageName(doc.language)}
                                     </span>
                                 )}
                             </div>
@@ -212,6 +264,7 @@ export default function DocumentDetail({
                         <button
                             onClick={onDelete}
                             disabled={deleting}
+                            aria-label="Delete document"
                             className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white p-2 text-gray-400 shadow-sm hover:border-red-300 hover:bg-red-50 hover:text-red-600 disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-red-900/20 dark:hover:text-red-400"
                         >
                             {deleting ? (
@@ -233,8 +286,8 @@ export default function DocumentDetail({
             </div>
 
             {isProcessing && (
-                <div className="overflow-hidden rounded-2xl border border-indigo-200 bg-indigo-50 dark:border-indigo-800 dark:bg-indigo-900/20 mb-6 flex items-center gap-4 p-6">
-                    <div className="rounded-full bg-indigo-100 dark:bg-indigo-900/40 p-3">
+                <div className="mb-6 flex items-center gap-4 overflow-hidden rounded-2xl border border-indigo-200 bg-indigo-50 p-6 dark:border-indigo-800 dark:bg-indigo-900/20">
+                    <div className="rounded-full bg-indigo-100 p-3 dark:bg-indigo-900/40">
                         <Loader2
                             size={24}
                             className="animate-spin text-indigo-600 dark:text-indigo-400"
@@ -244,19 +297,52 @@ export default function DocumentDetail({
                         <h3 className="font-semibold text-indigo-900 dark:text-indigo-300">
                             {doc.status === 'PENDING'
                                 ? 'Queued for processing'
-                                : 'Processing your document...'}
+                                : `${statusLabel(doc.status)}…`}
                         </h3>
                         <p className="mt-0.5 text-sm text-indigo-700/70 dark:text-indigo-400/70">
                             {doc.status === 'PENDING'
                                 ? 'Your document is in the queue and will be processed shortly.'
-                                : 'Extracting text, classifying content, and extracting metadata.'}
+                                : 'Reading the pages, extracting fields and indexing the text for search.'}
                         </p>
                     </div>
                 </div>
             )}
 
+            {doc.quarantined && doc.quarantined.length > 0 && (
+                <div
+                    data-testid="quarantine-warning"
+                    className="mb-6 flex items-start gap-4 overflow-hidden rounded-2xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-800 dark:bg-amber-900/20"
+                >
+                    <ShieldAlert
+                        size={20}
+                        className="mt-0.5 shrink-0 text-amber-600 dark:text-amber-400"
+                    />
+                    <div className="min-w-0">
+                        <h3 className="font-semibold text-amber-900 dark:text-amber-300">
+                            Text addressed to an AI assistant was removed
+                        </h3>
+                        <p className="mt-1 text-sm text-amber-800/80 dark:text-amber-400/80">
+                            This document contains instructions meant for an AI system, a common way
+                            to plant false answers. They were cut before extraction, search and chat
+                            read the document; check its contents with the sender.
+                        </p>
+                        <ul className="mt-3 space-y-1.5">
+                            {doc.quarantined.map((excerpt, i) => (
+                                <li
+                                    key={i}
+                                    className="truncate rounded-lg bg-white/70 px-3 py-1.5 font-mono text-xs text-amber-900 dark:bg-gray-900/50 dark:text-amber-200"
+                                    title={excerpt}
+                                >
+                                    {excerpt}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+
             {doc.status === 'FAILED' && doc.errorMessage && (
-                <div className="overflow-hidden rounded-2xl border border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20 mb-6 flex items-start gap-4 p-6">
+                <div className="mb-6 flex items-start gap-4 overflow-hidden rounded-2xl border border-red-200 bg-red-50 p-6 dark:border-red-800 dark:bg-red-900/20">
                     <AlertCircle
                         size={20}
                         className="mt-0.5 shrink-0 text-red-500 dark:text-red-400"
@@ -272,142 +358,131 @@ export default function DocumentDetail({
                 </div>
             )}
 
-            {doc.status === 'COMPLETED' && meta && (
-                <div className="grid gap-6 lg:grid-cols-2">
-                    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] p-6">
-                        <h2 className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                            <BarChart3 size={16} />
-                            Classification
-                        </h2>
-                        <div className="space-y-4">
-                            <div>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">Category</p>
-                                <p className="mt-0.5 text-lg font-semibold text-gray-800 dark:text-white/90">
-                                    {doc.category}
-                                </p>
-                            </div>
-                            <div>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    Confidence
-                                </p>
-                                <div className="mt-1 flex items-center gap-3">
-                                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
-                                        <div
-                                            className="h-full rounded-full bg-brand-500 transition-all"
-                                            style={{ width: `${(meta.confidence || 0) * 100}%` }}
-                                        />
-                                    </div>
-                                    <span
-                                        className={`text-sm font-semibold ${confidenceColor(meta.confidence)}`}
-                                    >
-                                        {Math.round((meta.confidence || 0) * 100)}%
-                                    </span>
-                                </div>
-                            </div>
-                            {meta.language && (
-                                <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <Globe size={14} className="text-gray-400" />
-                                    {meta.language === 'en' ? 'English' : meta.language}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] p-6">
-                        <h2 className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            {doc.status === 'COMPLETED' && (
+                <div className="grid gap-6 lg:grid-cols-3">
+                    <div className={`${card} lg:col-span-2`}>
+                        <h2 className={heading}>
                             <FileText size={16} />
-                            Extracted Data
+                            Extracted fields
                         </h2>
-                        <div className="space-y-4">
-                            {(Object.entries(meta) as [string, unknown][])
-                                .filter(
-                                    ([key, val]) =>
-                                        key !== 'keywords' &&
-                                        key !== 'confidence' &&
-                                        key !== 'pageCount' &&
-                                        key !== 'language' &&
-                                        Array.isArray(val) &&
-                                        (val as unknown[]).length > 0
-                                )
-                                .map(([key, val]) => {
-                                    const items = val as (
-                                        | { value: number; currency: string }
-                                        | string
-                                    )[];
-                                    const label = key.charAt(0).toUpperCase() + key.slice(1);
-                                    return (
-                                        <div key={key}>
-                                            <p className="mb-1.5 text-xs text-gray-500 dark:text-gray-400 capitalize">
-                                                {label}
-                                            </p>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {items.map((item, i) => {
-                                                    const isAmount =
-                                                        typeof item === 'object' &&
-                                                        item !== null &&
-                                                        'value' in item;
-                                                    const text = isAmount
-                                                        ? `${item.currency === 'USD' ? '$' : item.currency === 'EUR' ? '€' : '£'}${item.value.toLocaleString()}`
-                                                        : String(item);
-                                                    return (
-                                                        <span
-                                                            key={i}
-                                                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                                                                isAmount
-                                                                    ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400'
-                                                                    : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
-                                                            }`}
-                                                        >
-                                                            {text}
-                                                        </span>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            {!Object.entries(meta).some(
-                                ([key, val]) =>
-                                    key !== 'keywords' &&
-                                    key !== 'confidence' &&
-                                    key !== 'pageCount' &&
-                                    key !== 'language' &&
-                                    Array.isArray(val) &&
-                                    (val as unknown[]).length > 0
-                            ) && (
-                                <p className="text-sm text-gray-400 dark:text-gray-500">
-                                    No structured data extracted.
+                        {doc.extracted ? (
+                            <ExtractedFields fields={doc.extracted} />
+                        ) : (
+                            <div className="space-y-4">
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    Typed fields are extracted from invoices, receipts and
+                                    contracts. This document was read for search; its entities are
+                                    below.
                                 </p>
-                            )}
-                        </div>
+                                <Chips label="Names" values={meta?.names} />
+                                <Chips label="Locations" values={meta?.locations} />
+                            </div>
+                        )}
                     </div>
 
-                    {meta.keywords && meta.keywords.length > 0 && (
-                        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] p-6">
-                            <h2 className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                                <Tag size={16} />
-                                Keywords
+                    <div className="space-y-6">
+                        <div className={card}>
+                            <h2 className={heading}>
+                                <BarChart3 size={16} />
+                                Classification
                             </h2>
-                            <div className="flex flex-wrap gap-2">
-                                {meta.keywords.map((kw, i) => (
-                                    <span
-                                        key={i}
-                                        className="rounded-lg bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-400"
-                                    >
-                                        {kw}
-                                    </span>
-                                ))}
-                            </div>
+                            <dl className="space-y-4 text-sm">
+                                <div>
+                                    <dt className="text-xs text-gray-500 dark:text-gray-400">
+                                        Category
+                                    </dt>
+                                    <dd className="mt-0.5 text-lg font-semibold text-gray-800 dark:text-white/90">
+                                        {doc.category
+                                            ? (CATEGORY_NAMES[doc.category] ?? doc.category)
+                                            : '–'}
+                                    </dd>
+                                </div>
+                                {meta && (
+                                    <div>
+                                        <dt className="text-xs text-gray-500 dark:text-gray-400">
+                                            Confidence
+                                        </dt>
+                                        <dd className="mt-1 flex items-center gap-3">
+                                            <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
+                                                <div
+                                                    className="h-full rounded-full bg-brand-500"
+                                                    style={{
+                                                        width: `${(meta.confidence || 0) * 100}%`
+                                                    }}
+                                                />
+                                            </div>
+                                            <span
+                                                className={`text-sm font-semibold ${confidenceColor(meta.confidence)}`}
+                                            >
+                                                {Math.round((meta.confidence || 0) * 100)}%
+                                            </span>
+                                        </dd>
+                                    </div>
+                                )}
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <dt className="text-xs text-gray-500 dark:text-gray-400">
+                                            Language
+                                        </dt>
+                                        <dd className="mt-0.5 font-medium text-gray-800 dark:text-white/90">
+                                            {languageName(doc.language)}
+                                        </dd>
+                                    </div>
+                                    {meta?.pageCount !== undefined && (
+                                        <div>
+                                            <dt className="text-xs text-gray-500 dark:text-gray-400">
+                                                Pages
+                                            </dt>
+                                            <dd className="mt-0.5 font-medium text-gray-800 dark:text-white/90">
+                                                {meta.pageCount}
+                                            </dd>
+                                        </div>
+                                    )}
+                                </div>
+                                {doc.index && (
+                                    <div>
+                                        <dt className="text-xs text-gray-500 dark:text-gray-400">
+                                            Search index
+                                        </dt>
+                                        <dd className="mt-0.5 text-gray-700 dark:text-gray-300">
+                                            {doc.index.chunkCount} passages in{' '}
+                                            {doc.index.collection}
+                                            <span className="block text-xs text-gray-500 dark:text-gray-400">
+                                                {doc.index.embeddingModel}
+                                            </span>
+                                        </dd>
+                                    </div>
+                                )}
+                            </dl>
                         </div>
-                    )}
+
+                        {meta?.keywords && meta.keywords.length > 0 && (
+                            <div className={card}>
+                                <h2 className={heading}>
+                                    <Tag size={16} />
+                                    Keywords
+                                </h2>
+                                <div className="flex flex-wrap gap-2">
+                                    {meta.keywords.map((kw, i) => (
+                                        <span
+                                            key={i}
+                                            className="rounded-lg bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-400"
+                                        >
+                                            {kw}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
 
             {doc.summary && (
-                <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] mt-6 p-6">
-                    <h2 className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <div className={`${card} mt-6`}>
+                    <h2 className={heading}>
                         <FileText size={16} />
-                        AI Summary
+                        Summary
                     </h2>
                     <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
                         {doc.summary}
@@ -415,73 +490,7 @@ export default function DocumentDetail({
                 </div>
             )}
 
-            {doc.status === 'COMPLETED' && (
-                <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] mt-6 p-6">
-                    <h2 className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                        <MessageSquare size={16} />
-                        Chat
-                    </h2>
-
-                    <div className="mb-4 max-h-96 space-y-3 overflow-y-auto">
-                        {chatMessages.length === 0 ? (
-                            <p className="text-center text-sm text-gray-400 dark:text-gray-500">
-                                Ask any question about this document.
-                            </p>
-                        ) : (
-                            chatMessages.map((msg, i) => (
-                                <div
-                                    key={i}
-                                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                                >
-                                    <div
-                                        className={`max-w-[80%] rounded-xl px-4 py-2.5 text-sm leading-relaxed ${
-                                            msg.role === 'user'
-                                                ? 'bg-brand-500 text-white'
-                                                : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
-                                        }`}
-                                    >
-                                        {msg.content}
-                                    </div>
-                                </div>
-                            ))
-                        )}
-                        {chatLoading && (
-                            <div className="flex justify-start">
-                                <div className="flex items-center gap-1.5 rounded-xl bg-gray-100 px-4 py-2.5 dark:bg-gray-800">
-                                    <Loader2 size={14} className="animate-spin text-gray-400" />
-                                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                                        Thinking...
-                                    </span>
-                                </div>
-                            </div>
-                        )}
-                        <div ref={chatBottomRef} />
-                    </div>
-
-                    <div className="flex gap-2">
-                        <input
-                            type="text"
-                            value={chatInput}
-                            onChange={(e) => setChatInput(e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleChatSend()}
-                            placeholder="Ask something about this document..."
-                            disabled={chatLoading}
-                            className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder-gray-500"
-                        />
-                        <button
-                            onClick={handleChatSend}
-                            disabled={chatLoading || !chatInput.trim()}
-                            className="inline-flex items-center justify-center rounded-lg bg-brand-500 px-4 py-2 text-white hover:bg-brand-600 disabled:opacity-50"
-                        >
-                            {chatLoading ? (
-                                <Loader2 size={16} className="animate-spin" />
-                            ) : (
-                                <Send size={16} />
-                            )}
-                        </button>
-                    </div>
-                </div>
-            )}
+            {doc.status === 'COMPLETED' && <DocumentChat doc={doc} />}
         </div>
     );
 }

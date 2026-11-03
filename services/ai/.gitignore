@@ -1,0 +1,7 @@
+corpus/raw/
+corpus/data/
+corpus/extracted/
+evals/cache/
+evals/scratch/
+# OCR models and the ingestion cache (parse results, model replies)
+.cache/

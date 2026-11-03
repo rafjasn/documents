@@ -1,0 +1,118 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/rafjasn/documents/packages/shared/contracts/chat-stream-event.schema.json",
+    "title": "ChatStreamEvent",
+    "description": "One server-sent event of a chat answer. ai-service sends each as `event: <type>` and `data: <this JSON>`; the API passes them through to the browser and stores the final answer with its citations. Order: any number of step, token and reset events, then citations, then done, or error at any point. A reset discards the tokens streamed so far (the answer is being regenerated). Mirrors ChatStreamEvent in packages/shared/src/index.ts.",
+    "oneOf": [
+        { "$ref": "#/$defs/step" },
+        { "$ref": "#/$defs/token" },
+        { "$ref": "#/$defs/reset" },
+        { "$ref": "#/$defs/citations" },
+        { "$ref": "#/$defs/done" },
+        { "$ref": "#/$defs/error" }
+    ],
+    "$defs": {
+        "step": {
+            "type": "object",
+            "required": ["type", "node", "label"],
+            "additionalProperties": false,
+            "properties": {
+                "type": { "const": "step" },
+                "node": { "type": "string", "minLength": 1 },
+                "label": { "type": "string", "minLength": 1 }
+            }
+        },
+        "token": {
+            "type": "object",
+            "required": ["type", "text"],
+            "additionalProperties": false,
+            "properties": {
+                "type": { "const": "token" },
+                "text": { "type": "string" }
+            }
+        },
+        "reset": {
+            "type": "object",
+            "required": ["type"],
+            "additionalProperties": false,
+            "properties": {
+                "type": { "const": "reset" }
+            }
+        },
+        "citation": {
+            "type": "object",
+            "required": ["citationId", "docId", "title", "page", "pages", "bbox", "chunkId", "snippet"],
+            "additionalProperties": false,
+            "properties": {
+                "citationId": {
+                    "description": "The number the answer cites as [n].",
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "docId": { "type": "string", "minLength": 1 },
+                "title": { "type": "string" },
+                "page": {
+                    "description": "First page of the cited passage; null for a citation of the whole document.",
+                    "type": ["integer", "null"],
+                    "minimum": 1
+                },
+                "pages": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+                "bbox": {
+                    "description": "Region on `page`: [left, top, right, bottom], fractions of the page size from the top-left corner.",
+                    "oneOf": [
+                        { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 1 }, "minItems": 4, "maxItems": 4 },
+                        { "type": "null" }
+                    ]
+                },
+                "chunkId": {
+                    "description": "The cited chunk; null when the citation is a document's extracted fields.",
+                    "type": ["integer", "null"],
+                    "minimum": 0
+                },
+                "snippet": { "type": "string" }
+            }
+        },
+        "citations": {
+            "type": "object",
+            "required": ["type", "citations"],
+            "additionalProperties": false,
+            "properties": {
+                "type": { "const": "citations" },
+                "citations": { "type": "array", "items": { "$ref": "#/$defs/citation" } }
+            }
+        },
+        "done": {
+            "type": "object",
+            "required": ["type", "intent", "usage", "traceId"],
+            "additionalProperties": false,
+            "properties": {
+                "type": { "const": "done" },
+                "intent": { "enum": ["smalltalk", "retrieve", "aggregate", "mixed"] },
+                "usage": {
+                    "type": "object",
+                    "required": ["inputTokens", "outputTokens", "costUsd", "llmCalls"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "inputTokens": { "type": "integer", "minimum": 0 },
+                        "outputTokens": { "type": "integer", "minimum": 0 },
+                        "costUsd": { "type": ["number", "null"], "minimum": 0 },
+                        "llmCalls": { "type": "integer", "minimum": 0 }
+                    }
+                },
+                "traceId": {
+                    "description": "Langfuse trace ID; null when tracing is off.",
+                    "type": ["string", "null"]
+                }
+            }
+        },
+        "error": {
+            "type": "object",
+            "required": ["type", "message"],
+            "additionalProperties": false,
+            "properties": {
+                "type": { "const": "error" },
+                "message": { "type": "string", "minLength": 1 }
+            }
+        }
+    }
+}

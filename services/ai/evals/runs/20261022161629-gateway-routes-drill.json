@@ -1,0 +1,20 @@
+{
+  "kind": "gateway-routes",
+  "created": "2026-10-22T16:16:38.344217+00:00",
+  "gateway": "litellm v1.104.2",
+  "model": "google_genai:gemini-3.1-flash-lite",
+  "checks": [
+    {
+      "route": "router",
+      "check": "fallback",
+      "ok": true,
+      "detail": "primary rate-limited; answered by gemini-3.5-flash-lite in 8.0s, cost in code $0.0000062"
+    },
+    {
+      "route": "pass-through",
+      "check": "fallback",
+      "ok": false,
+      "detail": "primary rate-limited; answered by gemini-3.1-flash-lite in 1.0s, cost in code $0.000004"
+    }
+  ]
+}

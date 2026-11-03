@@ -1,4 +1,12 @@
-import { AuthResponse, Document, PaginatedResponse } from '@/types';
+import {
+    AuthResponse,
+    ChatScope,
+    ChatStreamEvent,
+    Conversation,
+    ConversationMessage,
+    Document,
+    PaginatedResponse
+} from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -191,6 +199,18 @@ class ApiClient {
         return this.request(`/documents?${params}`);
     }
 
+    /** Every document with the status, following the pages. */
+    async listAllDocuments(status?: string): Promise<Document[]> {
+        const all: Document[] = [];
+        let cursor: string | undefined;
+        do {
+            const page = await this.listDocuments(status, 100, cursor);
+            all.push(...page.items);
+            cursor = page.lastKey;
+        } while (cursor);
+        return all;
+    }
+
     async getDocument(id: string): Promise<Document> {
         return this.request(`/documents/${id}`);
     }
@@ -238,8 +258,64 @@ class ApiClient {
         return this.request(`/documents/${id}/download`);
     }
 
-    async getChatHistory(documentId: string): Promise<{ role: string; content: string }[]> {
-        return this.request(`/ai/chat/${documentId}/history`);
+    async listConversations(documentId?: string): Promise<Conversation[]> {
+        const query = documentId ? `?documentId=${encodeURIComponent(documentId)}` : '';
+        return this.request(`/ai/conversations${query}`);
+    }
+
+    async createConversation(scope: ChatScope = {}): Promise<Conversation> {
+        return this.request('/ai/conversations', {
+            method: 'POST',
+            body: JSON.stringify({ scope })
+        });
+    }
+
+    async deleteConversation(conversationId: string): Promise<void> {
+        return this.request(`/ai/conversations/${conversationId}`, { method: 'DELETE' });
+    }
+
+    async getConversationMessages(conversationId: string): Promise<ConversationMessage[]> {
+        return this.request(`/ai/conversations/${conversationId}/messages`);
+    }
+
+    /** Ask a question; `onEvent` receives each server-sent event as it arrives. */
+    async streamAnswer(
+        conversationId: string,
+        message: string,
+        onEvent: (event: ChatStreamEvent) => void,
+        signal?: AbortSignal
+    ): Promise<void> {
+        const response = await this.fetchWithAuth(
+            `${API_URL}/api/ai/conversations/${conversationId}/stream`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message }),
+                signal
+            }
+        );
+        if (!response.ok || !response.body) {
+            throw new ApiError(response.status, `Chat failed: ${response.status}`);
+        }
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            let end: number;
+            while ((end = buffer.indexOf('\n\n')) >= 0) {
+                const block = buffer.slice(0, end);
+                buffer = buffer.slice(end + 2);
+                const data = block
+                    .split('\n')
+                    .filter((line) => line.startsWith('data: '))
+                    .map((line) => line.slice(6))
+                    .join('\n');
+                if (data) onEvent(JSON.parse(data) as ChatStreamEvent);
+            }
+        }
     }
 
     async fetchWithAuth(url: string, options: RequestInit = {}, retry = true): Promise<Response> {

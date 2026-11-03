@@ -8,14 +8,13 @@
         "frontend"
     ],
     "scripts": {
-        "dev": "concurrently -n api,worker,fe -c blue,magenta,green \"npm run dev -w @documents/api\" \"npm run dev -w @documents/worker\" \"npm run dev -w @documents/frontend\"",
+        "dev": "concurrently -n api,fe -c blue,green \"npm run dev -w @documents/api\" \"npm run dev -w @documents/frontend\"",
         "dev:api": "npm run start:dev -w @documents/api",
-        "dev:worker": "npm run start:dev -w @documents/worker",
         "dev:frontend": "npm run dev -w @documents/frontend",
         "build": "npm run build --workspaces --if-present",
         "build:shared": "npm run build -w @documents/shared",
         "test": "npm run test --workspaces --if-present",
-        "test:integration": "npm run test:integration -w @documents/api && npm run test:integration -w @documents/worker",
+        "test:integration": "npm run test:integration -w @documents/api",
         "test:e2e": "npm run test:e2e -w @documents/api",
         "lint": "npm run lint --workspaces --if-present",
         "format": "prettier --write \"**/*.{ts,tsx,json}\"",
@@ -24,14 +23,16 @@
         "infra:down": "docker compose down localstack",
         "infra:synth": "npm --prefix infrastructure/cdk run synth",
         "docker:up": "docker compose up -d",
-        "docker:up:scaled": "docker compose up -d --scale api=3 --scale worker=2",
+        "docker:up:scaled": "docker compose up -d --scale api=3 --scale ingestion-worker=2",
         "docker:down": "docker compose down -v",
         "docker:logs": "docker compose logs -f",
         "clean": "npm run clean --workspaces --if-present && rm -rf node_modules"
     },
     "devDependencies": {
-        "@types/pdf-parse": "^1.1.5",
         "concurrently": "^9.2.1",
+        "mammoth": "^1.12.0",
+        "pdf-parse": "^2.4.5",
+        "tesseract.js": "^7.0.0",
         "typescript": "^6.0.3"
     },
     "engines": {
@@ -39,5 +40,10 @@
     },
     "dependencies": {
         "eslint": "^9.0.0"
+    },
+    "overrides": {
+        "import-in-the-middle": {
+            "es-module-lexer": "3.0.3"
+        }
     }
 }

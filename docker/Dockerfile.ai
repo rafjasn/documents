@@ -1,0 +1,75 @@
+# Python AI services (services/ai). Build context: repository root.
+# Targets: ingest (ingestion worker, production), serve (AI service API, production),
+# development (compose: both services with live reload).
+FROM python:3.14-slim-trixie AS runtime
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PATH="/app/.venv/bin:$PATH"
+WORKDIR /app
+
+FROM runtime AS builder
+COPY --from=ghcr.io/astral-sh/uv:0.12.17 /uv /usr/local/bin/uv
+ENV UV_PYTHON_DOWNLOADS=never UV_LINK_MODE=copy
+COPY services/ai/pyproject.toml services/ai/uv.lock ./
+
+# Dependencies precede application code so code edits reuse their layers.
+# uv's download cache stays in BuildKit, outside the final images.
+FROM builder AS serve-build
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-install-project --extra serve --python /usr/local/bin/python
+COPY services/ai/README.md ./
+COPY services/ai/src ./src
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-editable --extra serve --python /usr/local/bin/python
+
+FROM runtime AS serve
+COPY --from=serve-build /app/.venv /app/.venv
+EXPOSE 8000
+HEALTHCHECK --interval=15s --timeout=5s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"
+ENTRYPOINT ["uvicorn", "--factory", "docai.api.app:create_app", "--host", "0.0.0.0", "--port", "8000"]
+
+FROM builder AS ingest-deps
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-install-project --extra ingest --python /usr/local/bin/python
+
+# Model files: Tesseract's Polish and English models, Docling's layout and table models
+# (about 400 MB) and the chunking tokenizer, baked in so the worker starts without
+# downloads. This stage copies only the setup module, so code changes don't download
+# the models again.
+FROM ingest-deps AS models
+COPY services/ai/src/docai/__init__.py src/docai/__init__.py
+COPY services/ai/src/docai/core/__init__.py services/ai/src/docai/core/download.py src/docai/core/
+COPY services/ai/src/docai/ingest/__init__.py services/ai/src/docai/ingest/setup.py src/docai/ingest/
+RUN PYTHONPATH=/app/src python -m docai.ingest.setup /opt/tessdata /opt/docling-models /opt/hf-hub
+
+FROM ingest-deps AS ingest-build
+COPY services/ai/README.md ./
+COPY services/ai/src ./src
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-editable --extra ingest --python /usr/local/bin/python
+
+FROM runtime AS ingest
+# OMP_NUM_THREADS bounds PyTorch's CPU threads; the worker handles one document at a time.
+ENV TESSDATA_DIR=/opt/tessdata DOCLING_ARTIFACTS_PATH=/opt/docling-models \
+    HF_HUB_CACHE=/opt/hf-hub OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1
+COPY --from=ingest-build /app/.venv /app/.venv
+COPY --from=models /opt/tessdata /opt/tessdata
+COPY --from=models /opt/docling-models /opt/docling-models
+COPY --from=models /opt/hf-hub /opt/hf-hub
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["python", "-m", "docai.ingest.health"]
+ENTRYPOINT ["docai", "ingest", "worker"]
+
+# Editable install: compose mounts services/ai/src over /app/src for live reload.
+FROM builder AS development
+ENV TESSDATA_DIR=/opt/tessdata DOCLING_ARTIFACTS_PATH=/opt/docling-models \
+    HF_HUB_CACHE=/opt/hf-hub OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --all-extras --no-install-project --python /usr/local/bin/python
+COPY --from=models /opt/tessdata /opt/tessdata
+COPY --from=models /opt/docling-models /opt/docling-models
+COPY --from=models /opt/hf-hub /opt/hf-hub
+COPY services/ai/README.md ./
+COPY services/ai/src ./src
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --all-extras --python /usr/local/bin/python
+EXPOSE 8000
+CMD ["uvicorn", "--factory", "docai.api.app:create_app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--reload-dir", "/app/src"]

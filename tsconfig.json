@@ -26,7 +26,6 @@
     "references": [
         { "path": "packages/shared" },
         { "path": "services/api" },
-        { "path": "services/worker" },
         { "path": "services/ai" }
     ],
     "exclude": ["node_modules", "dist", "frontend"]

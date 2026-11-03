@@ -46,9 +46,7 @@ export class DocumentsController {
         const result = await this.documentsService.listDocuments(userId, filters);
         const items = await Promise.all(
             result.items.map(async (item) => {
-                const thumbnailUrl = item.thumbnailKey
-                    ? await this.documentsService.getThumbnailUrl(userId, item.id)
-                    : undefined;
+                const thumbnailUrl = await this.documentsService.thumbnailUrlOf(item);
                 return plainToInstance(
                     DocumentResponseDto,
                     { ...item, thumbnailUrl },
@@ -66,9 +64,7 @@ export class DocumentsController {
         @Param('id', ParseUUIDPipe) id: string
     ): Promise<DocumentResponseDto> {
         const record = await this.documentsService.getDocument(userId, id);
-        const thumbnailUrl = record.thumbnailKey
-            ? await this.documentsService.getThumbnailUrl(userId, id)
-            : undefined;
+        const thumbnailUrl = await this.documentsService.thumbnailUrlOf(record);
 
         return plainToInstance(
             DocumentResponseDto,

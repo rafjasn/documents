@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '../context/SidebarContext';
-import { Upload, LayoutDashboard, ChevronDown, Ellipsis } from 'lucide-react';
+import { Upload, LayoutDashboard, ChevronDown, Ellipsis, MessagesSquare } from 'lucide-react';
 
 type NavItem = {
     name: string;
@@ -17,6 +17,11 @@ const navItems: NavItem[] = [
         icon: <LayoutDashboard />,
         name: 'Dashboard',
         path: '/dashboard'
+    },
+    {
+        icon: <MessagesSquare />,
+        name: 'Chat',
+        path: '/chat'
     },
     {
         icon: <Upload />,

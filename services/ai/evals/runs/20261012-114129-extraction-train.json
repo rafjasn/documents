@@ -1,0 +1,7154 @@
+{
+ "run_id": "20261012-114129-extraction-train",
+ "split": "train",
+ "extract_model": "google_genai:gemini-3.1-flash-lite",
+ "vision_model": "google_genai:gemini-3.1-flash-lite",
+ "created": "2026-10-12T11:41:29+00:00",
+ "kind": "extraction",
+ "summary": {
+  "documents": 96,
+  "overall": {
+   "fields": 744,
+   "correct": 741,
+   "precision": 0.996,
+   "recall": 0.996,
+   "f1": 0.996
+  },
+  "by_category": {
+   "CONTRACT": {
+    "fields": 132,
+    "correct": 132,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "INVOICE": {
+    "fields": 408,
+    "correct": 408,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "RECEIPT": {
+    "fields": 204,
+    "correct": 201,
+    "precision": 0.985,
+    "recall": 0.985,
+    "f1": 0.985
+   }
+  },
+  "by_source": {
+   "sroie": {
+    "fields": 108,
+    "correct": 105,
+    "precision": 0.972,
+    "recall": 0.972,
+    "f1": 0.972
+   },
+   "synthetic": {
+    "fields": 636,
+    "correct": 636,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_language": {
+   "en": {
+    "fields": 426,
+    "correct": 423,
+    "precision": 0.993,
+    "recall": 0.993,
+    "f1": 0.993
+   },
+   "pl": {
+    "fields": 318,
+    "correct": 318,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_format": {
+   "docx": {
+    "fields": 66,
+    "correct": 66,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "image": {
+    "fields": 108,
+    "correct": 105,
+    "precision": 0.972,
+    "recall": 0.972,
+    "f1": 0.972
+   },
+   "pdf": {
+    "fields": 373,
+    "correct": 373,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "photo": {
+    "fields": 96,
+    "correct": 96,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "scanned_pdf": {
+    "fields": 101,
+    "correct": 101,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  },
+  "by_field": {
+   "contract.autoRenewal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.contractNumber": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.effectiveDate": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.endDate": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.governingLaw": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.noticePeriodDays": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.parties.buyer": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.parties.vendor": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.paymentTermsDays": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.valueCap.amount": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "contract.valueCap.currency": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.buyer.name": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.buyer.taxId": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.currency": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.dueDate": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.grossTotal": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.invoiceNumber": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.issueDate": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.netTotal": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.paidDate": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.taxTotal": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.vendor.name": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "invoice.vendor.taxId": {
+    "fields": 36,
+    "correct": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.currency": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.date": {
+    "fields": 48,
+    "correct": 47,
+    "precision": 0.979,
+    "recall": 0.979,
+    "f1": 0.979
+   },
+   "receipt.merchant.name": {
+    "fields": 48,
+    "correct": 48,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.merchant.taxId": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.paymentMethod": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.receiptNumber": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.taxTotal": {
+    "fields": 12,
+    "correct": 12,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "receipt.total": {
+    "fields": 48,
+    "correct": 46,
+    "precision": 0.958,
+    "recall": 0.958,
+    "f1": 0.958
+   }
+  },
+  "category_accuracy": 0.917,
+  "line_items": {
+   "expected": 77,
+   "matched": 77,
+   "f1": 1.0
+  },
+  "cost_usd": "0.15948375"
+ },
+ "documents": [
+  {
+   "doc_id": "sroie-004",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-004",
+     "field": "merchant.name",
+     "expected": "MR D.I.Y. (M) SDN BHD",
+     "predicted": "MR D.I.Y. (M) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-004",
+     "field": "date",
+     "expected": "2018-11-18",
+     "predicted": "2018-11-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-004",
+     "field": "total",
+     "expected": "30.90",
+     "predicted": "30.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00258375",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-012",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-012",
+     "field": "merchant.name",
+     "expected": "HOME MASTER HARDWARE & ELECTRICAL",
+     "predicted": "HOME MASTER HARDWARE & ELECTRICAL",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-012",
+     "field": "date",
+     "expected": "2017-12-22",
+     "predicted": "2017-12-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-012",
+     "field": "total",
+     "expected": "15.90",
+     "predicted": "15.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00172925",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-016",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-016",
+     "field": "merchant.name",
+     "expected": "LIGHTROOM GALLERY SDN BHD",
+     "predicted": "LIGHTROOM GALLERY SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-016",
+     "field": "date",
+     "expected": "2017-12-20",
+     "predicted": "2017-12-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-016",
+     "field": "total",
+     "expected": "73.00",
+     "predicted": "73.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00221975",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-040",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-040",
+     "field": "merchant.name",
+     "expected": "THREE STOOGES",
+     "predicted": "Three Stooges Bistro & Cafe",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-040",
+     "field": "date",
+     "expected": "2018-03-12",
+     "predicted": "2018-03-12",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-040",
+     "field": "total",
+     "expected": "343.95",
+     "predicted": "343.95",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00166500",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-048",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-048",
+     "field": "merchant.name",
+     "expected": "YONG TAT HARDWARE TRADING",
+     "predicted": "Yong Tat Hardware Trading",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-048",
+     "field": "date",
+     "expected": "2018-03-13",
+     "predicted": "2018-03-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-048",
+     "field": "total",
+     "expected": "100.90",
+     "predicted": "100.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00216025",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-064",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-064",
+     "field": "merchant.name",
+     "expected": "SUN WONG KUT SDN BHD",
+     "predicted": "Sun Wong Kut Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-064",
+     "field": "date",
+     "expected": "2018-02-21",
+     "predicted": "2018-02-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-064",
+     "field": "total",
+     "expected": "88.17",
+     "predicted": "88.17",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0015155",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-067",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-067",
+     "field": "merchant.name",
+     "expected": "LIAN CHI PU TIAN VEGETARIAN RESTAURANT SDN BHD",
+     "predicted": "Lian Chi Pu Tian Vegetarian Restaurant Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-067",
+     "field": "date",
+     "expected": "2018-01-06",
+     "predicted": "2018-01-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-067",
+     "field": "total",
+     "expected": "53.55",
+     "predicted": "53.55",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00228450",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-092",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-092",
+     "field": "merchant.name",
+     "expected": "ADVANCO COMPANY",
+     "predicted": "ADVANCO COMPANY",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-092",
+     "field": "date",
+     "expected": "2018-03-23",
+     "predicted": "2018-03-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-092",
+     "field": "total",
+     "expected": "83.00",
+     "predicted": "83.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00214175",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-095",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-095",
+     "field": "merchant.name",
+     "expected": "POPULAR BOOK CO. (M) SDN BHD",
+     "predicted": "Popular Book Co. (M) Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-095",
+     "field": "date",
+     "expected": "2018-01-07",
+     "predicted": "2018-01-07",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-095",
+     "field": "total",
+     "expected": "31.45",
+     "predicted": "31.45",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00170825",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-106",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-106",
+     "field": "merchant.name",
+     "expected": "BEYOND BROTHERS HARDWARE",
+     "predicted": "BEYOND BROTHERS HARDWARE",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-106",
+     "field": "date",
+     "expected": "2018-03-14",
+     "predicted": "2018-03-14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-106",
+     "field": "total",
+     "expected": "599.45",
+     "predicted": "599.45",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.004061",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-129",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-129",
+     "field": "merchant.name",
+     "expected": "SYARIKAT PERNIAGAAN GIN KEE",
+     "predicted": "SYARIKAT PERNIAGAAN GIN KEE",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-129",
+     "field": "date",
+     "expected": "2018-01-24",
+     "predicted": "2018-01-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-129",
+     "field": "total",
+     "expected": "74.20",
+     "predicted": "74.20",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00201175",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-130",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-130",
+     "field": "merchant.name",
+     "expected": "BEYOND BROTHERS HARDWARE",
+     "predicted": "BEYOND BROTHERS HARDWARE",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-130",
+     "field": "date",
+     "expected": "2018-02-05",
+     "predicted": "2018-02-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-130",
+     "field": "total",
+     "expected": "63.60",
+     "predicted": "63.60",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00191250",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-153",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-153",
+     "field": "merchant.name",
+     "expected": "POPULAR BOOK CO. (M) SDN BHD",
+     "predicted": "POPULAR BOOK CO. (M) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-153",
+     "field": "date",
+     "expected": "2018-02-06",
+     "predicted": "2018-02-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-153",
+     "field": "total",
+     "expected": "14.65",
+     "predicted": "14.65",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00175425",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-204",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-204",
+     "field": "merchant.name",
+     "expected": "MR. D.I.Y. (M) SDN BHD",
+     "predicted": "MR. D.I.Y. (M) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-204",
+     "field": "date",
+     "expected": "2018-03-25",
+     "predicted": "2018-03-25",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-204",
+     "field": "total",
+     "expected": "50.80",
+     "predicted": "50.80",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00203825",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-222",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-222",
+     "field": "merchant.name",
+     "expected": "POPULAR BOOK CO. (M) SDN BHD",
+     "predicted": "POPULAR BOOK CO. (M) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-222",
+     "field": "date",
+     "expected": "2018-02-27",
+     "predicted": "2018-02-27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-222",
+     "field": "total",
+     "expected": "41.00",
+     "predicted": "41.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.002207",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-235",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-235",
+     "field": "merchant.name",
+     "expected": "B & BEST RESTAURANT",
+     "predicted": "B & BEST RESTAURANT",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-235",
+     "field": "date",
+     "expected": "2017-02-10",
+     "predicted": "2017-02-10",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-235",
+     "field": "total",
+     "expected": "7.40",
+     "predicted": "7.40",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00158025",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-275",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-275",
+     "field": "merchant.name",
+     "expected": "99 SPEED MART S/B",
+     "predicted": "99 SPEED MART S/B",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-275",
+     "field": "date",
+     "expected": "2017-05-10",
+     "predicted": "2017-05-10",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-275",
+     "field": "total",
+     "expected": "11.50",
+     "predicted": "11.50",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00160775",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-296",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-296",
+     "field": "merchant.name",
+     "expected": "DOMINO'S PIZZA",
+     "predicted": "Domino's Pizza",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-296",
+     "field": "date",
+     "expected": "2018-04-17",
+     "predicted": "2018-04-17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-296",
+     "field": "total",
+     "expected": "25.60",
+     "predicted": "3.90",
+     "outcome": "wrong"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00229600",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-306",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-306",
+     "field": "merchant.name",
+     "expected": "THE TOAST F&B SDN BHD",
+     "predicted": "THE TOAST F&B SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-306",
+     "field": "date",
+     "expected": "2018-04-08",
+     "predicted": "2018-04-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-306",
+     "field": "total",
+     "expected": "18.90",
+     "predicted": "18.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00212925",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-338",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-338",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "GARDENIA BAKERIES (KL) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-338",
+     "field": "date",
+     "expected": "2017-08-19",
+     "predicted": "2017-08-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-338",
+     "field": "total",
+     "expected": "50.60",
+     "predicted": "50.60",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00274200",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-343",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-343",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "GARDENIA BAKERIES (KL) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-343",
+     "field": "date",
+     "expected": "2017-08-03",
+     "predicted": "2017-08-03",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-343",
+     "field": "total",
+     "expected": "51.88",
+     "predicted": "51.09",
+     "outcome": "wrong"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00306975",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-352",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-352",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "Gardenia Bakeries (KL) Sdn Bhd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-352",
+     "field": "date",
+     "expected": "2017-09-19",
+     "predicted": "2017-09-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-352",
+     "field": "total",
+     "expected": "22.58",
+     "predicted": "22.58",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00286500",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-372",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-372",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "GARDENIA BAKERIES (KL) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-372",
+     "field": "date",
+     "expected": "2017-10-09",
+     "predicted": "2017-10-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-372",
+     "field": "total",
+     "expected": "60.24",
+     "predicted": "60.24",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00273625",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-375",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-375",
+     "field": "merchant.name",
+     "expected": "GARDENIA BAKERIES (KL) SDN BHD",
+     "predicted": "GARDENIA BAKERIES (KL) SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-375",
+     "field": "date",
+     "expected": "2017-10-01",
+     "predicted": "2017-10-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-375",
+     "field": "total",
+     "expected": "31.32",
+     "predicted": "31.32",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00245775",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-440",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-440",
+     "field": "merchant.name",
+     "expected": "DOMINO'S PIZZA TAMAN UNIVERSITI",
+     "predicted": "Domino's Pizza Taman Universiti",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-440",
+     "field": "date",
+     "expected": "2018-05-08",
+     "predicted": "2018-05-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-440",
+     "field": "total",
+     "expected": "6.70",
+     "predicted": "6.70",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00203900",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-468",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-468",
+     "field": "merchant.name",
+     "expected": "SWC ENTERPRISE SDN BHD",
+     "predicted": "SWC ENTERPRISE SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-468",
+     "field": "date",
+     "expected": "2018-03-23",
+     "predicted": "2018-03-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-468",
+     "field": "total",
+     "expected": "41.20",
+     "predicted": "41.20",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0019215",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-473",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-473",
+     "field": "merchant.name",
+     "expected": "SANYU STATIONERY SHOP",
+     "predicted": "Sanyu Stationery Shop",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-473",
+     "field": "date",
+     "expected": "2017-04-18",
+     "predicted": "2017-04-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-473",
+     "field": "total",
+     "expected": "3.00",
+     "predicted": "3.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0019155",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-488",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-488",
+     "field": "merchant.name",
+     "expected": "SANYU STATIONERY SHOP",
+     "predicted": "Sanyu Stationery Shop",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-488",
+     "field": "date",
+     "expected": "2017-09-06",
+     "predicted": "2017-06-09",
+     "outcome": "wrong"
+    },
+    {
+     "doc_id": "sroie-488",
+     "field": "total",
+     "expected": "8.70",
+     "predicted": "8.70",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00179575",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-504",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-504",
+     "field": "merchant.name",
+     "expected": "SANYU STATIONERY SHOP",
+     "predicted": "SANYU STATIONERY SHOP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-504",
+     "field": "date",
+     "expected": "2017-12-11",
+     "predicted": "2017-12-11",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-504",
+     "field": "total",
+     "expected": "7.00",
+     "predicted": "7.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00192925",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-534",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-534",
+     "field": "merchant.name",
+     "expected": "GRANDMA HOMES RESTAURANT",
+     "predicted": "GRANDMA HOMES RESTAURANT",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-534",
+     "field": "date",
+     "expected": "2018-06-13",
+     "predicted": "2018-06-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-534",
+     "field": "total",
+     "expected": "473.30",
+     "predicted": "473.30",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00256050",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-551",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-551",
+     "field": "merchant.name",
+     "expected": "RESTORAN WAN SHENG",
+     "predicted": "RESTORAN WAN SHENG",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-551",
+     "field": "date",
+     "expected": "2018-05-06",
+     "predicted": "2018-05-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-551",
+     "field": "total",
+     "expected": "2.40",
+     "predicted": "2.40",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00175500",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-558",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-558",
+     "field": "merchant.name",
+     "expected": "RESTORAN WAN SHENG",
+     "predicted": "RESTORAN WAN SHENG",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-558",
+     "field": "date",
+     "expected": "2018-06-18",
+     "predicted": "2018-06-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-558",
+     "field": "total",
+     "expected": "6.50",
+     "predicted": "6.50",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00186075",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-597",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-597",
+     "field": "merchant.name",
+     "expected": "ONE ONE THREE SEAFOOD RESTAURANT SDN BHD",
+     "predicted": "ONE ONE THREE SEAFOOD RESTAURANT SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-597",
+     "field": "date",
+     "expected": "2018-05-22",
+     "predicted": "2018-05-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-597",
+     "field": "total",
+     "expected": "71.00",
+     "predicted": "71.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0020715",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-604",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "sroie-604",
+     "field": "merchant.name",
+     "expected": "KEDAI PAPAN YEW CHUAN",
+     "predicted": "KEDAI PAPAN YEW CHUAN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-604",
+     "field": "date",
+     "expected": "2018-05-26",
+     "predicted": "2018-05-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-604",
+     "field": "total",
+     "expected": "121.90",
+     "predicted": "121.90",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00216475",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-612",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-612",
+     "field": "merchant.name",
+     "expected": "KT WONG TRADING",
+     "predicted": "KT WONG TRADING",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-612",
+     "field": "date",
+     "expected": "2018-06-09",
+     "predicted": "2018-06-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-612",
+     "field": "total",
+     "expected": "489.30",
+     "predicted": "489.30",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00191200",
+   "cached": true
+  },
+  {
+   "doc_id": "sroie-622",
+   "source": "sroie",
+   "language": "en",
+   "format": "image",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "sroie-622",
+     "field": "merchant.name",
+     "expected": "ONE ONE THREE SEAFOOD RESTAURANT SDN BHD",
+     "predicted": "ONE ONE THREE SEAFOOD RESTAURANT SDN BHD",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-622",
+     "field": "date",
+     "expected": "2018-06-20",
+     "predicted": "2018-06-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "sroie-622",
+     "field": "total",
+     "expected": "38.00",
+     "predicted": "38.00",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00183275",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-ctr-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "parties.vendor",
+     "expected": "Świech Usługi Sp. z o.o.",
+     "predicted": "Świech Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "parties.buyer",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "contractNumber",
+     "expected": "24/2025",
+     "predicted": "24/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "noticePeriodDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "paymentTermsDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "valueCap.amount",
+     "expected": "11200.00",
+     "predicted": "11200.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-0",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00112375",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-ctr-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "parties.vendor",
+     "expected": "Chwedczuk Serwis Sp. z o.o.",
+     "predicted": "Chwedczuk Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "parties.buyer",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "contractNumber",
+     "expected": "28/2025",
+     "predicted": "28/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "noticePeriodDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "paymentTermsDays",
+     "expected": "21",
+     "predicted": "21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "valueCap.amount",
+     "expected": "13500.00",
+     "predicted": "13500.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-1",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00128200",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-ctr-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "parties.vendor",
+     "expected": "Parkin Services Ltd",
+     "predicted": "Parkin Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "parties.buyer",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "contractNumber",
+     "expected": "SA-2025-59",
+     "predicted": "SA-2025-59",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "noticePeriodDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "paymentTermsDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "valueCap.amount",
+     "expected": "5300.00",
+     "predicted": "5300.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "valueCap.currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-2",
+     "field": "governingLaw",
+     "expected": "the laws of England and Wales",
+     "predicted": "laws of England and Wales",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00102075",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-ctr-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "parties.vendor",
+     "expected": "Wilkinson Consulting Limited",
+     "predicted": "Wilkinson Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "parties.buyer",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "contractNumber",
+     "expected": "SA-2025-94",
+     "predicted": "SA-2025-94",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "endDate",
+     "expected": "2026-06-30",
+     "predicted": "2026-06-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "noticePeriodDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "paymentTermsDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "valueCap.amount",
+     "expected": "7100.00",
+     "predicted": "7100.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "valueCap.currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-ctr-3",
+     "field": "governingLaw",
+     "expected": "the laws of Ireland",
+     "predicted": "laws of Ireland",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00137175",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-0-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "vendor.name",
+     "expected": "Świech Usługi Sp. z o.o.",
+     "predicted": "Świech Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "vendor.taxId",
+     "expected": "885-772-17-27",
+     "predicted": "885-772-17-27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/319",
+     "predicted": "FV/2026/01/319",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "issueDate",
+     "expected": "2026-01-20",
+     "predicted": "2026-01-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "dueDate",
+     "expected": "2026-02-19",
+     "predicted": "2026-02-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "netTotal",
+     "expected": "2898.00",
+     "predicted": "2898.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "taxTotal",
+     "expected": "666.54",
+     "predicted": "666.54",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "grossTotal",
+     "expected": "3564.54",
+     "predicted": "3564.54",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q1",
+     "field": "paidDate",
+     "expected": "2026-02-16",
+     "predicted": "2026-02-16",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00268775",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-0-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "vendor.name",
+     "expected": "Świech Usługi Sp. z o.o.",
+     "predicted": "Świech Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "vendor.taxId",
+     "expected": "885-772-17-27",
+     "predicted": "885-772-17-27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/089",
+     "predicted": "FV/2026/04/089",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "issueDate",
+     "expected": "2026-04-19",
+     "predicted": "2026-04-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "dueDate",
+     "expected": "2026-04-26",
+     "predicted": "2026-04-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "netTotal",
+     "expected": "1260.00",
+     "predicted": "1260.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "taxTotal",
+     "expected": "289.80",
+     "predicted": "289.80",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "grossTotal",
+     "expected": "1549.80",
+     "predicted": "1549.80",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00108725",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-0-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "vendor.name",
+     "expected": "Świech Usługi Sp. z o.o.",
+     "predicted": "Świech Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "vendor.taxId",
+     "expected": "885-772-17-27",
+     "predicted": "885-772-17-27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/054",
+     "predicted": "FV/2026/07/054",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "issueDate",
+     "expected": "2026-07-23",
+     "predicted": "2026-07-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "dueDate",
+     "expected": "2026-08-22",
+     "predicted": "2026-08-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "netTotal",
+     "expected": "3122.00",
+     "predicted": "3122.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "taxTotal",
+     "expected": "718.06",
+     "predicted": "718.06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "grossTotal",
+     "expected": "3840.06",
+     "predicted": "3840.06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-0-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00252100",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-1-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "vendor.name",
+     "expected": "Chwedczuk Serwis Sp. z o.o.",
+     "predicted": "Chwedczuk Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "vendor.taxId",
+     "expected": "687-128-73-09",
+     "predicted": "687-128-73-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/201",
+     "predicted": "FV/2026/01/201",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "issueDate",
+     "expected": "2026-01-05",
+     "predicted": "2026-01-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "dueDate",
+     "expected": "2026-01-26",
+     "predicted": "2026-01-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "netTotal",
+     "expected": "7307.00",
+     "predicted": "7307.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "taxTotal",
+     "expected": "1680.61",
+     "predicted": "1680.61",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "grossTotal",
+     "expected": "8987.61",
+     "predicted": "8987.61",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00122625",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-1-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "vendor.name",
+     "expected": "Chwedczuk Serwis Sp. z o.o.",
+     "predicted": "Chwedczuk Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "vendor.taxId",
+     "expected": "687-128-73-09",
+     "predicted": "687-128-73-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/347",
+     "predicted": "FV/2026/04/347",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "issueDate",
+     "expected": "2026-04-08",
+     "predicted": "2026-04-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "dueDate",
+     "expected": "2026-04-29",
+     "predicted": "2026-04-29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "netTotal",
+     "expected": "2080.00",
+     "predicted": "2080.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "taxTotal",
+     "expected": "478.40",
+     "predicted": "478.40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "grossTotal",
+     "expected": "2558.40",
+     "predicted": "2558.40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q2",
+     "field": "paidDate",
+     "expected": "2026-04-27",
+     "predicted": "2026-04-27",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00130525",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-1-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "vendor.name",
+     "expected": "Chwedczuk Serwis Sp. z o.o.",
+     "predicted": "Chwedczuk Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "vendor.taxId",
+     "expected": "687-128-73-09",
+     "predicted": "687-128-73-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/332",
+     "predicted": "FV/2026/07/332",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "issueDate",
+     "expected": "2026-07-12",
+     "predicted": "2026-07-12",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "dueDate",
+     "expected": "2026-08-02",
+     "predicted": "2026-08-02",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "netTotal",
+     "expected": "8353.00",
+     "predicted": "8353.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "taxTotal",
+     "expected": "1921.19",
+     "predicted": "1921.19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "grossTotal",
+     "expected": "10274.19",
+     "predicted": "10274.19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-1-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00124775",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-2-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "vendor.name",
+     "expected": "Parkin Services Ltd",
+     "predicted": "Parkin Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "vendor.taxId",
+     "expected": "GB343884595",
+     "predicted": "GB343884595",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260363",
+     "predicted": "INV-260363",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "issueDate",
+     "expected": "2026-01-05",
+     "predicted": "2026-01-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "dueDate",
+     "expected": "2026-03-06",
+     "predicted": "2026-03-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "netTotal",
+     "expected": "1521.00",
+     "predicted": "1521.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "grossTotal",
+     "expected": "1521.00",
+     "predicted": "1521.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001036",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-2-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "vendor.name",
+     "expected": "Parkin Services Ltd",
+     "predicted": "Parkin Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "vendor.taxId",
+     "expected": "GB343884595",
+     "predicted": "GB343884595",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260382",
+     "predicted": "INV-260382",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "issueDate",
+     "expected": "2026-04-24",
+     "predicted": "2026-04-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "dueDate",
+     "expected": "2026-06-23",
+     "predicted": "2026-06-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "netTotal",
+     "expected": "1112.80",
+     "predicted": "1112.80",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "grossTotal",
+     "expected": "1112.80",
+     "predicted": "1112.80",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q2",
+     "field": "paidDate",
+     "expected": "2026-06-18",
+     "predicted": "2026-06-18",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00238325",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-2-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "vendor.name",
+     "expected": "Parkin Services Ltd",
+     "predicted": "Parkin Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "vendor.taxId",
+     "expected": "GB343884595",
+     "predicted": "GB343884595",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260346",
+     "predicted": "INV-260346",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "issueDate",
+     "expected": "2026-07-21",
+     "predicted": "2026-07-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "dueDate",
+     "expected": "2026-09-19",
+     "predicted": "2026-09-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "netTotal",
+     "expected": "728.00",
+     "predicted": "728.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "grossTotal",
+     "expected": "728.00",
+     "predicted": "728.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-2-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.0009445",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-3-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "vendor.name",
+     "expected": "Wilkinson Consulting Limited",
+     "predicted": "Wilkinson Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "vendor.taxId",
+     "expected": "IE880926259",
+     "predicted": "IE880926259",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260042",
+     "predicted": "INV-260042",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "issueDate",
+     "expected": "2026-01-20",
+     "predicted": "2026-01-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "dueDate",
+     "expected": "2026-02-19",
+     "predicted": "2026-02-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "netTotal",
+     "expected": "585.00",
+     "predicted": "585.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "grossTotal",
+     "expected": "585.00",
+     "predicted": "585.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q1",
+     "field": "paidDate",
+     "expected": "2026-02-18",
+     "predicted": "2026-02-18",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00121675",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-3-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "vendor.name",
+     "expected": "Wilkinson Consulting Limited",
+     "predicted": "Wilkinson Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "vendor.taxId",
+     "expected": "IE880926259",
+     "predicted": "IE880926259",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260238",
+     "predicted": "INV-260238",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "issueDate",
+     "expected": "2026-04-14",
+     "predicted": "2026-04-14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "dueDate",
+     "expected": "2026-05-14",
+     "predicted": "2026-05-14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "netTotal",
+     "expected": "2135.00",
+     "predicted": "2135.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "grossTotal",
+     "expected": "2135.00",
+     "predicted": "2135.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00110775",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-inv-3-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "vendor.name",
+     "expected": "Wilkinson Consulting Limited",
+     "predicted": "Wilkinson Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "vendor.taxId",
+     "expected": "IE880926259",
+     "predicted": "IE880926259",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "buyer.name",
+     "expected": "Gąsienica Produkcja Sp. z o.o.",
+     "predicted": "Gąsienica Produkcja Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "buyer.taxId",
+     "expected": "262-771-21-24",
+     "predicted": "262-771-21-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260191",
+     "predicted": "INV-260191",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "issueDate",
+     "expected": "2026-07-07",
+     "predicted": "2026-07-07",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "dueDate",
+     "expected": "2026-08-06",
+     "predicted": "2026-08-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "netTotal",
+     "expected": "2135.00",
+     "predicted": "2135.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "grossTotal",
+     "expected": "2135.00",
+     "predicted": "2135.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-inv-3-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.0011325",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-rec-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "merchant.name",
+     "expected": "Stacja Paliw Fidura",
+     "predicted": "Stacja Paliw Fidura",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "merchant.taxId",
+     "expected": "536-990-22-23",
+     "predicted": "536-990-22-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "receiptNumber",
+     "expected": "4127/40",
+     "predicted": "4127/40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "date",
+     "expected": "2026-02-04",
+     "predicted": "2026-02-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "total",
+     "expected": "321.82",
+     "predicted": "321.82",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "taxTotal",
+     "expected": "60.18",
+     "predicted": "60.18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-0",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00128550",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-rec-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "merchant.name",
+     "expected": "Papiernik Szlaga",
+     "predicted": "Papiernik Szlaga",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "merchant.taxId",
+     "expected": "222-704-52-85",
+     "predicted": "222-704-52-85",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "receiptNumber",
+     "expected": "9542/40",
+     "predicted": "9542/40",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "date",
+     "expected": "2026-07-16",
+     "predicted": "2026-07-16",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "total",
+     "expected": "448.74",
+     "predicted": "448.74",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "taxTotal",
+     "expected": "83.91",
+     "predicted": "83.91",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-1",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00160175",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-rec-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "merchant.name",
+     "expected": "Lee Cafe",
+     "predicted": "Lee Cafe",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "merchant.taxId",
+     "expected": "GB705366763",
+     "predicted": "GB705366763",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "receiptNumber",
+     "expected": "9856/92",
+     "predicted": "9856/92",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "date",
+     "expected": "2026-05-26",
+     "predicted": "2026-05-26",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "total",
+     "expected": "32.21",
+     "predicted": "32.21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "taxTotal",
+     "expected": "5.37",
+     "predicted": "5.37",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-2",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00115850",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w0-rec-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "merchant.name",
+     "expected": "Garner Stationers",
+     "predicted": "Garner Stationers",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "merchant.taxId",
+     "expected": "GB716945453",
+     "predicted": "GB716945453",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "receiptNumber",
+     "expected": "5166/42",
+     "predicted": "5166/42",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "date",
+     "expected": "2026-01-02",
+     "predicted": "2026-01-02",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "total",
+     "expected": "66.29",
+     "predicted": "66.29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "taxTotal",
+     "expected": "11.05",
+     "predicted": "11.05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w0-rec-3",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00119400",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-ctr-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "parties.vendor",
+     "expected": "Linda Usługi Sp. z o.o.",
+     "predicted": "Linda Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "parties.buyer",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "contractNumber",
+     "expected": "57/2025",
+     "predicted": "57/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "paymentTermsDays",
+     "expected": "21",
+     "predicted": "21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "valueCap.amount",
+     "expected": "10300.00",
+     "predicted": "10300.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-0",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0011015",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-ctr-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "parties.vendor",
+     "expected": "Prawdzik Serwis Sp. z o.o.",
+     "predicted": "Prawdzik Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "parties.buyer",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "contractNumber",
+     "expected": "77/2025",
+     "predicted": "77/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "autoRenewal",
+     "expected": "False",
+     "predicted": "False",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "paymentTermsDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "valueCap.amount",
+     "expected": "47000.00",
+     "predicted": "47000.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-1",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00124550",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-ctr-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "parties.vendor",
+     "expected": "Grant Services Ltd",
+     "predicted": "Grant Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "parties.buyer",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "contractNumber",
+     "expected": "SA-2025-93",
+     "predicted": "SA-2025-93",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "endDate",
+     "expected": "2026-06-30",
+     "predicted": "2026-06-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "noticePeriodDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "valueCap.amount",
+     "expected": "4500.00",
+     "predicted": "4500.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "valueCap.currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-2",
+     "field": "governingLaw",
+     "expected": "the laws of England and Wales",
+     "predicted": "laws of England and Wales",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00095",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-ctr-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "parties.vendor",
+     "expected": "Hall Consulting Limited",
+     "predicted": "Hall Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "parties.buyer",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "contractNumber",
+     "expected": "SA-2025-57",
+     "predicted": "SA-2025-57",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "valueCap.amount",
+     "expected": "4000.00",
+     "predicted": "4000.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "valueCap.currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-ctr-3",
+     "field": "governingLaw",
+     "expected": "the laws of Ireland",
+     "predicted": "laws of Ireland",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00132800",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-0-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "vendor.name",
+     "expected": "Linda Usługi Sp. z o.o.",
+     "predicted": "Linda Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "vendor.taxId",
+     "expected": "715-736-69-79",
+     "predicted": "715-736-69-79",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/309",
+     "predicted": "FV/2026/01/309",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "issueDate",
+     "expected": "2026-01-04",
+     "predicted": "2026-01-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "dueDate",
+     "expected": "2026-01-25",
+     "predicted": "2026-01-25",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "netTotal",
+     "expected": "890.00",
+     "predicted": "890.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "taxTotal",
+     "expected": "204.70",
+     "predicted": "204.70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "grossTotal",
+     "expected": "1094.70",
+     "predicted": "1094.70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q1",
+     "field": "paidDate",
+     "expected": "2026-01-22",
+     "predicted": "2026-01-22",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00133300",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-0-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "vendor.name",
+     "expected": "Linda Usługi Sp. z o.o.",
+     "predicted": "Linda Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "vendor.taxId",
+     "expected": "715-736-69-79",
+     "predicted": "715-736-69-79",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/350",
+     "predicted": "FV/2026/04/350",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "issueDate",
+     "expected": "2026-04-03",
+     "predicted": "2026-04-03",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "dueDate",
+     "expected": "2026-04-24",
+     "predicted": "2026-04-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "netTotal",
+     "expected": "783.20",
+     "predicted": "783.20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "taxTotal",
+     "expected": "180.14",
+     "predicted": "180.14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "grossTotal",
+     "expected": "963.34",
+     "predicted": "963.34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00105725",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-0-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "vendor.name",
+     "expected": "Linda Usługi Sp. z o.o.",
+     "predicted": "Linda Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "vendor.taxId",
+     "expected": "715-736-69-79",
+     "predicted": "715-736-69-79",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/350",
+     "predicted": "FV/2026/07/350",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "issueDate",
+     "expected": "2026-07-21",
+     "predicted": "2026-07-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "dueDate",
+     "expected": "2026-08-11",
+     "predicted": "2026-08-11",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "netTotal",
+     "expected": "4372.00",
+     "predicted": "4372.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "taxTotal",
+     "expected": "1005.56",
+     "predicted": "1005.56",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "grossTotal",
+     "expected": "5377.56",
+     "predicted": "5377.56",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-0-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00243000",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-1-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "vendor.name",
+     "expected": "Prawdzik Serwis Sp. z o.o.",
+     "predicted": "Prawdzik Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "vendor.taxId",
+     "expected": "889-637-00-60",
+     "predicted": "889-637-00-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/077",
+     "predicted": "FV/2026/01/077",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "issueDate",
+     "expected": "2026-01-06",
+     "predicted": "2026-01-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "dueDate",
+     "expected": "2026-02-05",
+     "predicted": "2026-02-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "netTotal",
+     "expected": "20271.00",
+     "predicted": "20271.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "taxTotal",
+     "expected": "4662.33",
+     "predicted": "4662.33",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "grossTotal",
+     "expected": "24933.33",
+     "predicted": "24933.33",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q1",
+     "field": "paidDate",
+     "expected": "2026-02-03",
+     "predicted": "2026-02-03",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00149950",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-1-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "vendor.name",
+     "expected": "Prawdzik Serwis Sp. z o.o.",
+     "predicted": "Prawdzik Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "vendor.taxId",
+     "expected": "889-637-00-60",
+     "predicted": "889-637-00-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/259",
+     "predicted": "FV/2026/04/259",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "issueDate",
+     "expected": "2026-04-23",
+     "predicted": "2026-04-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "dueDate",
+     "expected": "2026-05-23",
+     "predicted": "2026-05-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "netTotal",
+     "expected": "16743.00",
+     "predicted": "16743.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "taxTotal",
+     "expected": "3850.89",
+     "predicted": "3850.89",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "grossTotal",
+     "expected": "20593.89",
+     "predicted": "20593.89",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00121475",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-1-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "vendor.name",
+     "expected": "Prawdzik Serwis Sp. z o.o.",
+     "predicted": "Prawdzik Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "vendor.taxId",
+     "expected": "889-637-00-60",
+     "predicted": "889-637-00-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/041",
+     "predicted": "FV/2026/07/041",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "issueDate",
+     "expected": "2026-07-19",
+     "predicted": "2026-07-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "dueDate",
+     "expected": "2026-08-18",
+     "predicted": "2026-08-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "netTotal",
+     "expected": "21258.00",
+     "predicted": "21258.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "taxTotal",
+     "expected": "4889.34",
+     "predicted": "4889.34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "grossTotal",
+     "expected": "26147.34",
+     "predicted": "26147.34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-1-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00242600",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-2-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "vendor.name",
+     "expected": "Grant Services Ltd",
+     "predicted": "Grant Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "vendor.taxId",
+     "expected": "GB400734633",
+     "predicted": "GB400734633",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260245",
+     "predicted": "INV-260245",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "issueDate",
+     "expected": "2026-01-21",
+     "predicted": "2026-01-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "dueDate",
+     "expected": "2026-02-04",
+     "predicted": "2026-02-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "netTotal",
+     "expected": "909.00",
+     "predicted": "909.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "grossTotal",
+     "expected": "909.00",
+     "predicted": "909.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001074",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-2-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "vendor.name",
+     "expected": "Grant Services Ltd",
+     "predicted": "Grant Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "vendor.taxId",
+     "expected": "GB400734633",
+     "predicted": "GB400734633",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260056",
+     "predicted": "INV-260056",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "issueDate",
+     "expected": "2026-04-03",
+     "predicted": "2026-04-03",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "dueDate",
+     "expected": "2026-04-17",
+     "predicted": "2026-04-17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "netTotal",
+     "expected": "1056.00",
+     "predicted": "1056.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "grossTotal",
+     "expected": "1056.00",
+     "predicted": "1056.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q2",
+     "field": "paidDate",
+     "expected": "2026-04-14",
+     "predicted": "2026-04-14",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00122850",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-2-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "vendor.name",
+     "expected": "Grant Services Ltd",
+     "predicted": "Grant Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "vendor.taxId",
+     "expected": "GB400734633",
+     "predicted": "GB400734633",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260228",
+     "predicted": "INV-260228",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "issueDate",
+     "expected": "2026-07-07",
+     "predicted": "2026-07-07",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "dueDate",
+     "expected": "2026-07-21",
+     "predicted": "2026-07-21",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "netTotal",
+     "expected": "549.00",
+     "predicted": "549.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "grossTotal",
+     "expected": "549.00",
+     "predicted": "549.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-2-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00106175",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-3-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "vendor.name",
+     "expected": "Hall Consulting Limited",
+     "predicted": "Hall Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "vendor.taxId",
+     "expected": "IE364400922",
+     "predicted": "IE364400922",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260255",
+     "predicted": "INV-260255",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "issueDate",
+     "expected": "2026-01-17",
+     "predicted": "2026-01-17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "dueDate",
+     "expected": "2026-01-31",
+     "predicted": "2026-01-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "netTotal",
+     "expected": "1137.00",
+     "predicted": "1137.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "grossTotal",
+     "expected": "1137.00",
+     "predicted": "1137.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q1",
+     "field": "paidDate",
+     "expected": "2026-01-28",
+     "predicted": "2026-01-28",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00138000",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-3-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "vendor.name",
+     "expected": "Hall Consulting Limited",
+     "predicted": "Hall Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "vendor.taxId",
+     "expected": "IE364400922",
+     "predicted": "IE364400922",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260234",
+     "predicted": "INV-260234",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "issueDate",
+     "expected": "2026-04-23",
+     "predicted": "2026-04-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "dueDate",
+     "expected": "2026-04-30",
+     "predicted": "2026-04-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "netTotal",
+     "expected": "657.00",
+     "predicted": "657.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "grossTotal",
+     "expected": "657.00",
+     "predicted": "657.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00201050",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-inv-3-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "vendor.name",
+     "expected": "Hall Consulting Limited",
+     "predicted": "Hall Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "vendor.taxId",
+     "expected": "IE364400922",
+     "predicted": "IE364400922",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "buyer.name",
+     "expected": "Stranc Handel Sp. z o.o.",
+     "predicted": "Stranc Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "buyer.taxId",
+     "expected": "226-407-35-60",
+     "predicted": "226-407-35-60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260112",
+     "predicted": "INV-260112",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "issueDate",
+     "expected": "2026-07-15",
+     "predicted": "2026-07-15",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "dueDate",
+     "expected": "2026-07-29",
+     "predicted": "2026-07-29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "netTotal",
+     "expected": "1137.00",
+     "predicted": "1137.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "grossTotal",
+     "expected": "1137.00",
+     "predicted": "1137.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-inv-3-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00112",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-rec-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "merchant.name",
+     "expected": "Stacja Paliw Jaje",
+     "predicted": "Stacja Paliw Jaje",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "merchant.taxId",
+     "expected": "712-174-28-04",
+     "predicted": "712-174-28-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "receiptNumber",
+     "expected": "5224/44",
+     "predicted": "5224/44",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "date",
+     "expected": "2026-04-23",
+     "predicted": "2026-04-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "total",
+     "expected": "362.24",
+     "predicted": "362.24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "taxTotal",
+     "expected": "67.74",
+     "predicted": "67.74",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-0",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 3,
+   "lines_predicted": 3,
+   "lines_matched": 3,
+   "cost_usd": "0.00172275",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-rec-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "merchant.name",
+     "expected": "Stacja Paliw Strzyż",
+     "predicted": "Stacja Paliw Strzyż",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "merchant.taxId",
+     "expected": "382-176-77-44",
+     "predicted": "382-176-77-44",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "receiptNumber",
+     "expected": "1446/12",
+     "predicted": "1446/12",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "date",
+     "expected": "2026-01-12",
+     "predicted": "2026-01-12",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "total",
+     "expected": "145.27",
+     "predicted": "145.27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "taxTotal",
+     "expected": "27.16",
+     "predicted": "27.16",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-1",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00118925",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-rec-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "merchant.name",
+     "expected": "Cunningham Cabs",
+     "predicted": "Cunningham Cabs",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "merchant.taxId",
+     "expected": "GB839315731",
+     "predicted": "GB839315731",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "receiptNumber",
+     "expected": "6136/88",
+     "predicted": "6136/88",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "date",
+     "expected": "2026-09-16",
+     "predicted": "2026-09-16",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "total",
+     "expected": "39.66",
+     "predicted": "39.66",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "taxTotal",
+     "expected": "6.61",
+     "predicted": "6.61",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-2",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00099925",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w1-rec-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "merchant.name",
+     "expected": "Palmer Cabs",
+     "predicted": "Palmer Cabs",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "merchant.taxId",
+     "expected": "GB541344468",
+     "predicted": "GB541344468",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "receiptNumber",
+     "expected": "1647/81",
+     "predicted": "1647/81",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "date",
+     "expected": "2026-01-14",
+     "predicted": "2026-01-14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "total",
+     "expected": "35.47",
+     "predicted": "35.47",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "taxTotal",
+     "expected": "5.91",
+     "predicted": "5.91",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w1-rec-3",
+     "field": "paymentMethod",
+     "expected": "cash",
+     "predicted": "cash",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00100400",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-ctr-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "parties.vendor",
+     "expected": "Kazubek Usługi Sp. z o.o.",
+     "predicted": "Kazubek Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "parties.buyer",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "contractNumber",
+     "expected": "95/2025",
+     "predicted": "95/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "noticePeriodDays",
+     "expected": "60",
+     "predicted": "60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "valueCap.amount",
+     "expected": "27900.00",
+     "predicted": "27900.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-0",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.001106",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-ctr-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "parties.vendor",
+     "expected": "Sąsiadek Serwis Sp. z o.o.",
+     "predicted": "Sąsiadek Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "parties.buyer",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "contractNumber",
+     "expected": "41/2025",
+     "predicted": "41/2025",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "endDate",
+     "expected": "2026-06-30",
+     "predicted": "2026-06-30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "noticePeriodDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "paymentTermsDays",
+     "expected": "45",
+     "predicted": "45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "valueCap.amount",
+     "expected": "27300.00",
+     "predicted": "27300.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "valueCap.currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-1",
+     "field": "governingLaw",
+     "expected": "prawo polskie",
+     "predicted": "prawo polskie",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00131600",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-ctr-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "parties.vendor",
+     "expected": "Wood Services Ltd",
+     "predicted": "Wood Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "parties.buyer",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "contractNumber",
+     "expected": "SA-2025-42",
+     "predicted": "SA-2025-42",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "noticePeriodDays",
+     "expected": "30",
+     "predicted": "30",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "paymentTermsDays",
+     "expected": "45",
+     "predicted": "45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "valueCap.amount",
+     "expected": "4000.00",
+     "predicted": "4000.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "valueCap.currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-2",
+     "field": "governingLaw",
+     "expected": "the laws of England and Wales",
+     "predicted": "laws of England and Wales",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.0009215",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-ctr-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "docx",
+   "category": "CONTRACT",
+   "predicted_category": "CONTRACT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "parties.vendor",
+     "expected": "Brookes Consulting Limited",
+     "predicted": "Brookes Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "parties.buyer",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "contractNumber",
+     "expected": "SA-2025-93",
+     "predicted": "SA-2025-93",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "effectiveDate",
+     "expected": "2026-01-01",
+     "predicted": "2026-01-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "endDate",
+     "expected": "2026-12-31",
+     "predicted": "2026-12-31",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "autoRenewal",
+     "expected": "True",
+     "predicted": "True",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "noticePeriodDays",
+     "expected": "90",
+     "predicted": "90",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "paymentTermsDays",
+     "expected": "14",
+     "predicted": "14",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "valueCap.amount",
+     "expected": "8700.00",
+     "predicted": "8700.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "valueCap.currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-ctr-3",
+     "field": "governingLaw",
+     "expected": "the laws of Ireland",
+     "predicted": "laws of Ireland",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 0,
+   "lines_predicted": 0,
+   "lines_matched": 0,
+   "cost_usd": "0.00133075",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-0-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "vendor.name",
+     "expected": "Kazubek Usługi Sp. z o.o.",
+     "predicted": "Kazubek Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "vendor.taxId",
+     "expected": "164-669-58-05",
+     "predicted": "164-669-58-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/013",
+     "predicted": "FV/2026/01/013",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "issueDate",
+     "expected": "2026-01-06",
+     "predicted": "2026-01-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "dueDate",
+     "expected": "2026-01-20",
+     "predicted": "2026-01-20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "netTotal",
+     "expected": "5390.00",
+     "predicted": "5390.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "taxTotal",
+     "expected": "1239.70",
+     "predicted": "1239.70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "grossTotal",
+     "expected": "6629.70",
+     "predicted": "6629.70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00118375",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-0-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "vendor.name",
+     "expected": "Kazubek Usługi Sp. z o.o.",
+     "predicted": "Kazubek Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "vendor.taxId",
+     "expected": "164-669-58-05",
+     "predicted": "164-669-58-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/116",
+     "predicted": "FV/2026/04/116",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "issueDate",
+     "expected": "2026-04-06",
+     "predicted": "2026-04-06",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "dueDate",
+     "expected": "2026-04-13",
+     "predicted": "2026-04-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "netTotal",
+     "expected": "925.00",
+     "predicted": "925.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "taxTotal",
+     "expected": "212.75",
+     "predicted": "212.75",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "grossTotal",
+     "expected": "1137.75",
+     "predicted": "1137.75",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q2",
+     "field": "paidDate",
+     "expected": "2026-04-11",
+     "predicted": "2026-04-11",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00137600",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-0-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "vendor.name",
+     "expected": "Kazubek Usługi Sp. z o.o.",
+     "predicted": "Kazubek Usługi Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "vendor.taxId",
+     "expected": "164-669-58-05",
+     "predicted": "164-669-58-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/365",
+     "predicted": "FV/2026/07/365",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "issueDate",
+     "expected": "2026-07-08",
+     "predicted": "2026-07-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "dueDate",
+     "expected": "2026-07-22",
+     "predicted": "2026-07-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "netTotal",
+     "expected": "10753.00",
+     "predicted": "10753.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "taxTotal",
+     "expected": "2473.19",
+     "predicted": "2473.19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "grossTotal",
+     "expected": "13226.19",
+     "predicted": "13226.19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-0-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00125725",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-1-q1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "vendor.name",
+     "expected": "Sąsiadek Serwis Sp. z o.o.",
+     "predicted": "Sąsiadek Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "vendor.taxId",
+     "expected": "304-584-60-34",
+     "predicted": "304-584-60-34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/01/152",
+     "predicted": "FV/2026/01/152",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "issueDate",
+     "expected": "2026-01-10",
+     "predicted": "2026-01-10",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "dueDate",
+     "expected": "2026-02-24",
+     "predicted": "2026-02-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "netTotal",
+     "expected": "3623.00",
+     "predicted": "3623.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "taxTotal",
+     "expected": "833.29",
+     "predicted": "833.29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "grossTotal",
+     "expected": "4456.29",
+     "predicted": "4456.29",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q1",
+     "field": "paidDate",
+     "expected": "2026-02-19",
+     "predicted": "2026-02-19",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00131075",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-1-q2",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "vendor.name",
+     "expected": "Sąsiadek Serwis Sp. z o.o.",
+     "predicted": "Sąsiadek Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "vendor.taxId",
+     "expected": "304-584-60-34",
+     "predicted": "304-584-60-34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/04/039",
+     "predicted": "FV/2026/04/039",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "issueDate",
+     "expected": "2026-04-04",
+     "predicted": "2026-04-04",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "dueDate",
+     "expected": "2026-05-19",
+     "predicted": "2026-05-19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "netTotal",
+     "expected": "7133.00",
+     "predicted": "7133.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "taxTotal",
+     "expected": "1640.59",
+     "predicted": "1640.59",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "grossTotal",
+     "expected": "8773.59",
+     "predicted": "8773.59",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00242575",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-1-q3",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "vendor.name",
+     "expected": "Sąsiadek Serwis Sp. z o.o.",
+     "predicted": "Sąsiadek Serwis Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "vendor.taxId",
+     "expected": "304-584-60-34",
+     "predicted": "304-584-60-34",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "invoiceNumber",
+     "expected": "FV/2026/07/197",
+     "predicted": "FV/2026/07/197",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "issueDate",
+     "expected": "2026-07-09",
+     "predicted": "2026-07-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "dueDate",
+     "expected": "2026-08-23",
+     "predicted": "2026-08-23",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "netTotal",
+     "expected": "8849.00",
+     "predicted": "8849.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "taxTotal",
+     "expected": "2035.27",
+     "predicted": "2035.27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "grossTotal",
+     "expected": "10884.27",
+     "predicted": "10884.27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-1-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.0011515",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-2-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "vendor.name",
+     "expected": "Wood Services Ltd",
+     "predicted": "Wood Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "vendor.taxId",
+     "expected": "GB475477209",
+     "predicted": "GB475477209",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260308",
+     "predicted": "INV-260308",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "issueDate",
+     "expected": "2026-01-22",
+     "predicted": "2026-01-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "dueDate",
+     "expected": "2026-03-08",
+     "predicted": "2026-03-08",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "netTotal",
+     "expected": "880.00",
+     "predicted": "880.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "grossTotal",
+     "expected": "880.00",
+     "predicted": "880.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q1",
+     "field": "paidDate",
+     "expected": "2026-03-06",
+     "predicted": "2026-03-06",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00129600",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-2-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "vendor.name",
+     "expected": "Wood Services Ltd",
+     "predicted": "Wood Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "vendor.taxId",
+     "expected": "GB475477209",
+     "predicted": "GB475477209",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260391",
+     "predicted": "INV-260391",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "issueDate",
+     "expected": "2026-04-17",
+     "predicted": "2026-04-17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "dueDate",
+     "expected": "2026-06-01",
+     "predicted": "2026-06-01",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "netTotal",
+     "expected": "906.50",
+     "predicted": "906.50",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "grossTotal",
+     "expected": "906.50",
+     "predicted": "906.50",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q2",
+     "field": "paidDate",
+     "expected": "2026-05-31",
+     "predicted": "2026-05-31",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00133125",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-2-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "vendor.name",
+     "expected": "Wood Services Ltd",
+     "predicted": "Wood Services Ltd",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "vendor.taxId",
+     "expected": "GB475477209",
+     "predicted": "GB475477209",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260335",
+     "predicted": "INV-260335",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "issueDate",
+     "expected": "2026-07-24",
+     "predicted": "2026-07-24",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "dueDate",
+     "expected": "2026-09-07",
+     "predicted": "2026-09-07",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "netTotal",
+     "expected": "880.00",
+     "predicted": "880.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "grossTotal",
+     "expected": "880.00",
+     "predicted": "880.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-2-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.001066",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-3-q1",
+   "source": "synthetic",
+   "language": "en",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "vendor.name",
+     "expected": "Brookes Consulting Limited",
+     "predicted": "Brookes Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "vendor.taxId",
+     "expected": "IE669701216",
+     "predicted": "IE669701216",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "invoiceNumber",
+     "expected": "INV-260282",
+     "predicted": "INV-260282",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "issueDate",
+     "expected": "2026-01-22",
+     "predicted": "2026-01-22",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "dueDate",
+     "expected": "2026-02-05",
+     "predicted": "2026-02-05",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "netTotal",
+     "expected": "5682.00",
+     "predicted": "5682.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "grossTotal",
+     "expected": "5682.00",
+     "predicted": "5682.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q1",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 2,
+   "lines_predicted": 2,
+   "lines_matched": 2,
+   "cost_usd": "0.00221500",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-3-q2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "vendor.name",
+     "expected": "Brookes Consulting Limited",
+     "predicted": "Brookes Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "vendor.taxId",
+     "expected": "IE669701216",
+     "predicted": "IE669701216",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "invoiceNumber",
+     "expected": "INV-260159",
+     "predicted": "INV-260159",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "issueDate",
+     "expected": "2026-04-25",
+     "predicted": "2026-04-25",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "dueDate",
+     "expected": "2026-05-09",
+     "predicted": "2026-05-09",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "netTotal",
+     "expected": "773.00",
+     "predicted": "773.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "grossTotal",
+     "expected": "773.00",
+     "predicted": "773.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q2",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00101025",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-inv-3-q3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "scanned_pdf",
+   "category": "INVOICE",
+   "predicted_category": "INVOICE",
+   "fields": [
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "vendor.name",
+     "expected": "Brookes Consulting Limited",
+     "predicted": "Brookes Consulting Limited",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "vendor.taxId",
+     "expected": "IE669701216",
+     "predicted": "IE669701216",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "buyer.name",
+     "expected": "Horbacz Handel Sp. z o.o.",
+     "predicted": "Horbacz Handel Sp. z o.o.",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "buyer.taxId",
+     "expected": "814-482-45-70",
+     "predicted": "814-482-45-70",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "invoiceNumber",
+     "expected": "INV-260303",
+     "predicted": "INV-260303",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "issueDate",
+     "expected": "2026-07-13",
+     "predicted": "2026-07-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "dueDate",
+     "expected": "2026-07-27",
+     "predicted": "2026-07-27",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "currency",
+     "expected": "EUR",
+     "predicted": "EUR",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "netTotal",
+     "expected": "4638.00",
+     "predicted": "4638.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "taxTotal",
+     "expected": "0.00",
+     "predicted": "0.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "grossTotal",
+     "expected": "4638.00",
+     "predicted": "4638.00",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-inv-3-q3",
+     "field": "paidDate",
+     "expected": null,
+     "predicted": null,
+     "outcome": "empty"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00206750",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-rec-0",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "merchant.name",
+     "expected": "Papiernik Bielat",
+     "predicted": "Papiernik Bielat",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "merchant.taxId",
+     "expected": "968-590-76-87",
+     "predicted": "968-590-76-87",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "receiptNumber",
+     "expected": "1598/82",
+     "predicted": "1598/82",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "date",
+     "expected": "2026-03-07",
+     "predicted": "2026-03-07",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "total",
+     "expected": "408.74",
+     "predicted": "408.74",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "taxTotal",
+     "expected": "76.43",
+     "predicted": "76.43",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-0",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00121825",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-rec-1",
+   "source": "synthetic",
+   "language": "pl",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "merchant.name",
+     "expected": "Stacja Paliw Fornalik",
+     "predicted": "Stacja Paliw Fornalik",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "merchant.taxId",
+     "expected": "475-787-16-78",
+     "predicted": "475-787-16-78",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "receiptNumber",
+     "expected": "5710/50",
+     "predicted": "5710/50",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "date",
+     "expected": "2026-01-13",
+     "predicted": "2026-01-13",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "currency",
+     "expected": "PLN",
+     "predicted": "PLN",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "total",
+     "expected": "212.45",
+     "predicted": "212.45",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "taxTotal",
+     "expected": "39.73",
+     "predicted": "39.73",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-1",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00122800",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-rec-2",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "merchant.name",
+     "expected": "Griffin Service Station",
+     "predicted": "Griffin Service Station",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "merchant.taxId",
+     "expected": "GB413269733",
+     "predicted": "GB413269733",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "receiptNumber",
+     "expected": "9890/60",
+     "predicted": "9890/60",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "date",
+     "expected": "2026-05-18",
+     "predicted": "2026-05-18",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "total",
+     "expected": "87.65",
+     "predicted": "87.65",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "taxTotal",
+     "expected": "14.61",
+     "predicted": "14.61",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-2",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00106500",
+   "cached": true
+  },
+  {
+   "doc_id": "syn-w2-rec-3",
+   "source": "synthetic",
+   "language": "en",
+   "format": "photo",
+   "category": "RECEIPT",
+   "predicted_category": "RECEIPT",
+   "fields": [
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "merchant.name",
+     "expected": "Turner Service Station",
+     "predicted": "Turner Service Station",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "merchant.taxId",
+     "expected": "GB630254587",
+     "predicted": "GB630254587",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "receiptNumber",
+     "expected": "4012/17",
+     "predicted": "4012/17",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "date",
+     "expected": "2026-05-25",
+     "predicted": "2026-05-25",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "currency",
+     "expected": "GBP",
+     "predicted": "GBP",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "total",
+     "expected": "31.19",
+     "predicted": "31.19",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "taxTotal",
+     "expected": "5.20",
+     "predicted": "5.20",
+     "outcome": "correct"
+    },
+    {
+     "doc_id": "syn-w2-rec-3",
+     "field": "paymentMethod",
+     "expected": "card",
+     "predicted": "card",
+     "outcome": "correct"
+    }
+   ],
+   "lines_expected": 1,
+   "lines_predicted": 1,
+   "lines_matched": 1,
+   "cost_usd": "0.00106275",
+   "cached": true
+  }
+ ]
+}

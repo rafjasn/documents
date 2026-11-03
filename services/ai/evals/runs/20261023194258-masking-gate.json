@@ -1,0 +1,19 @@
+{
+  "kind": "masking-gate",
+  "created": "20261023194258",
+  "since": "2026-10-22T13:34:00+00:00",
+  "observations": 13356,
+  "generations": 2409,
+  "with_prompt_version": 1000,
+  "identifier_forms": 90,
+  "masked": {
+    "NIP": 117181,
+    "ACCOUNT": 31928,
+    "VAT": 37364,
+    "PESEL": 12,
+    "PHONE": 7893,
+    "EMAIL": 468
+  },
+  "leaks": {},
+  "passed": true
+}

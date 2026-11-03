@@ -1,0 +1,9 @@
+{
+    "conversationId": "0a1b2c3d-4e5f-4a6b-8c7d-9e0f1a2b3c4d",
+    "message": "And what is the due date?",
+    "history": [
+        { "role": "user", "content": "What is the total on this invoice?" },
+        { "role": "assistant", "content": "The total is 3 564,05 PLN [1]." }
+    ],
+    "scope": { "documentIds": ["4f1c2a9e-5b7d-4c3e-9a1f-2d6e8b0c7a51"] }
+}

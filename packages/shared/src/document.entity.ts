@@ -10,7 +10,6 @@ export class DocumentEntity implements DocumentRecord {
     s3Key!: string;
     status!: DocumentStatus;
     category?: string;
-    extractedText?: string;
     summary?: string;
     thumbnailKey?: string;
     metadata?: DocumentMetadata;
@@ -48,7 +47,6 @@ export class DocumentEntity implements DocumentRecord {
             s3Key: item.s3Key,
             status: item.status,
             category: item.category,
-            extractedText: item.extractedText,
             summary: item.summary,
             thumbnailKey: item.thumbnailKey,
             metadata: item.metadata ? item.metadata : undefined,
